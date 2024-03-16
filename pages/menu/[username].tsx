@@ -9,10 +9,7 @@ const MenuPage = () => {
   //
   const { setUsername } = useUsernameContext();
   //
-  useEffect(() => {
-    const usernameData = localStorage.getItem("username");
-    setUsername(usernameData);
-  }, []);
+
   //
   return (
     <MenuPageStyled>
