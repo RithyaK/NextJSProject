@@ -18,4 +18,5 @@ export const getServerSideProps = async () => {};
 const SidebarStyled = styled.div`
   background-color: rgb(159, 127, 127);
   width: 230px;
+  overflow: auto;
 `;

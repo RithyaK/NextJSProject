@@ -26,6 +26,6 @@ export default MenuPage;
 
 const MenuPageStyled = styled.div`
   display: flex;
-  height: calc(100vh - 49px);
+  height: calc(100vh - 50px);
   background-color: #4b4b50;
 `;
