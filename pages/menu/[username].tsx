@@ -1,14 +1,18 @@
 // import { getUserData } from "@/firebase/userData";
 import Sidebar from "@/components/Sidebar";
+import { useUsernameContext } from "@/components/context/usernameContext";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { use, useContext, useEffect } from "react";
 import styled from "styled-components";
 const MenuPage = () => {
   //
-
+  const { setUsername } = useUsernameContext();
   //
-
+  useEffect(() => {
+    const usernameData = localStorage.getItem("username");
+    setUsername(usernameData);
+  }, []);
   //
   return (
     <MenuPageStyled>

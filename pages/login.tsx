@@ -10,6 +10,7 @@ const Login = () => {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     authenticateUser(username);
+    localStorage.setItem("username", username);
     router.push(`menu/${username}`);
   }
   //
