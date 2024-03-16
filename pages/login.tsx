@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
-// import { authenticateUser, createUser, getUser } from "@/firebase/user";
+import { authenticateUser } from "@/firestore/user";
 const Login = () => {
   //
   const router = useRouter();
@@ -9,7 +9,7 @@ const Login = () => {
   //
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // authenticateUser(username);
+    authenticateUser(username);
     router.push(`menu/${username}`);
   }
   //
