@@ -3,13 +3,24 @@ import styled from "styled-components";
 import { db } from "@/firestore/firebase-config";
 import { doc, getDoc } from "firebase/firestore";
 import Ranking from "../../reusable-ui/Ranking";
-const Sidebar = ({ allTime, week, month }) => {
+
+type UserData = {
+  score: number;
+  username: string;
+};
+
+type SidebarProps = {
+  allTime: UserData[];
+  month: UserData[];
+  week: UserData[];
+};
+const Sidebar = ({ allTime, week, month }: SidebarProps) => {
   return (
     <SidebarStyled>
       {/* Create one component to use 3 times below */}
-      <Ranking title="Top Ranking" ranks={allTime} />
-      <Ranking title="Ranking of the month" ranks={month} />
-      <Ranking title="Ranking of the week" ranks={week} />
+      <Ranking title="Top Ranking" rank={allTime} />
+      <Ranking title="Ranking of the month" rank={month} />
+      <Ranking title="Ranking of the week" rank={week} />
     </SidebarStyled>
   );
 };

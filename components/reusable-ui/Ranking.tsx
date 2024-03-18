@@ -2,17 +2,27 @@ import React from "react";
 import styles from "./../../styles/Ranking.module.css";
 import styled from "styled-components";
 
-const Ranking = ({ ranks, title }) => {
+type UserData = {
+  score: number;
+  username: string;
+};
+
+type RankingProps = {
+  rank: UserData[];
+  title: string;
+};
+
+const Ranking = ({ rank, title }: RankingProps) => {
   return (
     <RankingStyled>
       <h2>{title}</h2>
       <div>
-        {ranks
+        {rank
           .sort((a, b) => b.score - a.score)
-          .map((rank) => (
+          .map((user) => (
             <div className="rankedinfos">
-              <p>{rank.username}</p>
-              <p>{rank.score}</p>
+              <p>{user.username}</p>
+              <p>{user.score}</p>
             </div>
           ))}
       </div>

@@ -7,8 +7,20 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { use, useContext, useEffect } from "react";
 import styled from "styled-components";
-const MenuPage = ({ allTime, month, week }) => {
+
+type UserData = {
+  score: number;
+  username: string;
+};
+
+type MenuPageProps = {
+  allTime: UserData[];
+  month: UserData[];
+  week: UserData[];
+};
+const MenuPage = ({ allTime, month, week }: MenuPageProps) => {
   //
+
   //
 
   //
