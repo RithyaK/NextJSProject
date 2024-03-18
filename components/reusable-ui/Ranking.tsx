@@ -2,24 +2,20 @@ import React from "react";
 import styles from "./../../styles/Ranking.module.css";
 import styled from "styled-components";
 
-const Ranking = ({ title }) => {
+const Ranking = ({ ranks, title }) => {
   return (
     <RankingStyled>
       <h2>{title}</h2>
-      <p>TEST</p>
-      <p>2</p>
-      <p>3</p>
-      <p>4</p>
-      <p>5</p>
-      <p>6</p>
-      <p>7</p>
-      <p>7</p>
-      <p>7</p>
-      <p>7</p>
-      <p>7</p>
-      <p>7</p>
-      <p>7</p>
-      <p>8</p>
+      <div>
+        {ranks
+          .sort((a, b) => b.score - a.score)
+          .map((rank) => (
+            <div className="rankedinfos">
+              <p>{rank.username}</p>
+              <p>{rank.score}</p>
+            </div>
+          ))}
+      </div>
     </RankingStyled>
   );
 };
@@ -34,7 +30,10 @@ const RankingStyled = styled.div`
     text-align: center;
   }
   p {
-    border: 1px solid rgb(33, 31, 31);
     font-size: 20px;
+  }
+  .rankedinfos {
+    display: flex;
+    justify-content: space-between;
   }
 `;
