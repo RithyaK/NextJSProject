@@ -1,8 +1,8 @@
 import React from "react";
-import Ranking from "./reusable-ui/Ranking";
 import styled from "styled-components";
 import { db } from "@/firestore/firebase-config";
 import { doc, getDoc } from "firebase/firestore";
+import Ranking from "../../reusable-ui/Ranking";
 const Sidebar = ({ allTime, week, month }) => {
   return (
     <SidebarStyled>
