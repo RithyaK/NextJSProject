@@ -1,6 +1,8 @@
 // import { getUserData } from "@/firebase/userData";
 import { useUsernameContext } from "@/components/context/usernameContext";
+import SearchBar from "@/components/pages/menu/SearchBar";
 import Sidebar from "@/components/pages/menu/Sidebar";
+import Main from "@/components/pages/menu/main/Main";
 import { db } from "@/firestore/firebase-config";
 import { doc, getDoc } from "firebase/firestore";
 import Link from "next/link";
@@ -27,10 +29,7 @@ const MenuPage = ({ allTime, month, week }: MenuPageProps) => {
   return (
     <MenuPageStyled>
       <Sidebar allTime={allTime} month={month} week={week} />
-      <div>
-        <p>MenuPAGE</p>
-        <Link href="/login">Return to login page</Link>
-      </div>
+      <Main />
     </MenuPageStyled>
   );
 };
@@ -64,4 +63,6 @@ const MenuPageStyled = styled.div`
   display: flex;
   height: calc(100vh - 50px);
   background-color: #4b4b50;
+  display: grid;
+  grid-template-columns: 230px 1fr;
 `;

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useUsernameContext } from "../../context/usernameContext";
+import Link from "next/link";
 
 const Navbar = () => {
   //
@@ -10,7 +11,8 @@ const Navbar = () => {
   //
   return (
     <NavbarStyled>
-      <div>LEFT SIDE</div>
+      <Link href="/login">Return to login page</Link>
+
       <div>CENTER</div>
       <div className="NavbarRightSide">
         <span>Mon compte</span>
