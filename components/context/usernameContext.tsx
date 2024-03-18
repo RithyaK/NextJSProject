@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 const Context = React.createContext();
 
 export const UsernameContextProvider = (props) => {
@@ -8,8 +8,10 @@ export const UsernameContextProvider = (props) => {
     }
     return localStorage.getItem("username");
   });
-  console.log(username);
 
+  useEffect(() => {
+    localStorage.setItem("username", username ?? "");
+  }, [username]);
   const contextValue = { username, setUsername };
   return (
     <Context.Provider value={contextValue}>{props.children}</Context.Provider>

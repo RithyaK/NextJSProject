@@ -2,16 +2,18 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { authenticateUser } from "@/firestore/user";
+import { useUsernameContext } from "@/components/context/usernameContext";
 const Login = () => {
   //
+  const { setUsername } = useUsernameContext();
   const router = useRouter();
-  const [username, setUsername] = useState("");
+  const [inputValue, setInputValue] = useState("");
   //
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    authenticateUser(username);
-    localStorage.setItem("username", username);
-    router.push(`menu/${username}`);
+    authenticateUser(inputValue);
+    setUsername(inputValue);
+    router.push(`menu/${inputValue}`);
   }
   //
   return (
@@ -19,8 +21,8 @@ const Login = () => {
       <form className="login" onSubmit={(e) => handleSubmit(e)}>
         <input
           type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
         />
         <button>Se connecter</button>
       </form>
