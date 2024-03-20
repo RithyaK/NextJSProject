@@ -1,4 +1,4 @@
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "./firebase-config";
 
 export const getUserData = async (idUser: string) => {
@@ -11,3 +11,10 @@ export const getUserData = async (idUser: string) => {
     return username;
   }
 };
+
+// export const addQuestionsToData = async (quizzDoc, data) => {
+//   const cachette = doc(db, "infos", quizzDoc);
+//   await updateDoc(cachette, {
+//     quizz: data,
+//   });
+// };

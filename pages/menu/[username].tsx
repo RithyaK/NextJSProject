@@ -15,12 +15,26 @@ type UserData = {
   username: string;
 };
 
+export type Subject = {
+  id: number;
+  name: string;
+  chapter: {
+    title: string;
+    questions: {
+      question: string;
+      choices: string[];
+      answer: string;
+    }[];
+  }[];
+};
 type MenuPageProps = {
   allTime: UserData[];
   month: UserData[];
   week: UserData[];
+  quizz: Subject[];
 };
-const MenuPage = ({ allTime, month, week }: MenuPageProps) => {
+
+const MenuPage = ({ allTime, month, week, quizz }: MenuPageProps) => {
   //
 
   //
@@ -29,7 +43,7 @@ const MenuPage = ({ allTime, month, week }: MenuPageProps) => {
   return (
     <MenuPageStyled>
       <Sidebar allTime={allTime} month={month} week={week} />
-      <Main />
+      <Main quizz={quizz} />
     </MenuPageStyled>
   );
 };
@@ -37,23 +51,26 @@ const MenuPage = ({ allTime, month, week }: MenuPageProps) => {
 export default MenuPage;
 
 export const getServerSideProps = async () => {
-  const docRef = doc(db, "infos", "rankings");
-  const docSnapShot = await getDoc(docRef);
-  if (docSnapShot.exists()) {
-    const { allTime, month, week } = docSnapShot.data();
-    console.log("allTime : ", allTime);
+  const rankingsDocRef = doc(db, "infos", "rankings");
+  const quizzDocRef = doc(db, "infos", "quizz");
+  const docSnapShotRankings = await getDoc(rankingsDocRef);
+  const docSnapShotQuizzs = await getDoc(quizzDocRef);
+  if (docSnapShotRankings.exists() && docSnapShotQuizzs.exists()) {
+    const { allTime, month, week } = docSnapShotRankings.data();
+    const { quizz } = docSnapShotQuizzs.data();
 
     return {
       props: {
         allTime,
         month,
         week,
+        quizz,
       },
     };
   } else {
     return {
       props: {
-        allTime: null,
+        data: null,
       },
     };
   }
