@@ -1,24 +1,24 @@
 import { Subject } from "@/pages/menu/[username]";
 import React from "react";
 import styled from "styled-components";
-type SubjectsProps = { listQuizz: Subject[] };
+type BestSubjectsProps = { listQuizz: Subject[] };
 
-const Subjects = ({ listQuizz }: SubjectsProps) => {
+const BestSubjects = ({ listQuizz }: BestSubjectsProps) => {
   return (
-    <SubjectsStyled>
+    <BestSubjectsStyled>
       <h2>Les thèmes préférés</h2>
       <ul>
         {listQuizz.map((subject) => {
           return <li key={subject.id}>{subject.name}</li>;
         })}
       </ul>
-    </SubjectsStyled>
+    </BestSubjectsStyled>
   );
 };
 
-export default Subjects;
+export default BestSubjects;
 
-const SubjectsStyled = styled.div`
+const BestSubjectsStyled = styled.div`
   h2 {
     text-align: center;
   }

@@ -6,11 +6,10 @@ import styled from "styled-components";
 type RandomQuizzsProps = { listQuizz: Subject[] };
 
 const RandomQuizzs = ({ listQuizz }: RandomQuizzsProps) => {
-  const chaptersUpdated = listQuizz
+  const chapters = listQuizz
     .map((subject) => subject.chapters.map((chapitre) => chapitre.name))
     .flat()
     .sort(() => Math.random() - 0.5);
-  const [chapters, setChapters] = useState(chaptersUpdated);
 
   return (
     <RandomQuizzsStyled>
