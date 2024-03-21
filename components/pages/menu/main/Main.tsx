@@ -3,29 +3,23 @@ import styled from "styled-components";
 import { Subject } from "@/pages/menu/[username]";
 import SearchBar from "./top-main/SearchBar";
 import Subjects from "./top-main/Subjects";
-type MainProps = { quizz: Subject[] };
+import RandomQuizzs from "./top-main/RandomQuizzs";
+type MainProps = { listQuizz: Subject[] };
 
-const Main = ({ quizz }: MainProps) => {
-  const [quizzs, setQuizzs] = useState(quizz);
+const Main = ({ listQuizz }: MainProps) => {
+  // const [quizzs, setQuizzs] = useState(listQuizz);
 
   return (
     <MainStyled>
-      <Subjects quizzs={quizzs} />
+      <Subjects listQuizz={listQuizz} />
       <SearchBar />
+      <RandomQuizzs listQuizz={listQuizz} />
       {/* <button onClick={() => addQuestionsToData("quizz", quizzs)}>X</button> */}
     </MainStyled>
   );
 };
 export default Main;
 const MainStyled = styled.div`
-  ul {
-    display: flex;
-    background-color: maroon;
-    list-style-type: none;
-    justify-content: space-around;
-  }
-  li {
-    border: 1px solid grey;
-    color: white;
-  }
+  background-color: #706c6c;
+  width: calc(100vw - 230px);
 `;

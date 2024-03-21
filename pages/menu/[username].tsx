@@ -18,8 +18,8 @@ type UserData = {
 export type Subject = {
   id: number;
   name: string;
-  chapter: {
-    title: string;
+  chapters: {
+    name: string;
     questions: {
       question: string;
       choices: string[];
@@ -43,7 +43,7 @@ const MenuPage = ({ allTime, month, week, quizz }: MenuPageProps) => {
   return (
     <MenuPageStyled>
       <Sidebar allTime={allTime} month={month} week={week} />
-      <Main quizz={quizz} />
+      <Main listQuizz={quizz} />
     </MenuPageStyled>
   );
 };
@@ -79,7 +79,6 @@ export const getServerSideProps = async () => {
 const MenuPageStyled = styled.div`
   display: flex;
   height: calc(100vh - 50px);
-  background-color: #4b4b50;
   display: grid;
   grid-template-columns: 230px 1fr;
 `;
