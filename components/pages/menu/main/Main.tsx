@@ -86,6 +86,7 @@ const DATA = [
   {
     name: "Géographie",
     id: 3,
+    played: 40,
     chapters: [
       {
         name: "Capitals",

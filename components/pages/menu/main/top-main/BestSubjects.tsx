@@ -8,9 +8,12 @@ const BestSubjects = ({ listQuizz }: BestSubjectsProps) => {
     <BestSubjectsStyled>
       <h2>Les thèmes préférés</h2>
       <ul>
-        {listQuizz.map((subject) => {
-          return <li key={subject.id}>{subject.name}</li>;
-        })}
+        {listQuizz
+          .sort((a, b) => b.played - a.played)
+          .slice(0, 4)
+          .map((subject) => {
+            return <li key={subject.id}>{subject.name}</li>;
+          })}
       </ul>
     </BestSubjectsStyled>
   );

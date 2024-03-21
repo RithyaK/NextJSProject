@@ -18,6 +18,7 @@ type UserData = {
 export type Subject = {
   id: number;
   name: string;
+  played: number;
   chapters: {
     name: string;
     questions: {
