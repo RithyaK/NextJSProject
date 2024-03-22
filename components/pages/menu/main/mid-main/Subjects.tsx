@@ -1,22 +1,32 @@
 import { Subject } from "@/pages/menu/[username]";
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 type SubjectsProps = { listQuizz: Subject[] };
 
 const Subjects = ({ listQuizz }: SubjectsProps) => {
-  const chapters = listQuizz
-    .map((subject) => subject.chapters.map((chapitre) => chapitre.name))
-    .flat()
-    .sort(() => Math.random() - 0.5);
+  const [subjectsDisplayed, setSubjectsDisplayed] = useState(6);
+  console.log(subjectsDisplayed);
 
+  function handleButton() {
+    if (subjectsDisplayed === 12) {
+      setSubjectsDisplayed(6);
+    } else {
+      setSubjectsDisplayed((prev) => prev + 3);
+    }
+  }
   return (
     <SubjectsStyled>
       <h2>Thèmatiques</h2>
-      <div>
-        {chapters.map((chapter) => (
-          <div key={chapter}>{chapter}</div>
+      <div className="container-subjects">
+        {listQuizz.slice(0, subjectsDisplayed).map((chapter) => (
+          <div key={chapter.name} className="subject">
+            {chapter.name}
+          </div>
         ))}
       </div>
+      <button onClick={handleButton}>
+        {subjectsDisplayed === 12 ? "Afficher moins" : "Afficher plus"}
+      </button>
     </SubjectsStyled>
   );
 };
@@ -24,10 +34,23 @@ const Subjects = ({ listQuizz }: SubjectsProps) => {
 export default Subjects;
 
 const SubjectsStyled = styled.div`
-  margin: 50px 50px;
-  background-color: #853838;
-  height: 500px;
-  h2 {
-    text-align: center;
+  background-color: maroon;
+  margin: 50px 0;
+  padding: 20px 50px;
+  text-align: center;
+  .container-subjects {
+    padding: 10px;
+    display: grid;
+    grid-template-rows: inherit;
+    grid-template-columns: repeat(3, auto);
+    gap: 20px;
+  }
+  .subject {
+    display: flex;
+    border: 1px solid grey;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    height: 80px;
   }
 `;

@@ -206,7 +206,7 @@ const DATA = [
           {
             choices: ["Audi", "BMW", "Mercedes", "Volkswagean"],
             answer: "Audi",
-            question: "Quel marque à un logo avec 4 anneaux ?",
+            question: "Quelle marque à un logo avec 4 anneaux ?",
           },
           {
             answer: "Mercedes",
@@ -219,7 +219,7 @@ const DATA = [
         name: "Moto",
         questions: [
           {
-            question: "Quelle est la meilleur moto ?",
+            question: "Quelle est la meilleure moto ?",
             choices: ["A", "B", "C", "D"],
             answer: "B",
           },
@@ -227,6 +227,243 @@ const DATA = [
             choices: ["A", "B", "C", "D"],
             answer: "C",
             question: "Quelle est la pire moto?",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    name: "Cinéma",
+    id: 7,
+    played: 23,
+    chapters: [
+      {
+        name: "Cinéma FR",
+        questions: [
+          {
+            choices: [
+              "Jean Dujardin",
+              "Gérard Depardieu",
+              "Dany Boon",
+              "Laurent Ruquier",
+            ],
+            answer: "Jean Dujardin",
+            question: "Qui est le meilleur acteur FR?",
+          },
+          {
+            answer: "Laurent Ruquier",
+            choices: [
+              "Jean Dujardin",
+              "Gérard Depardieu",
+              "Dany Boon",
+              "Laurent Ruquier",
+            ],
+            question: "Qui est le pire acteur FR?",
+          },
+        ],
+      },
+      {
+        name: "Cinéma US",
+        questions: [
+          {
+            question: "Quelle est la meilleure moto ?",
+            choices: ["A", "B", "C", "D"],
+            answer: "B",
+          },
+          {
+            choices: ["A", "B", "C", "D"],
+            answer: "C",
+            question: "Quelle est la pire moto?",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    name: "France",
+    id: 8,
+    played: 15,
+    chapters: [
+      {
+        name: "Monument FR",
+        questions: [
+          {
+            choices: [
+              "Muraille de Chine",
+              "Burj Khalifa",
+              "Statue de la liberté",
+              "Tour Eiffel",
+            ],
+            answer: "Tour Eiffel",
+            question: "Quel est le monument le plus connu français ?",
+          },
+          {
+            answer: "Paris",
+            choices: ["Rennes", "Marseille", "Lyon", "Paris"],
+            question: "Où se situe la Tour Eiffel ?",
+          },
+        ],
+      },
+      {
+        name: "Drapeaux Asie",
+        questions: [
+          {
+            question: "Quelle est la meilleure moto ?",
+            choices: ["A", "B", "C", "D"],
+            answer: "B",
+          },
+          {
+            choices: ["A", "B", "C", "D"],
+            answer: "C",
+            question: "Quelle est la pire moto?",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    name: "La langue française",
+    id: 9,
+    played: 5,
+    chapters: [
+      {
+        name: "Ortographe",
+        questions: [
+          {
+            choices: ["trophée", "trophé", "trophee", "treauphée"],
+            answer: "trophée",
+            question: "Quel est le bon ortographe ?",
+          },
+          {
+            answer: "Reccette",
+            choices: ["Reccette", "Armoire", "Table", "Bouteille"],
+            question: "Quel est le mauvais ortographe ?",
+          },
+        ],
+      },
+      {
+        name: "Grammaire",
+        questions: [
+          {
+            question: "Quel temps n'existe pas ?",
+            choices: ["passé", "futur", "présent", "temps"],
+            answer: "temps",
+          },
+          {
+            choices: ["passé composé", "futur", "présent", "temps"],
+            answer: "passé composé",
+            question: "De quel temps est conjugué la question ?",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    name: "Code de la route",
+    id: 10,
+    played: 9,
+    chapters: [
+      {
+        name: "Panneaux",
+        questions: [
+          {
+            choices: ["rouge", "bleu", "jaune", "noir"],
+            answer: "rouge",
+            question: "De quelle couleur est le panneau Sens Interdit?",
+          },
+          {
+            answer: "noir",
+            choices: ["rouge", "bleu", "jaune", "noir"],
+            question: "De quelle couleur est écrit le panneau 110 ?",
+          },
+        ],
+      },
+      {
+        name: "Limitation de vitesse",
+        questions: [
+          {
+            question: "Quelle peut être la vitesse maximum sur autoroute ?",
+            choices: ["110", "130", "90", "80"],
+            answer: "130",
+          },
+          {
+            choices: ["110", "130", "90", "50"],
+            answer: "50",
+            question: "Quelle est la vitesse maximum en agglomération ?",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    name: "Politique FR",
+    id: 11,
+    played: 9,
+    chapters: [
+      {
+        name: "Président",
+        questions: [
+          {
+            choices: ["Macron", "Mittérand", "Hollande", "Chirac"],
+            answer: "Macron",
+            question: "Qui est le président actuel ?",
+          },
+          {
+            answer: "Mittérand",
+            choices: ["Macron", "Mittérand", "Hollande", "Chirac"],
+            question: "Qui est le plus ancien président des 4 ?",
+          },
+        ],
+      },
+      {
+        name: "Ministre",
+        questions: [
+          {
+            question: "Qui est le premier ministre actuel?",
+            choices: ["Attal", "Bruno Le Maire", "Borne", "Chirac"],
+            answer: "Attal",
+          },
+          {
+            choices: ["Attal", "Bruno Le Maire", "Borne", "Chirac"],
+            answer: "Bruno Le Maire",
+            question: "Qui est le ministre de l'économie ?",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    name: "Musique",
+    id: 12,
+    played: 90,
+    chapters: [
+      {
+        name: "Musique FR",
+        questions: [
+          {
+            choices: ["PNL", "Sexion d'assaut", "Djadja & Dinaz", "MMZ"],
+            answer: "Sexion d'assaut",
+            question: "Quel est le groupe de RAP FR le plus connu ?",
+          },
+          {
+            answer: "PNL",
+            choices: ["PNL", "Sexion d'assaut", "Djadja & Dinaz", "MMZ"],
+            question: "Quel duo de groupe de RAP FR sont frères?",
+          },
+        ],
+      },
+      {
+        name: "Musique US",
+        questions: [
+          {
+            question: "Qui chante Diamonds ?",
+            choices: ["Rihanna", "Drake", "Justin Bieber", "Wiz Khalifa"],
+            answer: "Rihanna",
+          },
+          {
+            choices: ["Rihanna", "Drake", "Justin Bieber", "Wiz Khalifa"],
+            answer: "Justin Bieber",
+            question: "Qui chante Love Yourself ?",
           },
         ],
       },

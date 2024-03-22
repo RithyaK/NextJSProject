@@ -1,6 +1,5 @@
 // import { getUserData } from "@/firebase/userData";
 import { useUsernameContext } from "@/components/context/usernameContext";
-import SearchBar from "@/components/pages/menu/SearchBar";
 import Sidebar from "@/components/pages/menu/Sidebar";
 import Main from "@/components/pages/menu/main/Main";
 import { db } from "@/firestore/firebase-config";
