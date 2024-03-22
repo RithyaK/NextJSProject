@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Subject } from "@/pages/menu/[username]";
 import SearchBar from "./top-main/SearchBar";
-import BestSubjects from "./top-main/BestSubjects";
+import PopularSubjects from "./top-main/PopularSubjects";
 import RandomQuizzs from "./top-main/RandomQuizzs";
 import Subjects from "./mid-main/Subjects";
 import { addQuestionsToData } from "@/firestore/userData";
@@ -13,7 +13,6 @@ const DATA = [
   {
     name: "histoire",
     id: 1,
-
     chapters: [
       {
         name: "WW1",
@@ -498,7 +497,7 @@ const Main = ({ listQuizz }: MainProps) => {
   return (
     <MainStyled>
       {/* <button onClick={() => addQuestionsToData(DATA)}>X</button> */}
-      <BestSubjects listQuizz={listQuizz} />
+      <PopularSubjects listQuizz={listQuizz} />
       <SearchBar />
       <RandomQuizzs listQuizz={listQuizz} />
       <Subjects listQuizz={listQuizz} />
