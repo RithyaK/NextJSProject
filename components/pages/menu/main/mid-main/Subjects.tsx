@@ -4,8 +4,7 @@ import styled from "styled-components";
 type SubjectsProps = { listQuizz: Subject[] };
 
 const Subjects = ({ listQuizz }: SubjectsProps) => {
-  const [subjectsDisplayed, setSubjectsDisplayed] = useState(6);
-  console.log(subjectsDisplayed);
+  const [subjectsDisplayed, setSubjectsDisplayed] = useState<number>(6);
 
   function handleButton() {
     if (subjectsDisplayed === 12) {

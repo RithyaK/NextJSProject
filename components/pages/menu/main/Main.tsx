@@ -6,16 +6,18 @@ import BestSubjects from "./top-main/BestSubjects";
 import RandomQuizzs from "./top-main/RandomQuizzs";
 import Subjects from "./mid-main/Subjects";
 import { addQuestionsToData } from "@/firestore/userData";
+import OptionsSearch from "./mid-main/OptionsSearch";
 type MainProps = { listQuizz: Subject[] };
 
 const DATA = [
   {
     name: "histoire",
     id: 1,
-    played: 10,
+
     chapters: [
       {
         name: "WW1",
+        played: 13,
         questions: [
           {
             choices: ["1914", "1915", "1916", "1917"],
@@ -31,6 +33,7 @@ const DATA = [
       },
       {
         name: "WW2",
+        played: 15,
         questions: [
           {
             question: "En quelle année a débuté la seconde guerre mondiale ?",
@@ -49,10 +52,11 @@ const DATA = [
   {
     name: "maths",
     id: 2,
-    played: 25,
+
     chapters: [
       {
         name: "theorème de pythagore",
+        played: 25,
         questions: [
           {
             question: "Quelle est la formule de pythagore?",
@@ -68,6 +72,7 @@ const DATA = [
       },
       {
         name: "theorème de thales",
+        played: 27,
         questions: [
           {
             choices: ["a", "b", "c", "d"],
@@ -86,10 +91,11 @@ const DATA = [
   {
     name: "Géographie",
     id: 3,
-    played: 40,
+
     chapters: [
       {
         name: "Capitals",
+        played: 10,
         questions: [
           {
             question: "Capital du Turkménistan ?",
@@ -105,6 +111,7 @@ const DATA = [
       },
       {
         name: "Les pays en développement",
+        played: 43,
         questions: [
           {
             answer: "Burundi",
@@ -123,11 +130,11 @@ const DATA = [
   {
     name: "sport",
     id: 4,
-    played: 20,
+
     chapters: [
       {
+        played: 53,
         name: "football",
-
         questions: [
           {
             answer: "France",
@@ -143,6 +150,7 @@ const DATA = [
       },
       {
         name: "basket",
+        played: 5,
         questions: [
           {
             question: "Quelle est la plus grosse league ?",
@@ -161,10 +169,11 @@ const DATA = [
   {
     name: "Jeux vidéos",
     id: 5,
-    played: 15,
+
     chapters: [
       {
         name: "League of Legends",
+        played: 58,
         questions: [
           {
             choices: ["SKT", "TSM", "FNATIC", "G2"],
@@ -180,6 +189,7 @@ const DATA = [
       },
       {
         name: "Dofus",
+        played: 72,
         questions: [
           {
             question: "Quel est le niveau maximum ?",
@@ -198,10 +208,11 @@ const DATA = [
   {
     name: "Automobile",
     id: 6,
-    played: 35,
+
     chapters: [
       {
         name: "Voiture",
+        played: 0,
         questions: [
           {
             choices: ["Audi", "BMW", "Mercedes", "Volkswagean"],
@@ -217,6 +228,7 @@ const DATA = [
       },
       {
         name: "Moto",
+        played: 65,
         questions: [
           {
             question: "Quelle est la meilleure moto ?",
@@ -235,10 +247,11 @@ const DATA = [
   {
     name: "Cinéma",
     id: 7,
-    played: 23,
+
     chapters: [
       {
         name: "Cinéma FR",
+        played: 2,
         questions: [
           {
             choices: [
@@ -264,6 +277,7 @@ const DATA = [
       },
       {
         name: "Cinéma US",
+        played: 3,
         questions: [
           {
             question: "Quelle est la meilleure moto ?",
@@ -282,10 +296,11 @@ const DATA = [
   {
     name: "France",
     id: 8,
-    played: 15,
+
     chapters: [
       {
         name: "Monument FR",
+        played: 5,
         questions: [
           {
             choices: [
@@ -306,6 +321,7 @@ const DATA = [
       },
       {
         name: "Drapeaux Asie",
+        played: 7,
         questions: [
           {
             question: "Quelle est la meilleure moto ?",
@@ -324,10 +340,10 @@ const DATA = [
   {
     name: "La langue française",
     id: 9,
-    played: 5,
     chapters: [
       {
         name: "Ortographe",
+        played: 6,
         questions: [
           {
             choices: ["trophée", "trophé", "trophee", "treauphée"],
@@ -343,6 +359,7 @@ const DATA = [
       },
       {
         name: "Grammaire",
+        played: 85,
         questions: [
           {
             question: "Quel temps n'existe pas ?",
@@ -361,10 +378,10 @@ const DATA = [
   {
     name: "Code de la route",
     id: 10,
-    played: 9,
     chapters: [
       {
         name: "Panneaux",
+        played: 65,
         questions: [
           {
             choices: ["rouge", "bleu", "jaune", "noir"],
@@ -380,6 +397,7 @@ const DATA = [
       },
       {
         name: "Limitation de vitesse",
+        played: 85,
         questions: [
           {
             question: "Quelle peut être la vitesse maximum sur autoroute ?",
@@ -398,10 +416,10 @@ const DATA = [
   {
     name: "Politique FR",
     id: 11,
-    played: 9,
     chapters: [
       {
         name: "Président",
+        played: 25,
         questions: [
           {
             choices: ["Macron", "Mittérand", "Hollande", "Chirac"],
@@ -417,6 +435,7 @@ const DATA = [
       },
       {
         name: "Ministre",
+        played: 35,
         questions: [
           {
             question: "Qui est le premier ministre actuel?",
@@ -435,10 +454,11 @@ const DATA = [
   {
     name: "Musique",
     id: 12,
-    played: 90,
+
     chapters: [
       {
         name: "Musique FR",
+        played: 65,
         questions: [
           {
             choices: ["PNL", "Sexion d'assaut", "Djadja & Dinaz", "MMZ"],
@@ -454,6 +474,7 @@ const DATA = [
       },
       {
         name: "Musique US",
+        played: 10,
         questions: [
           {
             question: "Qui chante Diamonds ?",
@@ -481,6 +502,7 @@ const Main = ({ listQuizz }: MainProps) => {
       <SearchBar />
       <RandomQuizzs listQuizz={listQuizz} />
       <Subjects listQuizz={listQuizz} />
+      <OptionsSearch listQuizz={listQuizz} />
     </MainStyled>
   );
 };
