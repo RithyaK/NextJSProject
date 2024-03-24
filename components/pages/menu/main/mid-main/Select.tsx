@@ -3,13 +3,15 @@ import React from "react";
 type SelectProps = {
   options: string[];
   label: string;
+  id: string;
+  handleSelect: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 };
-const Select = ({ options, label }: SelectProps) => {
+const Select = ({ options, label, id, handleSelect }: SelectProps) => {
   return (
-    <select id="subject-select">
-      {label && <option value="">{label}</option>}
+    <select id={id} onChange={(e) => handleSelect(e)}>
+      {label && <option value="All">{label}</option>}
       {options.map((option) => (
-        <option key={option} className="subject" value={option}>
+        <option key={option} value={option}>
           {option}
         </option>
       ))}

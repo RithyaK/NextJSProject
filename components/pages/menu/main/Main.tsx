@@ -17,6 +17,7 @@ const DATA = [
       {
         name: "WW1",
         played: 13,
+        difficulty: "medium",
         questions: [
           {
             choices: ["1914", "1915", "1916", "1917"],
@@ -33,6 +34,7 @@ const DATA = [
       {
         name: "WW2",
         played: 15,
+        difficulty: "hard",
         questions: [
           {
             question: "En quelle année a débuté la seconde guerre mondiale ?",
@@ -51,11 +53,11 @@ const DATA = [
   {
     name: "maths",
     id: 2,
-
     chapters: [
       {
         name: "theorème de pythagore",
         played: 25,
+        difficulty: "easy",
         questions: [
           {
             question: "Quelle est la formule de pythagore?",
@@ -71,7 +73,8 @@ const DATA = [
       },
       {
         name: "theorème de thales",
-        played: 27,
+        played: 35,
+        difficulty: "hard",
         questions: [
           {
             choices: ["a", "b", "c", "d"],
@@ -95,6 +98,7 @@ const DATA = [
       {
         name: "Capitals",
         played: 10,
+        difficulty: "hard",
         questions: [
           {
             question: "Capital du Turkménistan ?",
@@ -111,6 +115,7 @@ const DATA = [
       {
         name: "Les pays en développement",
         played: 43,
+        difficulty: "medium",
         questions: [
           {
             answer: "Burundi",
@@ -133,6 +138,7 @@ const DATA = [
     chapters: [
       {
         played: 53,
+        difficulty: "easy",
         name: "football",
         questions: [
           {
@@ -150,6 +156,7 @@ const DATA = [
       {
         name: "basket",
         played: 5,
+        difficulty: "medium",
         questions: [
           {
             question: "Quelle est la plus grosse league ?",
@@ -173,6 +180,7 @@ const DATA = [
       {
         name: "League of Legends",
         played: 58,
+        difficulty: "easy",
         questions: [
           {
             choices: ["SKT", "TSM", "FNATIC", "G2"],
@@ -189,6 +197,7 @@ const DATA = [
       {
         name: "Dofus",
         played: 72,
+        difficulty: "easy",
         questions: [
           {
             question: "Quel est le niveau maximum ?",
@@ -212,6 +221,7 @@ const DATA = [
       {
         name: "Voiture",
         played: 0,
+        difficulty: "medium",
         questions: [
           {
             choices: ["Audi", "BMW", "Mercedes", "Volkswagean"],
@@ -228,6 +238,7 @@ const DATA = [
       {
         name: "Moto",
         played: 65,
+        difficulty: "hard",
         questions: [
           {
             question: "Quelle est la meilleure moto ?",
@@ -251,6 +262,7 @@ const DATA = [
       {
         name: "Cinéma FR",
         played: 2,
+        difficulty: "medium",
         questions: [
           {
             choices: [
@@ -277,6 +289,7 @@ const DATA = [
       {
         name: "Cinéma US",
         played: 3,
+        difficulty: "hard",
         questions: [
           {
             question: "Quelle est la meilleure moto ?",
@@ -300,6 +313,7 @@ const DATA = [
       {
         name: "Monument FR",
         played: 5,
+        difficulty: "hard",
         questions: [
           {
             choices: [
@@ -321,6 +335,7 @@ const DATA = [
       {
         name: "Drapeaux Asie",
         played: 7,
+        difficulty: "medium",
         questions: [
           {
             question: "Quelle est la meilleure moto ?",
@@ -343,6 +358,7 @@ const DATA = [
       {
         name: "Ortographe",
         played: 6,
+        difficulty: "easy",
         questions: [
           {
             choices: ["trophée", "trophé", "trophee", "treauphée"],
@@ -359,6 +375,7 @@ const DATA = [
       {
         name: "Grammaire",
         played: 85,
+        difficulty: "hard",
         questions: [
           {
             question: "Quel temps n'existe pas ?",
@@ -381,6 +398,7 @@ const DATA = [
       {
         name: "Panneaux",
         played: 65,
+        difficulty: "hard",
         questions: [
           {
             choices: ["rouge", "bleu", "jaune", "noir"],
@@ -397,6 +415,7 @@ const DATA = [
       {
         name: "Limitation de vitesse",
         played: 85,
+        difficulty: "medium",
         questions: [
           {
             question: "Quelle peut être la vitesse maximum sur autoroute ?",
@@ -419,6 +438,7 @@ const DATA = [
       {
         name: "Président",
         played: 25,
+        difficulty: "easy",
         questions: [
           {
             choices: ["Macron", "Mittérand", "Hollande", "Chirac"],
@@ -435,6 +455,7 @@ const DATA = [
       {
         name: "Ministre",
         played: 35,
+        difficulty: "medium",
         questions: [
           {
             question: "Qui est le premier ministre actuel?",
@@ -458,6 +479,7 @@ const DATA = [
       {
         name: "Musique FR",
         played: 65,
+        difficulty: "hard",
         questions: [
           {
             choices: ["PNL", "Sexion d'assaut", "Djadja & Dinaz", "MMZ"],
@@ -474,6 +496,7 @@ const DATA = [
       {
         name: "Musique US",
         played: 10,
+        difficulty: "hard",
         questions: [
           {
             question: "Qui chante Diamonds ?",
@@ -496,7 +519,7 @@ const Main = ({ listQuizz }: MainProps) => {
 
   return (
     <MainStyled>
-      {/* <button onClick={() => addQuestionsToData(DATA)}>X</button> */}
+      <button onClick={() => addQuestionsToData(DATA)}>X</button>
       <PopularSubjects listQuizz={listQuizz} />
       <SearchBar />
       <RandomQuizzs listQuizz={listQuizz} />

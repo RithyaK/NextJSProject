@@ -6,6 +6,8 @@ type SubjectsProps = { listQuizz: Subject[] };
 const Subjects = ({ listQuizz }: SubjectsProps) => {
   const [subjectsDisplayed, setSubjectsDisplayed] = useState<number>(6);
 
+  console.log(listQuizz);
+
   function handleButton() {
     if (subjectsDisplayed === 12) {
       setSubjectsDisplayed(6);

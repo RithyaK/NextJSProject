@@ -14,18 +14,21 @@ type UserData = {
   username: string;
 };
 
+export type Chapter = {
+  played: number;
+  name: string;
+  difficulty: string;
+  questions: {
+    question: string;
+    choices: string[];
+    answer: string;
+  };
+};
+
 export type Subject = {
   id: number;
   name: string;
-  chapters: {
-    played: number;
-    name: string;
-    questions: {
-      question: string;
-      choices: string[];
-      answer: string;
-    }[];
-  }[];
+  chapters: Chapter[];
 };
 type MenuPageProps = {
   allTime: UserData[];
