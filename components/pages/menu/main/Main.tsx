@@ -17,6 +17,7 @@ const DATA = [
       {
         name: "WW1",
         played: 13,
+        date: "2023-01-21",
         difficulty: "medium",
         questions: [
           {
@@ -34,6 +35,7 @@ const DATA = [
       {
         name: "WW2",
         played: 15,
+        date: "2024-01-30",
         difficulty: "hard",
         questions: [
           {
@@ -57,6 +59,7 @@ const DATA = [
       {
         name: "theorème de pythagore",
         played: 25,
+        date: "2024-01-15",
         difficulty: "easy",
         questions: [
           {
@@ -74,6 +77,7 @@ const DATA = [
       {
         name: "theorème de thales",
         played: 35,
+        date: "2024-01-05",
         difficulty: "hard",
         questions: [
           {
@@ -98,6 +102,7 @@ const DATA = [
       {
         name: "Capitals",
         played: 10,
+        date: "2024-01-08",
         difficulty: "hard",
         questions: [
           {
@@ -115,6 +120,7 @@ const DATA = [
       {
         name: "Les pays en développement",
         played: 43,
+        date: "2024-01-15",
         difficulty: "medium",
         questions: [
           {
@@ -138,6 +144,7 @@ const DATA = [
     chapters: [
       {
         played: 53,
+        date: "2024-01-15",
         difficulty: "easy",
         name: "football",
         questions: [
@@ -156,6 +163,7 @@ const DATA = [
       {
         name: "basket",
         played: 5,
+        date: "2024-01-07",
         difficulty: "medium",
         questions: [
           {
@@ -180,6 +188,7 @@ const DATA = [
       {
         name: "League of Legends",
         played: 58,
+        date: "2023-08-15",
         difficulty: "easy",
         questions: [
           {
@@ -197,6 +206,7 @@ const DATA = [
       {
         name: "Dofus",
         played: 72,
+        date: "2023-07-05",
         difficulty: "easy",
         questions: [
           {
@@ -221,6 +231,7 @@ const DATA = [
       {
         name: "Voiture",
         played: 0,
+        date: "2023-10-13",
         difficulty: "medium",
         questions: [
           {
@@ -238,6 +249,7 @@ const DATA = [
       {
         name: "Moto",
         played: 65,
+        date: "2023-12-20",
         difficulty: "hard",
         questions: [
           {
@@ -262,6 +274,7 @@ const DATA = [
       {
         name: "Cinéma FR",
         played: 2,
+        date: "2023-08-27",
         difficulty: "medium",
         questions: [
           {
@@ -289,6 +302,7 @@ const DATA = [
       {
         name: "Cinéma US",
         played: 3,
+        date: "2021-05-24",
         difficulty: "hard",
         questions: [
           {
@@ -313,6 +327,7 @@ const DATA = [
       {
         name: "Monument FR",
         played: 5,
+        date: "2020-07-12",
         difficulty: "hard",
         questions: [
           {
@@ -335,6 +350,7 @@ const DATA = [
       {
         name: "Drapeaux Asie",
         played: 7,
+        date: "2024-05-07",
         difficulty: "medium",
         questions: [
           {
@@ -358,6 +374,7 @@ const DATA = [
       {
         name: "Ortographe",
         played: 6,
+        date: "2023-06-24",
         difficulty: "easy",
         questions: [
           {
@@ -375,6 +392,7 @@ const DATA = [
       {
         name: "Grammaire",
         played: 85,
+        date: "2022-08-28",
         difficulty: "hard",
         questions: [
           {
@@ -398,6 +416,7 @@ const DATA = [
       {
         name: "Panneaux",
         played: 65,
+        date: "2023-05-15",
         difficulty: "hard",
         questions: [
           {
@@ -415,6 +434,7 @@ const DATA = [
       {
         name: "Limitation de vitesse",
         played: 85,
+        date: "2023-01-25",
         difficulty: "medium",
         questions: [
           {
@@ -438,6 +458,7 @@ const DATA = [
       {
         name: "Président",
         played: 25,
+        date: "2023-09-30",
         difficulty: "easy",
         questions: [
           {
@@ -455,6 +476,7 @@ const DATA = [
       {
         name: "Ministre",
         played: 35,
+        date: "2024-08-25",
         difficulty: "medium",
         questions: [
           {
@@ -479,6 +501,7 @@ const DATA = [
       {
         name: "Musique FR",
         played: 65,
+        date: "2024-03-15",
         difficulty: "hard",
         questions: [
           {
@@ -496,6 +519,7 @@ const DATA = [
       {
         name: "Musique US",
         played: 10,
+        date: "2019-08-25",
         difficulty: "hard",
         questions: [
           {

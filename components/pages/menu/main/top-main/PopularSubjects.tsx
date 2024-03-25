@@ -12,20 +12,21 @@ const PopularSubjects = ({ listQuizz }: PopularSubjectsProps) => {
 
   const listQuizzUpdated = listQuizz.map((subject) => {
     const played = subject.chapters.reduce(
-      (total, chapter) => total.played + chapter.played
+      (accumulator, chapter) => accumulator + chapter.played,
+      0
     );
 
     return { ...subject, played };
   });
-
-  console.log("listQuizzUpdated", listQuizzUpdated);
 
   return (
     <PopularSubjectsStyled>
       <h2>Les thèmes préférés</h2>
       <ul>
         {listQuizzUpdated
+
           .sort((a, b) => b.played - a.played)
+          .slice(0, 4)
           .map((subject) => {
             return <li key={subject.id}>{subject.name}</li>;
           })}
@@ -45,5 +46,6 @@ const PopularSubjectsStyled = styled.div`
     background-color: maroon;
     list-style-type: none;
     justify-content: space-around;
+    color: white;
   }
 `;

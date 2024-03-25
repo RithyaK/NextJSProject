@@ -18,6 +18,7 @@ export type Chapter = {
   played: number;
   name: string;
   difficulty: string;
+  date: string;
   questions: {
     question: string;
     choices: string[];

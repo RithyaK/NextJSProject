@@ -10,9 +10,11 @@ const OptionsSearch = ({ listQuizz }: OptionsSearchProps) => {
   const optionsThird = ["Récent", "Popularité"];
   const subjects = listQuizz.map((subject) => subject.name);
   // const [listQuizzUpdated, setListQuizzUpdated] = useState(listQuizz);
-  const [subjectSelected, setSubjectSelected] = useState<string>("All");
-  const [difficultySelected, setDifficultySelected] = useState<string>("All");
-  const [optionThirdSelected, setOptionThirdSelected] = useState<string>("All");
+  const [subjectSelected, setSubjectSelected] = useState<string>("Thématique");
+  const [difficultySelected, setDifficultySelected] =
+    useState<string>("difficulty");
+  const [optionThirdSelected, setOptionThirdSelected] =
+    useState<string>("Trier par");
 
   function handleSelect(event: React.ChangeEvent<HTMLSelectElement>) {
     const optionClicked = event.target.value;
@@ -26,11 +28,19 @@ const OptionsSearch = ({ listQuizz }: OptionsSearchProps) => {
       console.log("Difficulté :", optionClicked);
       setDifficultySelected(optionClicked);
     }
-    if (SelectPart === "SortBy") {
+    if (SelectPart === "Trier par") {
       console.log("Vous avez choisi une optionsThird");
       setOptionThirdSelected(optionClicked);
     }
   }
+
+  // const data = [
+  //   { name: "Event 1", date: "2023-01-15" },
+  //   { name: "Event 2", date: "2022-12-20" },
+  //   { name: "Event 3", date: "2023-03-05" },
+  // ];
+  // const dataUpdated = data.sort((a, b) => new Date(b.date) - new Date(a.date));
+  // console.log("dataUpdated :", dataUpdated);
 
   return (
     <OptionsSearchStyled>
@@ -40,39 +50,38 @@ const OptionsSearch = ({ listQuizz }: OptionsSearchProps) => {
           options={subjects}
           label="Thématique"
           handleSelect={handleSelect}
-          id="Thématique"
         />
         <Select
           options={difficulties}
-          label="Niveaux"
+          label="difficulty"
           handleSelect={handleSelect}
-          id="difficulty"
         />
         <Select
           options={optionsThird}
           handleSelect={handleSelect}
-          id="SortBy"
           label="Trier par"
         />
       </div>
       <ul>
-        {filterQuizzByOption(listQuizz, subjectSelected, "name")
+        {filterQuizzByOption(listQuizz, subjectSelected, "name", "Thématique")
           .map((subject) =>
-            // subject.chapters
-            //   .filter((chapter) => {
-            //     if (difficultySelected === "All") {
-            //       return chapter;
-            //     } else {
-            //       return chapter.difficulty === difficultySelected;
-            //     }
-            //   })
             filterQuizzByOption(
               subject.chapters,
               difficultySelected,
+              "difficulty",
               "difficulty"
-            ).map((chapter) => <li key={chapter.name}>{chapter.name}</li>)
+            )
           )
-          .flat()}
+          .flat()
+          .sort((a, b) =>
+            optionThirdSelected === "Récent"
+              ? new Date(b.date) - new Date(a.date)
+              : b.played - a.played
+          )
+
+          .map((chapter) => (
+            <li key={chapter.name}>{chapter.name}</li>
+          ))}
       </ul>
     </OptionsSearchStyled>
   );
