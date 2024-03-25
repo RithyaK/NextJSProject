@@ -3,24 +3,29 @@ import React, { useState } from "react";
 import styled from "styled-components";
 type PopularSubjectsProps = { listQuizz: Subject[] };
 
-const PopularSubjects = ({ listQuizz }: PopularSubjectsProps) => {
-  // const [PopularSubjects,setPopularSubjects] = useState()
+// interface listQuizzUpdated extends Subject[] {
 
-  // const listQuizzUpdated = listQuizz.map((subject) => {
-  //   const played = subject.chapters.reduce((total, chapter) => {
-  //     return total + chapter.played;
-  //   });
-  //   return { ...subject, played };
-  // });
-  // console.log(listQuizzUpdated);
+// }
+
+const PopularSubjects = ({ listQuizz }: PopularSubjectsProps) => {
+  const [PopularSubjects, setPopularSubjects] = useState();
+
+  const listQuizzUpdated = listQuizz.map((subject) => {
+    const played = subject.chapters.reduce(
+      (total, chapter) => total.played + chapter.played
+    );
+
+    return { ...subject, played };
+  });
+
+  console.log("listQuizzUpdated", listQuizzUpdated);
 
   return (
     <PopularSubjectsStyled>
       <h2>Les thèmes préférés</h2>
       <ul>
-        {listQuizz
-          // .sort((a, b) => b.played - a.played)
-          .slice(0, 4)
+        {listQuizzUpdated
+          .sort((a, b) => b.played - a.played)
           .map((subject) => {
             return <li key={subject.id}>{subject.name}</li>;
           })}
