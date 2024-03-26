@@ -3,7 +3,12 @@ import React, { useState } from "react";
 import Select from "./Select";
 import styled from "styled-components";
 import { filterQuizzByOption } from "@/utils/array";
+import Image from "next/image";
+import { theme } from "@/theme";
+import OptionsSearchCard from "@/components/reusable-ui/OptionsSearchCard";
 type OptionsSearchProps = { listQuizz: Subject[] };
+
+const IMAGE_QUIZZ = "./../../../../../public/quizz-img.jpg";
 
 const OptionsSearch = ({ listQuizz }: OptionsSearchProps) => {
   const difficulties = ["easy", "medium", "hard"];
@@ -12,7 +17,7 @@ const OptionsSearch = ({ listQuizz }: OptionsSearchProps) => {
   // const [listQuizzUpdated, setListQuizzUpdated] = useState(listQuizz);
   const [subjectSelected, setSubjectSelected] = useState<string>("Thématique");
   const [difficultySelected, setDifficultySelected] =
-    useState<string>("difficulty");
+    useState<string>("Difficulty");
   const [optionThirdSelected, setOptionThirdSelected] =
     useState<string>("Trier par");
 
@@ -24,7 +29,7 @@ const OptionsSearch = ({ listQuizz }: OptionsSearchProps) => {
       console.log("Vous avez choisi un thème");
       setSubjectSelected(optionClicked);
     }
-    if (SelectPart === "difficulty") {
+    if (SelectPart === "Difficulty") {
       console.log("Difficulté :", optionClicked);
       setDifficultySelected(optionClicked);
     }
@@ -34,18 +39,10 @@ const OptionsSearch = ({ listQuizz }: OptionsSearchProps) => {
     }
   }
 
-  // const data = [
-  //   { name: "Event 1", date: "2023-01-15" },
-  //   { name: "Event 2", date: "2022-12-20" },
-  //   { name: "Event 3", date: "2023-03-05" },
-  // ];
-  // const dataUpdated = data.sort((a, b) => new Date(b.date) - new Date(a.date));
-  // console.log("dataUpdated :", dataUpdated);
-
   return (
     <OptionsSearchStyled>
-      <h2>Liste de Quizz</h2>
-      <div>
+      <h2>Recherchez un quizz qui vous intéresse !</h2>
+      <div className="selectsContainer">
         <Select
           options={subjects}
           label="Thématique"
@@ -53,7 +50,7 @@ const OptionsSearch = ({ listQuizz }: OptionsSearchProps) => {
         />
         <Select
           options={difficulties}
-          label="difficulty"
+          label="Difficulty"
           handleSelect={handleSelect}
         />
         <Select
@@ -63,25 +60,38 @@ const OptionsSearch = ({ listQuizz }: OptionsSearchProps) => {
         />
       </div>
       <ul>
-        {filterQuizzByOption(listQuizz, subjectSelected, "name", "Thématique")
-          .map((subject) =>
-            filterQuizzByOption(
-              subject.chapters,
-              difficultySelected,
-              "difficulty",
-              "difficulty"
-            )
+        {listQuizz
+          .filter(
+            (subject) =>
+              subjectSelected === subject.name ||
+              subjectSelected === "Thématique"
           )
-          .flat()
-          .sort((a, b) =>
-            optionThirdSelected === "Récent"
-              ? new Date(b.date) - new Date(a.date)
-              : b.played - a.played
-          )
-
-          .map((chapter) => (
-            <li key={chapter.name}>{chapter.name}</li>
-          ))}
+          .map((subject) => {
+            const subjectOfTheChapter = subject.name;
+            return subject.chapters
+              .flat()
+              .sort(
+                (chapterA, chapterB) =>
+                  new Date(chapterB.date) - new Date(chapterA.date)
+              )
+              .map(
+                (chapter) =>
+                  (difficultySelected === chapter.difficulty && (
+                    <OptionsSearchCard
+                      key={chapter.name}
+                      chapter={chapter}
+                      subjectOfTheChapter={subjectOfTheChapter}
+                    />
+                  )) ||
+                  (difficultySelected === "Difficulty" && (
+                    <OptionsSearchCard
+                      key={chapter.name}
+                      chapter={chapter}
+                      subjectOfTheChapter={subjectOfTheChapter}
+                    />
+                  ))
+              );
+          })}
       </ul>
     </OptionsSearchStyled>
   );
@@ -90,10 +100,34 @@ const OptionsSearch = ({ listQuizz }: OptionsSearchProps) => {
 export default OptionsSearch;
 
 const OptionsSearchStyled = styled.div`
+  background-color: #968484;
+  color: ${theme.colors.purple};
+  .selectsContainer {
+    margin: 20px 0;
+  }
+  select {
+    margin: 0 5px;
+  }
   ul {
     display: flex;
     flex-direction: column;
-    background-color: red;
     list-style-type: none;
+  }
+  li {
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+  }
+  li .image {
+    height: 60px;
+    width: 60px;
+    background-color: green;
+    border-radius: 10px;
+    border: 2px solid white;
+    margin-right: 12px;
+  }
+  li .details span {
+    margin-right: 10px;
+    border: 1px solid black;
   }
 `;

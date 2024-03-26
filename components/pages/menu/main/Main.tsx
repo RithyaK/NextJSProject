@@ -556,4 +556,5 @@ export default Main;
 const MainStyled = styled.div`
   background-color: #706c6c;
   width: calc(100vw - 230px);
+  font-weight: bold;
 `;
