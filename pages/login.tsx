@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import { authenticateUser } from "@/firestore/user";
 import { useUsernameContext } from "@/components/context/usernameContext";
+
 const Login = () => {
   //
   const { setUsername } = useUsernameContext();

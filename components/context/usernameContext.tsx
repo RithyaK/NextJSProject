@@ -1,7 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
-const Context = React.createContext();
 
-export const UsernameContextProvider = (props) => {
+const UsernameContext = React.createContext<{
+  username: string | null;
+  setUsername: React.Dispatch<React.SetStateAction<string | null>>;
+}>({ username: null, setUsername: () => "" });
+
+export const UsernameContextProvider = (props: {
+  children: React.JSX.Element;
+}) => {
   const [username, setUsername] = useState(() => {
     if (typeof window === "undefined") {
       return null;
@@ -14,8 +20,10 @@ export const UsernameContextProvider = (props) => {
   }, [username]);
   const contextValue = { username, setUsername };
   return (
-    <Context.Provider value={contextValue}>{props.children}</Context.Provider>
+    <UsernameContext.Provider value={contextValue}>
+      {props.children}
+    </UsernameContext.Provider>
   );
 };
 
-export const useUsernameContext = () => useContext(Context);
+export const useUsernameContext = () => useContext(UsernameContext);

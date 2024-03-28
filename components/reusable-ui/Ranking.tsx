@@ -1,29 +1,23 @@
 import React from "react";
 import styles from "./../../styles/Ranking.module.css";
 import styled from "styled-components";
-
-type UserData = {
-  score: number;
-  username: string;
-};
-
+import { UserData } from "@/pages/menu/[username]";
+import UserRank from "./UserRank";
 type RankingProps = {
-  rank: UserData[];
+  ranking: UserData[];
   title: string;
 };
 
-const Ranking = ({ rank, title }: RankingProps) => {
+const Ranking = ({ ranking, title }: RankingProps) => {
   return (
     <RankingStyled>
       <h2>{title}</h2>
       <div>
-        {rank
+        {ranking
+          .slice(0, 7)
           .sort((a, b) => b.score - a.score)
           .map((user) => (
-            <div className="rankedinfos">
-              <p>{user.username}</p>
-              <p>{user.score}</p>
-            </div>
+            <UserRank user={user} key={user.username} />
           ))}
       </div>
     </RankingStyled>
@@ -41,9 +35,5 @@ const RankingStyled = styled.div`
   }
   p {
     font-size: 20px;
-  }
-  .rankedinfos {
-    display: flex;
-    justify-content: space-between;
   }
 `;

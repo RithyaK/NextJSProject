@@ -1,12 +1,10 @@
-import { Subject } from "@/pages/menu/[username]";
+import { Theme } from "@/pages/menu/[username]";
 import React, { useState } from "react";
 import styled from "styled-components";
-type SubjectsProps = { listQuizz: Subject[] };
+type SubjectsProps = { listQuizz: Theme[] };
 
 const Subjects = ({ listQuizz }: SubjectsProps) => {
   const [subjectsDisplayed, setSubjectsDisplayed] = useState<number>(6);
-
-  console.log(listQuizz);
 
   function handleButton() {
     if (subjectsDisplayed === 12) {

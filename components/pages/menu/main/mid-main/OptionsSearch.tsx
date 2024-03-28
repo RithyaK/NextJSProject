@@ -1,21 +1,21 @@
-import { Subject } from "@/pages/menu/[username]";
+import { Theme } from "@/pages/menu/[username]";
 import React, { useState } from "react";
 import Select from "./Select";
 import styled from "styled-components";
-import { filterQuizzByOption } from "@/utils/array";
 import Image from "next/image";
 import { theme } from "@/theme";
 import OptionsSearchCard from "@/components/reusable-ui/OptionsSearchCard";
-type OptionsSearchProps = { listQuizz: Subject[] };
+import { isBefore } from "date-fns";
+type OptionsSearchProps = { listQuizz: Theme[] };
 
 const IMAGE_QUIZZ = "./../../../../../public/quizz-img.jpg";
 
 const OptionsSearch = ({ listQuizz }: OptionsSearchProps) => {
   const difficulties = ["easy", "medium", "hard"];
   const optionsThird = ["Récent", "Popularité"];
-  const subjects = listQuizz.map((subject) => subject.name);
+  const themes = listQuizz.map((theme) => theme.name);
   // const [listQuizzUpdated, setListQuizzUpdated] = useState(listQuizz);
-  const [subjectSelected, setSubjectSelected] = useState<string>("Thématique");
+  const [themeSelected, setThemeSelected] = useState<string>("Thématique");
   const [difficultySelected, setDifficultySelected] =
     useState<string>("Difficulty");
   const [optionThirdSelected, setOptionThirdSelected] =
@@ -27,7 +27,7 @@ const OptionsSearch = ({ listQuizz }: OptionsSearchProps) => {
     console.log(optionClicked);
     if (SelectPart === "Thématique") {
       console.log("Vous avez choisi un thème");
-      setSubjectSelected(optionClicked);
+      setThemeSelected(optionClicked);
     }
     if (SelectPart === "Difficulty") {
       console.log("Difficulté :", optionClicked);
@@ -44,7 +44,7 @@ const OptionsSearch = ({ listQuizz }: OptionsSearchProps) => {
       <h2>Recherchez un quizz qui vous intéresse !</h2>
       <div className="selectsContainer">
         <Select
-          options={subjects}
+          options={themes}
           label="Thématique"
           handleSelect={handleSelect}
         />
@@ -62,36 +62,30 @@ const OptionsSearch = ({ listQuizz }: OptionsSearchProps) => {
       <ul>
         {listQuizz
           .filter(
-            (subject) =>
-              subjectSelected === subject.name ||
-              subjectSelected === "Thématique"
+            (theme) =>
+              themeSelected === theme.name || themeSelected === "Thématique"
           )
-          .map((subject) => {
-            const subjectOfTheChapter = subject.name;
-            return subject.chapters
-              .flat()
-              .sort(
-                (chapterA, chapterB) =>
-                  new Date(chapterB.date) - new Date(chapterA.date)
-              )
-              .map(
-                (chapter) =>
-                  (difficultySelected === chapter.difficulty && (
-                    <OptionsSearchCard
-                      key={chapter.name}
-                      chapter={chapter}
-                      subjectOfTheChapter={subjectOfTheChapter}
-                    />
-                  )) ||
-                  (difficultySelected === "Difficulty" && (
-                    <OptionsSearchCard
-                      key={chapter.name}
-                      chapter={chapter}
-                      subjectOfTheChapter={subjectOfTheChapter}
-                    />
-                  ))
-              );
-          })}
+          .map((theme) => {
+            const themeOfTheChapter = theme.name;
+
+            return theme.chapters.map((chapter) => {
+              return { ...chapter, theme: themeOfTheChapter };
+            });
+          })
+          .flat()
+          .sort((chapterA, chapterB) =>
+            isBefore(new Date(chapterB.date), new Date(chapterA.date)) ? -1 : 1
+          )
+
+          .map(
+            (chapter) =>
+              (difficultySelected === chapter.difficulty && (
+                <OptionsSearchCard chapter={chapter} />
+              )) ||
+              (difficultySelected === "Difficulty" && (
+                <OptionsSearchCard chapter={chapter} />
+              ))
+          )}
       </ul>
     </OptionsSearchStyled>
   );

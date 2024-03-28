@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Subject } from "@/pages/menu/[username]";
+import { Theme } from "@/pages/menu/[username]";
 import SearchBar from "./top-main/SearchBar";
 import PopularSubjects from "./top-main/PopularSubjects";
 import RandomQuizzs from "./top-main/RandomQuizzs";
 import Subjects from "./mid-main/Subjects";
 import { addQuestionsToData } from "@/firestore/userData";
 import OptionsSearch from "./mid-main/OptionsSearch";
-type MainProps = { listQuizz: Subject[] };
+type MainProps = { listQuizz: Theme[] };
 
 const DATA = [
   {
@@ -543,7 +543,6 @@ const Main = ({ listQuizz }: MainProps) => {
 
   return (
     <MainStyled>
-      <button onClick={() => addQuestionsToData(DATA)}>X</button>
       <PopularSubjects listQuizz={listQuizz} />
       <SearchBar />
       <RandomQuizzs listQuizz={listQuizz} />

@@ -6,12 +6,13 @@ import { db } from "@/firestore/firebase-config";
 import { doc, getDoc } from "firebase/firestore";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { use, useContext, useEffect } from "react";
+import React, { use, useContext, useEffect, useState } from "react";
 import styled from "styled-components";
-
-type UserData = {
+import { Timestamp } from "@firebase/firestore-types";
+export type UserData = {
   score: number;
   username: string;
+  createdAt: string;
 };
 
 export type Chapter = {
@@ -26,27 +27,23 @@ export type Chapter = {
   };
 };
 
-export type Subject = {
+export type Theme = {
   id: number;
   name: string;
   chapters: Chapter[];
 };
 type MenuPageProps = {
-  allTime: UserData[];
+  allTimeRanking: UserData[];
   month: UserData[];
   week: UserData[];
-  quizz: Subject[];
+  quizz: Theme[];
 };
 
-const MenuPage = ({ allTime, month, week, quizz }: MenuPageProps) => {
-  //
-
-  //
-
+const MenuPage = ({ allTimeRanking, quizz }: MenuPageProps) => {
   //
   return (
     <MenuPageStyled>
-      <Sidebar allTime={allTime} month={month} week={week} />
+      <Sidebar allTimeRanking={allTimeRanking} />
       <Main listQuizz={quizz} />
     </MenuPageStyled>
   );
@@ -60,14 +57,20 @@ export const getServerSideProps = async () => {
   const docSnapShotRankings = await getDoc(rankingsDocRef);
   const docSnapShotQuizzs = await getDoc(quizzDocRef);
   if (docSnapShotRankings.exists() && docSnapShotQuizzs.exists()) {
-    const { allTime, month, week } = docSnapShotRankings.data();
+    const { allTime: allTimeRanking } = docSnapShotRankings.data();
     const { quizz } = docSnapShotQuizzs.data();
+    // const createdAt = allTime[0].createdAt.toDate() as Timestamp;
 
+    const allTimeRankingUpdated = allTimeRanking.map((object) => {
+      return {
+        ...object,
+        createdAt: object.createdAt.toDate().toISOString(),
+      };
+    });
+    console.log(allTimeRankingUpdated);
     return {
       props: {
-        allTime,
-        month,
-        week,
+        allTimeRanking: allTimeRankingUpdated,
         quizz,
       },
     };
