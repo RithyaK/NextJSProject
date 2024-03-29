@@ -38,6 +38,16 @@ type QuizzMenuProps = {
 //             answer: "4",
 //             question: "Quelle est la obnne réponse ? (4)",
 //           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test3",
+//             question: "Quelle est le bon test ? (Test3)",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test2",
+//             question: "Quelle est le bon test ? (Test2)",
+//           },
 //         ],
 //       },
 //       {
@@ -58,6 +68,16 @@ type QuizzMenuProps = {
 //             choices: ["1918", "1925", "1936", "1940"],
 //             question: "En quelle année a terminé la Grande Guerre ?",
 //           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test3",
+//             question: "Quelle est le bon test ? (Test3)",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test2",
+//             question: "Quelle est le bon test ? (Test2)",
+//           },
 //         ],
 //       },
 //       {
@@ -77,6 +97,16 @@ type QuizzMenuProps = {
 //             choices: ["1945", "1950", "1960", "1970"],
 //             answer: "1945",
 //             question: "En quelle année a terminé la seconde guerre mondiale?",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test3",
+//             question: "Quelle est le bon test ? (Test3)",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test2",
+//             question: "Quelle est le bon test ? (Test2)",
 //           },
 //         ],
 //       },
@@ -103,6 +133,16 @@ type QuizzMenuProps = {
 //             answer: "4",
 //             question: "Quelle est la obnne réponse ? (4)",
 //           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test3",
+//             question: "Quelle est le bon test ? (Test3)",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test2",
+//             question: "Quelle est le bon test ? (Test2)",
+//           },
 //         ],
 //       },
 //       {
@@ -123,6 +163,16 @@ type QuizzMenuProps = {
 //             answer: "b",
 //             question: "Qui est pythagore ?",
 //           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test3",
+//             question: "Quelle est le bon test ? (Test3)",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test2",
+//             question: "Quelle est le bon test ? (Test2)",
+//           },
 //         ],
 //       },
 //       {
@@ -142,6 +192,16 @@ type QuizzMenuProps = {
 //             answer: "d",
 //             question: "Qui est thales",
 //             choices: ["a", "b", "c", "d"],
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test3",
+//             question: "Quelle est le bon test ? (Test3)",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test2",
+//             question: "Quelle est le bon test ? (Test2)",
 //           },
 //         ],
 //       },
@@ -169,6 +229,16 @@ type QuizzMenuProps = {
 //             answer: "4",
 //             question: "Quelle est la obnne réponse ? (4)",
 //           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test3",
+//             question: "Quelle est le bon test ? (Test3)",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test2",
+//             question: "Quelle est le bon test ? (Test2)",
+//           },
 //         ],
 //       },
 //       {
@@ -189,6 +259,16 @@ type QuizzMenuProps = {
 //             answer: "Nairobi",
 //             choices: ["Kadmendu", "Nairobi", "Addis-Abbeba", "Jérusalem"],
 //           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test3",
+//             question: "Quelle est le bon test ? (Test3)",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test2",
+//             question: "Quelle est le bon test ? (Test2)",
+//           },
 //         ],
 //       },
 //       {
@@ -208,6 +288,16 @@ type QuizzMenuProps = {
 //             choices: ["Haiti", "Israel", "Corée du Nord", "Afrique"],
 //             answer: "Afrique",
 //             question: "Quel est le pays le plus dangereux ?",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test3",
+//             question: "Quelle est le bon test ? (Test3)",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test2",
+//             question: "Quelle est le bon test ? (Test2)",
 //           },
 //         ],
 //       },
@@ -235,6 +325,16 @@ type QuizzMenuProps = {
 //             answer: "4",
 //             question: "Quelle est la obnne réponse ? (4)",
 //           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test3",
+//             question: "Quelle est le bon test ? (Test3)",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test2",
+//             question: "Quelle est le bon test ? (Test2)",
+//           },
 //         ],
 //       },
 //       {
@@ -255,6 +355,16 @@ type QuizzMenuProps = {
 //             choices: ["Colombie", "Allemagne", "Brésil", "France"],
 //             question: "Qui a gagné la coupe du monde 2014 ?",
 //           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test3",
+//             question: "Quelle est le bon test ? (Test3)",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test2",
+//             question: "Quelle est le bon test ? (Test2)",
+//           },
 //         ],
 //       },
 //       {
@@ -274,6 +384,16 @@ type QuizzMenuProps = {
 //             answer: "Pro A",
 //             question: "Quelle est la league en France?",
 //             choices: ["Pro A", "NBA", "C", "D"],
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test3",
+//             question: "Quelle est le bon test ? (Test3)",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test2",
+//             question: "Quelle est le bon test ? (Test2)",
 //           },
 //         ],
 //       },
@@ -301,6 +421,16 @@ type QuizzMenuProps = {
 //             answer: "4",
 //             question: "Quelle est la obnne réponse ? (4)",
 //           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test3",
+//             question: "Quelle est le bon test ? (Test3)",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test2",
+//             question: "Quelle est le bon test ? (Test2)",
+//           },
 //         ],
 //       },
 //       {
@@ -321,6 +451,16 @@ type QuizzMenuProps = {
 //             choices: ["Faker", "Caps", "Hans Sama", "Perkz"],
 //             question: "Qui est le meilleur joueur du monde ?",
 //           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test3",
+//             question: "Quelle est le bon test ? (Test3)",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test2",
+//             question: "Quelle est le bon test ? (Test2)",
+//           },
 //         ],
 //       },
 //       {
@@ -340,6 +480,16 @@ type QuizzMenuProps = {
 //             choices: ["Enutrof", "Eniripsa", "Osamodas", "Sadida"],
 //             answer: "Enutrof",
 //             question: "Quelle Classe à le taux de drop le plus élévé ?",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test3",
+//             question: "Quelle est le bon test ? (Test3)",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test2",
+//             question: "Quelle est le bon test ? (Test2)",
 //           },
 //         ],
 //       },
@@ -367,6 +517,16 @@ type QuizzMenuProps = {
 //             answer: "4",
 //             question: "Quelle est la obnne réponse ? (4)",
 //           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test3",
+//             question: "Quelle est le bon test ? (Test3)",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test2",
+//             question: "Quelle est le bon test ? (Test2)",
+//           },
 //         ],
 //       },
 //       {
@@ -387,6 +547,16 @@ type QuizzMenuProps = {
 //             choices: ["Audi", "BMW", "Mercedes", "Volkswagean"],
 //             question: "Quelle marque à le meilleur intérieur ?",
 //           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test3",
+//             question: "Quelle est le bon test ? (Test3)",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test2",
+//             question: "Quelle est le bon test ? (Test2)",
+//           },
 //         ],
 //       },
 //       {
@@ -406,6 +576,16 @@ type QuizzMenuProps = {
 //             choices: ["A", "B", "C", "D"],
 //             answer: "C",
 //             question: "Quelle est la pire moto?",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test3",
+//             question: "Quelle est le bon test ? (Test3)",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test2",
+//             question: "Quelle est le bon test ? (Test2)",
 //           },
 //         ],
 //       },
@@ -432,6 +612,16 @@ type QuizzMenuProps = {
 //             choices: ["1", "2", "3", "4"],
 //             answer: "4",
 //             question: "Quelle est la obnne réponse ? (4)",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test3",
+//             question: "Quelle est le bon test ? (Test3)",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test2",
+//             question: "Quelle est le bon test ? (Test2)",
 //           },
 //         ],
 //       },
@@ -463,6 +653,16 @@ type QuizzMenuProps = {
 //             ],
 //             question: "Qui est le pire acteur FR?",
 //           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test3",
+//             question: "Quelle est le bon test ? (Test3)",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test2",
+//             question: "Quelle est le bon test ? (Test2)",
+//           },
 //         ],
 //       },
 //       {
@@ -482,6 +682,16 @@ type QuizzMenuProps = {
 //             choices: ["A", "B", "C", "D"],
 //             answer: "C",
 //             question: "Quelle est la pire moto?",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test3",
+//             question: "Quelle est le bon test ? (Test3)",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test2",
+//             question: "Quelle est le bon test ? (Test2)",
 //           },
 //         ],
 //       },
@@ -509,6 +719,16 @@ type QuizzMenuProps = {
 //             answer: "4",
 //             question: "Quelle est la obnne réponse ? (4)",
 //           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test3",
+//             question: "Quelle est le bon test ? (Test3)",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test2",
+//             question: "Quelle est le bon test ? (Test2)",
+//           },
 //         ],
 //       },
 //       {
@@ -534,6 +754,16 @@ type QuizzMenuProps = {
 //             choices: ["Rennes", "Marseille", "Lyon", "Paris"],
 //             question: "Où se situe la Tour Eiffel ?",
 //           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test3",
+//             question: "Quelle est le bon test ? (Test3)",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test2",
+//             question: "Quelle est le bon test ? (Test2)",
+//           },
 //         ],
 //       },
 //       {
@@ -553,6 +783,16 @@ type QuizzMenuProps = {
 //             choices: ["A", "B", "C", "D"],
 //             answer: "C",
 //             question: "Quelle est la pire moto?",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test3",
+//             question: "Quelle est le bon test ? (Test3)",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test2",
+//             question: "Quelle est le bon test ? (Test2)",
 //           },
 //         ],
 //       },
@@ -579,6 +819,16 @@ type QuizzMenuProps = {
 //             answer: "4",
 //             question: "Quelle est la obnne réponse ? (4)",
 //           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test3",
+//             question: "Quelle est le bon test ? (Test3)",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test2",
+//             question: "Quelle est le bon test ? (Test2)",
+//           },
 //         ],
 //       },
 //       {
@@ -599,6 +849,16 @@ type QuizzMenuProps = {
 //             choices: ["Reccette", "Armoire", "Table", "Bouteille"],
 //             question: "Quel est le mauvais ortographe ?",
 //           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test3",
+//             question: "Quelle est le bon test ? (Test3)",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test2",
+//             question: "Quelle est le bon test ? (Test2)",
+//           },
 //         ],
 //       },
 //       {
@@ -618,6 +878,16 @@ type QuizzMenuProps = {
 //             choices: ["passé composé", "futur", "présent", "temps"],
 //             answer: "passé composé",
 //             question: "De quel temps est conjugué la question ?",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test3",
+//             question: "Quelle est le bon test ? (Test3)",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test2",
+//             question: "Quelle est le bon test ? (Test2)",
 //           },
 //         ],
 //       },
@@ -644,6 +914,16 @@ type QuizzMenuProps = {
 //             answer: "4",
 //             question: "Quelle est la obnne réponse ? (4)",
 //           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test3",
+//             question: "Quelle est le bon test ? (Test3)",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test2",
+//             question: "Quelle est le bon test ? (Test2)",
+//           },
 //         ],
 //       },
 //       {
@@ -664,6 +944,16 @@ type QuizzMenuProps = {
 //             choices: ["rouge", "bleu", "jaune", "noir"],
 //             question: "De quelle couleur est écrit le panneau 110 ?",
 //           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test3",
+//             question: "Quelle est le bon test ? (Test3)",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test2",
+//             question: "Quelle est le bon test ? (Test2)",
+//           },
 //         ],
 //       },
 //       {
@@ -683,6 +973,16 @@ type QuizzMenuProps = {
 //             choices: ["110", "130", "90", "50"],
 //             answer: "50",
 //             question: "Quelle est la vitesse maximum en agglomération ?",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test3",
+//             question: "Quelle est le bon test ? (Test3)",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test2",
+//             question: "Quelle est le bon test ? (Test2)",
 //           },
 //         ],
 //       },
@@ -709,6 +1009,16 @@ type QuizzMenuProps = {
 //             answer: "4",
 //             question: "Quelle est la obnne réponse ? (4)",
 //           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test3",
+//             question: "Quelle est le bon test ? (Test3)",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test2",
+//             question: "Quelle est le bon test ? (Test2)",
+//           },
 //         ],
 //       },
 //       {
@@ -729,6 +1039,16 @@ type QuizzMenuProps = {
 //             choices: ["Macron", "Mittérand", "Hollande", "Chirac"],
 //             question: "Qui est le plus ancien président des 4 ?",
 //           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test3",
+//             question: "Quelle est le bon test ? (Test3)",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test2",
+//             question: "Quelle est le bon test ? (Test2)",
+//           },
 //         ],
 //       },
 //       {
@@ -741,13 +1061,23 @@ type QuizzMenuProps = {
 //         questions: [
 //           {
 //             question: "Qui est le premier ministre actuel?",
-//             choices: ["Attal", "Bruno Le Maire", "Borne", "Chirac"],
+//             choices: ["Attal", "Valls", "Borne", "Chirac"],
 //             answer: "Attal",
 //           },
 //           {
-//             choices: ["Attal", "Bruno Le Maire", "Borne", "Chirac"],
+//             choices: ["Macron", "Bruno Le Maire", "Toulalan", "Test"],
 //             answer: "Bruno Le Maire",
 //             question: "Qui est le ministre de l'économie ?",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test3",
+//             question: "Quelle est le bon test ? (Test3)",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test2",
+//             question: "Quelle est le bon test ? (Test2)",
 //           },
 //         ],
 //       },
@@ -775,6 +1105,16 @@ type QuizzMenuProps = {
 //             answer: "4",
 //             question: "Quelle est la obnne réponse ? (4)",
 //           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test3",
+//             question: "Quelle est le bon test ? (Test3)",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test2",
+//             question: "Quelle est le bon test ? (Test2)",
+//           },
 //         ],
 //       },
 //       {
@@ -795,6 +1135,16 @@ type QuizzMenuProps = {
 //             choices: ["PNL", "Sexion d'assaut", "Djadja & Dinaz", "MMZ"],
 //             question: "Quel duo de groupe de RAP FR sont frères?",
 //           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test3",
+//             question: "Quelle est le bon test ? (Test3)",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test2",
+//             question: "Quelle est le bon test ? (Test2)",
+//           },
 //         ],
 //       },
 //       {
@@ -814,6 +1164,16 @@ type QuizzMenuProps = {
 //             choices: ["Rihanna", "Drake", "Justin Bieber", "Wiz Khalifa"],
 //             answer: "Justin Bieber",
 //             question: "Qui chante Love Yourself ?",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test3",
+//             question: "Quelle est le bon test ? (Test3)",
+//           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test2",
+//             question: "Quelle est le bon test ? (Test2)",
 //           },
 //         ],
 //       },
@@ -838,7 +1198,22 @@ const QuizzMenu = ({ listQuizz }: QuizzMenuProps) => {
   const themeData = listQuizz.find(
     (theme) => theme.name === quizzChosen?.theme
   );
-  console.log(quizzChosen?.questions);
+  const [isQuizzStarted, setIsQuizzStarted] = useState(false);
+  const [isQuizzFinished, setIsQuizzFinished] = useState(false);
+  const [correctAnswer, setCorrectAnswer] = useState(0);
+  const [currentIndexQuestion, setCurrentIndexQuestion] = useState(0);
+  const question = quizzChosen?.questions[currentIndexQuestion];
+  function handleAnswerClicked(choice: string) {
+    setCurrentIndexQuestion(currentIndexQuestion + 1);
+    choice === question?.answer && setCorrectAnswer(correctAnswer + 1);
+
+    if (currentIndexQuestion === quizzChosen?.questions.length - 1) {
+      console.log("Fin du Quizz");
+      setIsQuizzStarted(false);
+      setIsQuizzFinished(true);
+    }
+  }
+  console.log("currentIndexQuestion :", currentIndexQuestion);
   return (
     <QuizzMenuStyled>
       {/* <button onClick={() => addQuestionsToData(DATA)}>X</button> */}
@@ -854,7 +1229,32 @@ const QuizzMenu = ({ listQuizz }: QuizzMenuProps) => {
       </div>
       <div className="imagecontainer">
         <div className="image"></div>
-        <button>COMMENCER LE QUIZZ</button>
+        {isQuizzStarted && (
+          <div className="gameContainer">
+            <h1>Question n*{currentIndexQuestion + 1}</h1>
+            <h2 className="question">{question?.question}</h2>
+            <div className="choices">
+              {question?.choices.map((choice) => (
+                <span key={choice} onClick={() => handleAnswerClicked(choice)}>
+                  {choice}
+                </span>
+              ))}
+            </div>
+            <span>
+              Score actuel : {correctAnswer}/{currentIndexQuestion}
+            </span>
+          </div>
+        )}
+        {isQuizzFinished && (
+          <h2>
+            Score : {correctAnswer}/{currentIndexQuestion}
+          </h2>
+        )}
+        {!isQuizzStarted && !isQuizzFinished && (
+          <button onClick={() => setIsQuizzStarted(true)}>
+            COMMENCER LE QUIZZ
+          </button>
+        )}
       </div>
       <QuizzRecommanded themeData={themeData} quizzChosen={quizzChosen} />
     </QuizzMenuStyled>
@@ -883,13 +1283,47 @@ const QuizzMenuStyled = styled.div`
     flex-direction: column;
     justify-content: center;
     .image {
-      width: 600px;
+      width: 500px;
       height: 500px;
       background-color: green;
     }
     button {
-      width: 600px;
+      width: 500px;
     }
+  }
+  .gameContainer {
+    width: 500px;
+    height: 350px;
+    border: 2px solid black;
+    background-color: #c79191;
+    text-align: center;
+  }
+  .scoreContainer {
+    display: flex;
+    width: 300px;
+    height: 300px;
+    border: 1px solid black;
+    align-items: center;
+    justify-content: center;
+  }
+  .question {
+    margin: 25px 0;
+  }
+  .choices {
+    display: grid;
+    justify-content: center;
+    grid-template: 60px 60px/ 130px 130px;
+    gap: 20px;
+  }
+  .choices span {
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .choices span:hover {
+    background-color: red;
+    cursor: pointer;
   }
   .quizzRecommanded {
     padding: 30px 0px;
