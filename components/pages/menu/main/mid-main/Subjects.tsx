@@ -1,4 +1,5 @@
 import { Theme } from "@/pages/menu/[username]";
+import { theme } from "@/theme";
 import React, { useState } from "react";
 import styled from "styled-components";
 type SubjectsProps = { listQuizz: Theme[] };
@@ -15,7 +16,9 @@ const Subjects = ({ listQuizz }: SubjectsProps) => {
   }
   return (
     <SubjectsStyled>
-      <h2>Thèmatiques</h2>
+      <div className="title">
+        <h2>Thématiques</h2>
+      </div>
       <div className="container-subjects">
         {listQuizz.slice(0, subjectsDisplayed).map((chapter) => (
           <div key={chapter.name} className="subject">
@@ -33,10 +36,21 @@ const Subjects = ({ listQuizz }: SubjectsProps) => {
 export default Subjects;
 
 const SubjectsStyled = styled.div`
-  background-color: maroon;
   margin: 50px 0;
   padding: 20px 50px;
   text-align: center;
+  border: 1px solid black;
+  .title {
+    display: flex;
+    justify-content: center;
+  }
+  h2 {
+    border: 1px solid black;
+    border-radius: 12px;
+    text-align: center;
+    background-color: ${theme.colors.green};
+    width: 450px;
+  }
   .container-subjects {
     padding: 10px;
     display: grid;
@@ -49,7 +63,7 @@ const SubjectsStyled = styled.div`
     border: 1px solid grey;
     justify-content: center;
     align-items: center;
-    background-color: white;
+    background-color: ${theme.colors.lightgreen};
     height: 80px;
   }
 `;

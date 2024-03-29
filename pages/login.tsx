@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { authenticateUser } from "@/firestore/user";
@@ -17,6 +17,10 @@ const Login = () => {
     setUsername(inputValue);
     router.push(`menu/${inputValue}`);
   }
+
+  useEffect(() => {
+    setUsername(null);
+  }, []);
   //
   return (
     <LoginPageStyled>

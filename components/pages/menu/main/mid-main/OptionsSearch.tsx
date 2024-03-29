@@ -41,7 +41,9 @@ const OptionsSearch = ({ listQuizz }: OptionsSearchProps) => {
 
   return (
     <OptionsSearchStyled>
-      <h2>Recherchez un quizz qui vous intéresse !</h2>
+      <div className="title">
+        <h2>Recherchez un quizz qui vous intéresse !</h2>
+      </div>
       <div className="selectsContainer">
         <Select
           options={themes}
@@ -94,10 +96,20 @@ const OptionsSearch = ({ listQuizz }: OptionsSearchProps) => {
 export default OptionsSearch;
 
 const OptionsSearchStyled = styled.div`
-  background-color: #968484;
-  color: ${theme.colors.purple};
+  .title {
+    display: flex;
+    justify-content: center;
+  }
+  h2 {
+    border: 1px solid black;
+    border-radius: 12px;
+    text-align: center;
+    background-color: ${theme.colors.green};
+    width: 450px;
+  }
   .selectsContainer {
     margin: 20px 0;
+    text-align: center;
   }
   select {
     margin: 0 5px;

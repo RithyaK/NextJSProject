@@ -1,5 +1,6 @@
 import { addQuestionsToData } from "@/firestore/userData";
 import { Subject } from "@/pages/menu/[username]";
+import { theme } from "@/theme";
 import React, { useState } from "react";
 import styled from "styled-components";
 
@@ -13,7 +14,9 @@ const RandomQuizzs = ({ listQuizz }: RandomQuizzsProps) => {
 
   return (
     <RandomQuizzsStyled>
-      <h2>Quizz que vous pourrez aimer</h2>
+      <div className="title">
+        <h2>Quizz que vous pourriez aimer</h2>
+      </div>
       <ul>
         {chapters.map((chapter) => (
           <li key={chapter}>{chapter}</li>
@@ -26,17 +29,34 @@ const RandomQuizzs = ({ listQuizz }: RandomQuizzsProps) => {
 export default RandomQuizzs;
 
 const RandomQuizzsStyled = styled.div`
+  margin: 20px 0;
+  .title {
+    display: flex;
+    justify-content: center;
+  }
   h2 {
+    border: 1px solid black;
+    border-radius: 12px;
     text-align: center;
+    background-color: ${theme.colors.green};
+    width: 370px;
   }
   ul {
     display: flex;
     list-style-type: none;
-    background-color: red;
+    background-color: ${theme.colors.lightgreen};
     overflow-x: auto;
   }
   li {
     border: 1px solid grey;
-    min-width: 140px;
+    min-width: 170px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  li:hover {
+    cursor: pointer;
+    border: 1px solid black;
   }
 `;
