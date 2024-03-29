@@ -71,7 +71,6 @@ export const getServerSideProps = async () => {
         createdAt: object.createdAt.toDate().toISOString(),
       };
     });
-    // console.log(allTimeRankingUpdated);
     return {
       props: {
         allTimeRanking: allTimeRankingUpdated,

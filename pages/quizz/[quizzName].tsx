@@ -1182,7 +1182,7 @@ type QuizzMenuProps = {
 // ];
 
 const QuizzMenu = ({ listQuizz }: QuizzMenuProps) => {
-  // const { username } = useUsernameContext();
+  const { username } = useUsernameContext();
   const router = useRouter();
   const { quizzName } = router.query;
   const quizzChosen = listQuizz
@@ -1220,7 +1220,7 @@ const QuizzMenu = ({ listQuizz }: QuizzMenuProps) => {
       <PopularSubjects listQuizz={listQuizz} />
       <RandomQuizzs listQuizz={listQuizz} />
       <div className="quizzInfos">
-        <Link href="/menu">Menu</Link>
+        <Link href={`/menu/${username}`}>Menu</Link>
         <h1 className="quizzName">Quizz : {quizzChosen.name}</h1>
         <div className="quizzparameters">
           <span>Thème :{quizzChosen?.theme}</span>
@@ -1229,33 +1229,33 @@ const QuizzMenu = ({ listQuizz }: QuizzMenuProps) => {
       </div>
       <div className="imagecontainer">
         <div className="image"></div>
-        {isQuizzStarted && (
-          <div className="gameContainer">
-            <h1>Question n*{currentIndexQuestion + 1}</h1>
-            <h2 className="question">{question?.question}</h2>
-            <div className="choices">
-              {question?.choices.map((choice) => (
-                <span key={choice} onClick={() => handleAnswerClicked(choice)}>
-                  {choice}
-                </span>
-              ))}
-            </div>
-            <span>
-              Score actuel : {correctAnswer}/{currentIndexQuestion}
-            </span>
-          </div>
-        )}
-        {isQuizzFinished && (
-          <h2>
-            Score : {correctAnswer}/{currentIndexQuestion}
-          </h2>
-        )}
-        {!isQuizzStarted && !isQuizzFinished && (
-          <button onClick={() => setIsQuizzStarted(true)}>
-            COMMENCER LE QUIZZ
-          </button>
-        )}
       </div>
+      {isQuizzStarted && (
+        <div className="gameContainer">
+          <h1>Question n*{currentIndexQuestion + 1}</h1>
+          <h2 className="question">{question?.question}</h2>
+          <div className="choices">
+            {question?.choices.map((choice) => (
+              <span key={choice} onClick={() => handleAnswerClicked(choice)}>
+                {choice}
+              </span>
+            ))}
+          </div>
+          <span>
+            Score actuel : {correctAnswer}/{currentIndexQuestion}
+          </span>
+        </div>
+      )}
+      {isQuizzFinished && (
+        <h2>
+          Score : {correctAnswer}/{currentIndexQuestion}
+        </h2>
+      )}
+      {!isQuizzStarted && !isQuizzFinished && (
+        <button onClick={() => setIsQuizzStarted(true)}>
+          COMMENCER LE QUIZZ
+        </button>
+      )}
       <QuizzRecommanded themeData={themeData} quizzChosen={quizzChosen} />
     </QuizzMenuStyled>
   );
