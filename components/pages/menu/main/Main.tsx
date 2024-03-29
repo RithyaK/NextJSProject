@@ -15,10 +15,31 @@ const DATA = [
     id: 1,
     chapters: [
       {
+        name: "",
+        played: 10,
+        date: "2022-03-11",
+        difficulty: "medium",
+        image: "",
+        questions: [
+          {
+            choices: ["A", "B", "C", "D"],
+            answer: "B",
+            question: "Quelle est la bonne réponse ? (B)",
+          },
+          {
+            choices: ["1", "2", "3", "4"],
+            answer: "4",
+            question: "Quelle est la obnne réponse ? (4)",
+          },
+        ],
+      },
+      {
         name: "WW1",
         played: 13,
         date: "2023-01-21",
         difficulty: "medium",
+        image:
+          "https://img.freepik.com/vecteurs-premium/logo-quiz-icone-bulle-dialogue_149152-811.jpg?w=740",
         questions: [
           {
             choices: ["1914", "1915", "1916", "1917"],
@@ -37,6 +58,8 @@ const DATA = [
         played: 15,
         date: "2024-01-30",
         difficulty: "hard",
+        image:
+          "https://img.freepik.com/vecteurs-premium/logo-quiz-icone-bulle-dialogue_149152-811.jpg?w=740",
         questions: [
           {
             question: "En quelle année a débuté la seconde guerre mondiale ?",
@@ -57,10 +80,31 @@ const DATA = [
     id: 2,
     chapters: [
       {
+        name: "",
+        played: 10,
+        date: "2022-03-11",
+        difficulty: "medium",
+        image: "",
+        questions: [
+          {
+            choices: ["A", "B", "C", "D"],
+            answer: "B",
+            question: "Quelle est la bonne réponse ? (B)",
+          },
+          {
+            choices: ["1", "2", "3", "4"],
+            answer: "4",
+            question: "Quelle est la obnne réponse ? (4)",
+          },
+        ],
+      },
+      {
         name: "theorème de pythagore",
         played: 25,
         date: "2024-01-15",
         difficulty: "easy",
+        image:
+          "https://img.freepik.com/vecteurs-premium/logo-quiz-icone-bulle-dialogue_149152-811.jpg?w=740",
         questions: [
           {
             question: "Quelle est la formule de pythagore?",
@@ -79,6 +123,8 @@ const DATA = [
         played: 35,
         date: "2024-01-05",
         difficulty: "hard",
+        image:
+          "https://img.freepik.com/vecteurs-premium/logo-quiz-icone-bulle-dialogue_149152-811.jpg?w=740",
         questions: [
           {
             choices: ["a", "b", "c", "d"],
@@ -100,10 +146,31 @@ const DATA = [
 
     chapters: [
       {
+        name: "",
+        played: 10,
+        date: "2022-03-11",
+        difficulty: "medium",
+        image: "",
+        questions: [
+          {
+            choices: ["A", "B", "C", "D"],
+            answer: "B",
+            question: "Quelle est la bonne réponse ? (B)",
+          },
+          {
+            choices: ["1", "2", "3", "4"],
+            answer: "4",
+            question: "Quelle est la obnne réponse ? (4)",
+          },
+        ],
+      },
+      {
         name: "Capitals",
         played: 10,
         date: "2024-01-08",
         difficulty: "hard",
+        image:
+          "https://img.freepik.com/vecteurs-premium/logo-quiz-icone-bulle-dialogue_149152-811.jpg?w=740",
         questions: [
           {
             question: "Capital du Turkménistan ?",
@@ -122,6 +189,8 @@ const DATA = [
         played: 43,
         date: "2024-01-15",
         difficulty: "medium",
+        image:
+          "https://img.freepik.com/vecteurs-premium/logo-quiz-icone-bulle-dialogue_149152-811.jpg?w=740",
         questions: [
           {
             answer: "Burundi",
@@ -143,9 +212,30 @@ const DATA = [
 
     chapters: [
       {
+        name: "",
+        played: 10,
+        date: "2022-03-11",
+        difficulty: "medium",
+        image: "",
+        questions: [
+          {
+            choices: ["A", "B", "C", "D"],
+            answer: "B",
+            question: "Quelle est la bonne réponse ? (B)",
+          },
+          {
+            choices: ["1", "2", "3", "4"],
+            answer: "4",
+            question: "Quelle est la obnne réponse ? (4)",
+          },
+        ],
+      },
+      {
         played: 53,
         date: "2024-01-15",
         difficulty: "easy",
+        image:
+          "https://img.freepik.com/vecteurs-premium/logo-quiz-icone-bulle-dialogue_149152-811.jpg?w=740",
         name: "football",
         questions: [
           {
@@ -165,6 +255,8 @@ const DATA = [
         played: 5,
         date: "2024-01-07",
         difficulty: "medium",
+        image:
+          "https://img.freepik.com/vecteurs-premium/logo-quiz-icone-bulle-dialogue_149152-811.jpg?w=740",
         questions: [
           {
             question: "Quelle est la plus grosse league ?",
@@ -186,10 +278,31 @@ const DATA = [
 
     chapters: [
       {
+        name: "",
+        played: 10,
+        date: "2022-03-11",
+        difficulty: "medium",
+        image: "",
+        questions: [
+          {
+            choices: ["A", "B", "C", "D"],
+            answer: "B",
+            question: "Quelle est la bonne réponse ? (B)",
+          },
+          {
+            choices: ["1", "2", "3", "4"],
+            answer: "4",
+            question: "Quelle est la obnne réponse ? (4)",
+          },
+        ],
+      },
+      {
         name: "League of Legends",
         played: 58,
         date: "2023-08-15",
         difficulty: "easy",
+        image:
+          "https://img.freepik.com/vecteurs-premium/logo-quiz-icone-bulle-dialogue_149152-811.jpg?w=740",
         questions: [
           {
             choices: ["SKT", "TSM", "FNATIC", "G2"],
@@ -208,6 +321,8 @@ const DATA = [
         played: 72,
         date: "2023-07-05",
         difficulty: "easy",
+        image:
+          "https://img.freepik.com/vecteurs-premium/logo-quiz-icone-bulle-dialogue_149152-811.jpg?w=740",
         questions: [
           {
             question: "Quel est le niveau maximum ?",
@@ -229,10 +344,31 @@ const DATA = [
 
     chapters: [
       {
+        name: "",
+        played: 10,
+        date: "2022-03-11",
+        difficulty: "medium",
+        image: "",
+        questions: [
+          {
+            choices: ["A", "B", "C", "D"],
+            answer: "B",
+            question: "Quelle est la bonne réponse ? (B)",
+          },
+          {
+            choices: ["1", "2", "3", "4"],
+            answer: "4",
+            question: "Quelle est la obnne réponse ? (4)",
+          },
+        ],
+      },
+      {
         name: "Voiture",
         played: 0,
         date: "2023-10-13",
         difficulty: "medium",
+        image:
+          "https://img.freepik.com/vecteurs-premium/logo-quiz-icone-bulle-dialogue_149152-811.jpg?w=740",
         questions: [
           {
             choices: ["Audi", "BMW", "Mercedes", "Volkswagean"],
@@ -251,6 +387,8 @@ const DATA = [
         played: 65,
         date: "2023-12-20",
         difficulty: "hard",
+        image:
+          "https://img.freepik.com/vecteurs-premium/logo-quiz-icone-bulle-dialogue_149152-811.jpg?w=740",
         questions: [
           {
             question: "Quelle est la meilleure moto ?",
@@ -272,10 +410,31 @@ const DATA = [
 
     chapters: [
       {
+        name: "",
+        played: 10,
+        date: "2022-03-11",
+        difficulty: "medium",
+        image: "",
+        questions: [
+          {
+            choices: ["A", "B", "C", "D"],
+            answer: "B",
+            question: "Quelle est la bonne réponse ? (B)",
+          },
+          {
+            choices: ["1", "2", "3", "4"],
+            answer: "4",
+            question: "Quelle est la obnne réponse ? (4)",
+          },
+        ],
+      },
+      {
         name: "Cinéma FR",
         played: 2,
         date: "2023-08-27",
         difficulty: "medium",
+        image:
+          "https://img.freepik.com/vecteurs-premium/logo-quiz-icone-bulle-dialogue_149152-811.jpg?w=740",
         questions: [
           {
             choices: [
@@ -304,6 +463,8 @@ const DATA = [
         played: 3,
         date: "2021-05-24",
         difficulty: "hard",
+        image:
+          "https://img.freepik.com/vecteurs-premium/logo-quiz-icone-bulle-dialogue_149152-811.jpg?w=740",
         questions: [
           {
             question: "Quelle est la meilleure moto ?",
@@ -325,10 +486,31 @@ const DATA = [
 
     chapters: [
       {
+        name: "",
+        played: 10,
+        date: "2022-03-11",
+        difficulty: "medium",
+        image: "",
+        questions: [
+          {
+            choices: ["A", "B", "C", "D"],
+            answer: "B",
+            question: "Quelle est la bonne réponse ? (B)",
+          },
+          {
+            choices: ["1", "2", "3", "4"],
+            answer: "4",
+            question: "Quelle est la obnne réponse ? (4)",
+          },
+        ],
+      },
+      {
         name: "Monument FR",
         played: 5,
         date: "2020-07-12",
         difficulty: "hard",
+        image:
+          "https://img.freepik.com/vecteurs-premium/logo-quiz-icone-bulle-dialogue_149152-811.jpg?w=740",
         questions: [
           {
             choices: [
@@ -352,6 +534,8 @@ const DATA = [
         played: 7,
         date: "2024-05-07",
         difficulty: "medium",
+        image:
+          "https://img.freepik.com/vecteurs-premium/logo-quiz-icone-bulle-dialogue_149152-811.jpg?w=740",
         questions: [
           {
             question: "Quelle est la meilleure moto ?",
@@ -372,10 +556,31 @@ const DATA = [
     id: 9,
     chapters: [
       {
+        name: "",
+        played: 10,
+        date: "2022-03-11",
+        difficulty: "medium",
+        image: "",
+        questions: [
+          {
+            choices: ["A", "B", "C", "D"],
+            answer: "B",
+            question: "Quelle est la bonne réponse ? (B)",
+          },
+          {
+            choices: ["1", "2", "3", "4"],
+            answer: "4",
+            question: "Quelle est la obnne réponse ? (4)",
+          },
+        ],
+      },
+      {
         name: "Ortographe",
         played: 6,
         date: "2023-06-24",
         difficulty: "easy",
+        image:
+          "https://img.freepik.com/vecteurs-premium/logo-quiz-icone-bulle-dialogue_149152-811.jpg?w=740",
         questions: [
           {
             choices: ["trophée", "trophé", "trophee", "treauphée"],
@@ -394,6 +599,8 @@ const DATA = [
         played: 85,
         date: "2022-08-28",
         difficulty: "hard",
+        image:
+          "https://img.freepik.com/vecteurs-premium/logo-quiz-icone-bulle-dialogue_149152-811.jpg?w=740",
         questions: [
           {
             question: "Quel temps n'existe pas ?",
@@ -414,10 +621,31 @@ const DATA = [
     id: 10,
     chapters: [
       {
+        name: "",
+        played: 10,
+        date: "2022-03-11",
+        difficulty: "medium",
+        image: "",
+        questions: [
+          {
+            choices: ["A", "B", "C", "D"],
+            answer: "B",
+            question: "Quelle est la bonne réponse ? (B)",
+          },
+          {
+            choices: ["1", "2", "3", "4"],
+            answer: "4",
+            question: "Quelle est la obnne réponse ? (4)",
+          },
+        ],
+      },
+      {
         name: "Panneaux",
         played: 65,
         date: "2023-05-15",
         difficulty: "hard",
+        image:
+          "https://img.freepik.com/vecteurs-premium/logo-quiz-icone-bulle-dialogue_149152-811.jpg?w=740",
         questions: [
           {
             choices: ["rouge", "bleu", "jaune", "noir"],
@@ -436,6 +664,8 @@ const DATA = [
         played: 85,
         date: "2023-01-25",
         difficulty: "medium",
+        image:
+          "https://img.freepik.com/vecteurs-premium/logo-quiz-icone-bulle-dialogue_149152-811.jpg?w=740",
         questions: [
           {
             question: "Quelle peut être la vitesse maximum sur autoroute ?",
@@ -456,10 +686,31 @@ const DATA = [
     id: 11,
     chapters: [
       {
+        name: "",
+        played: 10,
+        date: "2022-03-11",
+        difficulty: "medium",
+        image: "",
+        questions: [
+          {
+            choices: ["A", "B", "C", "D"],
+            answer: "B",
+            question: "Quelle est la bonne réponse ? (B)",
+          },
+          {
+            choices: ["1", "2", "3", "4"],
+            answer: "4",
+            question: "Quelle est la obnne réponse ? (4)",
+          },
+        ],
+      },
+      {
         name: "Président",
         played: 25,
         date: "2023-09-30",
         difficulty: "easy",
+        image:
+          "https://img.freepik.com/vecteurs-premium/logo-quiz-icone-bulle-dialogue_149152-811.jpg?w=740",
         questions: [
           {
             choices: ["Macron", "Mittérand", "Hollande", "Chirac"],
@@ -478,6 +729,8 @@ const DATA = [
         played: 35,
         date: "2024-08-25",
         difficulty: "medium",
+        image:
+          "https://img.freepik.com/vecteurs-premium/logo-quiz-icone-bulle-dialogue_149152-811.jpg?w=740",
         questions: [
           {
             question: "Qui est le premier ministre actuel?",
@@ -499,10 +752,31 @@ const DATA = [
 
     chapters: [
       {
+        name: "",
+        played: 10,
+        date: "2022-03-11",
+        difficulty: "medium",
+        image: "",
+        questions: [
+          {
+            choices: ["A", "B", "C", "D"],
+            answer: "B",
+            question: "Quelle est la bonne réponse ? (B)",
+          },
+          {
+            choices: ["1", "2", "3", "4"],
+            answer: "4",
+            question: "Quelle est la obnne réponse ? (4)",
+          },
+        ],
+      },
+      {
         name: "Musique FR",
         played: 65,
         date: "2024-03-15",
         difficulty: "hard",
+        image:
+          "https://img.freepik.com/vecteurs-premium/logo-quiz-icone-bulle-dialogue_149152-811.jpg?w=740",
         questions: [
           {
             choices: ["PNL", "Sexion d'assaut", "Djadja & Dinaz", "MMZ"],
@@ -521,6 +795,8 @@ const DATA = [
         played: 10,
         date: "2019-08-25",
         difficulty: "hard",
+        image:
+          "https://img.freepik.com/vecteurs-premium/logo-quiz-icone-bulle-dialogue_149152-811.jpg?w=740",
         questions: [
           {
             question: "Qui chante Diamonds ?",
@@ -543,6 +819,7 @@ const Main = ({ listQuizz }: MainProps) => {
 
   return (
     <MainStyled>
+      <button onClick={() => addQuestionsToData(DATA)}>X</button>
       <PopularSubjects listQuizz={listQuizz} />
       <SearchBar />
       <RandomQuizzs listQuizz={listQuizz} />

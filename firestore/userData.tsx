@@ -13,8 +13,8 @@ export const getUserData = async (idUser: string) => {
 };
 
 export const addQuestionsToData = async (data) => {
-  const cachette = doc(db, "infos", "rankings");
+  const cachette = doc(db, "infos", "quizz");
   await updateDoc(cachette, {
-    allTime: data,
+    quizz: data,
   });
 };

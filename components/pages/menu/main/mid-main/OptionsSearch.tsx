@@ -107,21 +107,4 @@ const OptionsSearchStyled = styled.div`
     flex-direction: column;
     list-style-type: none;
   }
-  li {
-    border: 1px solid black;
-    display: flex;
-    align-items: center;
-  }
-  li .image {
-    height: 60px;
-    width: 60px;
-    background-color: green;
-    border-radius: 10px;
-    border: 2px solid white;
-    margin-right: 12px;
-  }
-  li .details span {
-    margin-right: 10px;
-    border: 1px solid black;
-  }
 `;

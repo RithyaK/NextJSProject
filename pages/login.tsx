@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import { authenticateUser } from "@/firestore/user";
 import { useUsernameContext } from "@/components/context/usernameContext";
+import { theme } from "@/theme";
 
 const Login = () => {
   //
@@ -33,8 +34,8 @@ const Login = () => {
 
 export default Login;
 const LoginPageStyled = styled.div`
-  background-color: rgb(137, 137, 96);
-  height: 100vh;
+  background-color: ${theme.colors.grey};
+  height: calc(100vh - 50px);
   width: auto;
   display: flex;
   justify-content: center;

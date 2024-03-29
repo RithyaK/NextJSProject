@@ -9,10 +9,11 @@ import { useRouter } from "next/router";
 import React, { use, useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Timestamp } from "@firebase/firestore-types";
-export type UserData = {
-  score: number;
-  username: string;
-  createdAt: string;
+
+export type Theme = {
+  id: number;
+  name: string;
+  chapters: Chapter[];
 };
 
 export type Chapter = {
@@ -20,31 +21,34 @@ export type Chapter = {
   name: string;
   difficulty: string;
   date: string;
-  questions: {
-    question: string;
-    choices: string[];
-    answer: string;
-  };
+  image: string;
+  questions: Question[];
 };
 
-export type Theme = {
-  id: number;
-  name: string;
-  chapters: Chapter[];
+export type Question = {
+  question: string;
+  choices: string[];
+  answer: string;
+};
+
+export type UserData = {
+  score: number;
+  username: string;
+  createdAt: string;
 };
 type MenuPageProps = {
   allTimeRanking: UserData[];
   month: UserData[];
   week: UserData[];
-  quizz: Theme[];
+  listQuizz: Theme[];
 };
 
-const MenuPage = ({ allTimeRanking, quizz }: MenuPageProps) => {
+const MenuPage = ({ allTimeRanking, listQuizz }: MenuPageProps) => {
   //
   return (
     <MenuPageStyled>
       <Sidebar allTimeRanking={allTimeRanking} />
-      <Main listQuizz={quizz} />
+      <Main listQuizz={listQuizz} />
     </MenuPageStyled>
   );
 };
@@ -59,19 +63,19 @@ export const getServerSideProps = async () => {
   if (docSnapShotRankings.exists() && docSnapShotQuizzs.exists()) {
     const { allTime: allTimeRanking } = docSnapShotRankings.data();
     const { quizz } = docSnapShotQuizzs.data();
-    // const createdAt = allTime[0].createdAt.toDate() as Timestamp;
-
+    // const createdAt = allTimeRanking[0].createdAt.toDate() as Timestamp;
+    // console.log(createdAt);
     const allTimeRankingUpdated = allTimeRanking.map((object) => {
       return {
         ...object,
         createdAt: object.createdAt.toDate().toISOString(),
       };
     });
-    console.log(allTimeRankingUpdated);
+    // console.log(allTimeRankingUpdated);
     return {
       props: {
         allTimeRanking: allTimeRankingUpdated,
-        quizz,
+        listQuizz: quizz,
       },
     };
   } else {
