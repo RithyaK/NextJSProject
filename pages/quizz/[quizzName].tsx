@@ -11,6 +11,7 @@ import Link from "next/link";
 import { useUsernameContext } from "@/components/context/usernameContext";
 import Image from "next/image";
 import { addQuestionsToData } from "@/firestore/userData";
+import QuizzRecommanded from "@/components/pages/menu/quizz/quizzRecommanded";
 
 type QuizzMenuProps = {
   listQuizz: Theme[];
@@ -822,7 +823,6 @@ type QuizzMenuProps = {
 
 const QuizzMenu = ({ listQuizz }: QuizzMenuProps) => {
   // const { username } = useUsernameContext();
-  console.log(listQuizz);
   const router = useRouter();
   const { quizzName } = router.query;
   const quizzChosen = listQuizz
@@ -838,7 +838,7 @@ const QuizzMenu = ({ listQuizz }: QuizzMenuProps) => {
   const themeData = listQuizz.find(
     (theme) => theme.name === quizzChosen?.theme
   );
-  console.log(themeData);
+  console.log(quizzChosen?.questions);
   return (
     <QuizzMenuStyled>
       {/* <button onClick={() => addQuestionsToData(DATA)}>X</button> */}
@@ -856,20 +856,7 @@ const QuizzMenu = ({ listQuizz }: QuizzMenuProps) => {
         <div className="image"></div>
         <button>COMMENCER LE QUIZZ</button>
       </div>
-      <div className="quizzRecommanded">
-        <h2>Quizz sur le meme thème : {quizzChosen?.theme}</h2>
-        <ul className="cards">
-          {themeData?.chapters.map((chapter) => (
-            <li key={chapter.name} className="card">
-              <h3>{chapter.name}</h3>
-              {/* <img src={chapter.image} height="300" width="300" /> */}
-            </li>
-          ))}
-        </ul>
-      </div>
-      {/* <div className="newsQuizz">
-        <h2>Nouveaux Quizz</h2>
-      </div> */}
+      <QuizzRecommanded themeData={themeData} quizzChosen={quizzChosen} />
     </QuizzMenuStyled>
   );
 };
