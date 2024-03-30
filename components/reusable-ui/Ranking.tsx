@@ -16,8 +16,8 @@ const Ranking = ({ ranking, title }: RankingProps) => {
         {ranking
           .slice(0, 7)
           .sort((a, b) => b.score - a.score)
-          .map((user) => (
-            <UserRank user={user} key={user.username} />
+          .map((user, index) => (
+            <UserRank user={user} key={user.username} index={index} />
           ))}
       </div>
     </RankingStyled>
@@ -27,7 +27,7 @@ const Ranking = ({ ranking, title }: RankingProps) => {
 export default Ranking;
 
 const RankingStyled = styled.div`
-  border: 2px solid rgb(0, 0, 0);
+  border-top: 3px solid black;
   height: 300px;
   overflow-y: auto;
   h2 {

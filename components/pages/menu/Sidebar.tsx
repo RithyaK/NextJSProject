@@ -7,47 +7,47 @@ import { addQuestionsToData } from "@/firestore/userData";
 import { dateOf30DaysAgo, dateOf7DaysAgo } from "@/utils/date";
 import { add } from "date-fns";
 import { UserData } from "@/pages/menu/[username]";
-
+import { theme } from "@/theme";
 type SidebarProps = {
   allTimeRanking: UserData[];
 };
-const allTimeDATA = [
-  {
-    score: 100,
-    username: "Totover",
-    createdAt: new Date(2024, 2, 15, 11, 45, 5, 123),
-  },
-  {
-    username: "JusToad",
-    score: 110,
-    createdAt: new Date(2020, 2, 5, 11, 45, 5, 123),
-  },
-  {
-    score: 79,
-    username: "Ortenz",
-    createdAt: new Date(2018, 1, 25, 11, 45, 5, 123),
-  },
-  {
-    username: "Tachi-Paypay",
-    score: 80,
-    createdAt: new Date(2024, 2, 12, 11, 45, 5, 123),
-  },
-  {
-    username: "ARthur78",
-    score: 71,
-    createdAt: new Date(2024, 2, 15, 11, 45, 5, 123),
-  },
-  {
-    score: 70,
-    username: "TheLeamsiii",
-    createdAt: new Date(2024, 2, 25, 11, 45, 5, 123),
-  },
-  {
-    username: "Solivann_",
-    score: 115,
-    createdAt: new Date(2022, 2, 26, 11, 45, 5, 123),
-  },
-];
+// const allTimeDATA = [
+//   {
+//     score: 100,
+//     username: "Totover",
+//     createdAt: new Date(2024, 2, 15, 11, 45, 5, 123),
+//   },
+//   {
+//     username: "JusToad",
+//     score: 110,
+//     createdAt: new Date(2020, 2, 5, 11, 45, 5, 123),
+//   },
+//   {
+//     score: 79,
+//     username: "Ortenz",
+//     createdAt: new Date(2018, 1, 25, 11, 45, 5, 123),
+//   },
+//   {
+//     username: "Tachi-Paypay",
+//     score: 80,
+//     createdAt: new Date(2024, 2, 12, 11, 45, 5, 123),
+//   },
+//   {
+//     username: "ARthur78",
+//     score: 71,
+//     createdAt: new Date(2024, 2, 15, 11, 45, 5, 123),
+//   },
+//   {
+//     score: 70,
+//     username: "TheLeamsiii",
+//     createdAt: new Date(2024, 2, 25, 11, 45, 5, 123),
+//   },
+//   {
+//     username: "Solivann_",
+//     score: 115,
+//     createdAt: new Date(2022, 2, 26, 11, 45, 5, 123),
+//   },
+// ];
 
 const Sidebar = ({ allTimeRanking }: SidebarProps) => {
   const dateOf30DaysAgo = Date.now() - 2592000000;
@@ -71,6 +71,7 @@ const Sidebar = ({ allTimeRanking }: SidebarProps) => {
 export default Sidebar;
 
 const SidebarStyled = styled.div`
-  background-color: rgb(159, 127, 127);
+  background-color: ${theme.colors.green};
+  border-right: 2px solid black;
   overflow: auto;
 `;

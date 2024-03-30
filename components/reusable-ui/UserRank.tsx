@@ -1,14 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-
-const UserRank = ({ user }) => {
+import { theme } from "@/theme";
+const UserRank = ({ user, index }) => {
   return (
     <UserRankedStyled>
-      <h3 className="usernameinfo">{user.username}</h3>
-      {/* <div className="userinfo"> */}
-      <p>score :{user.score}</p>
-      <p>{user.createdAt.split("T")[0]}</p>
-      {/* </div> */}
+      <div>
+        <h3 className="usernameinfo">{user.username}</h3>
+        <p>score :{user.score}</p>
+        <p>{user.createdAt.split("T")[0]}</p>
+      </div>
+      <span className="classementIconNumber">{index + 1}</span>
     </UserRankedStyled>
   );
 };
@@ -16,12 +17,15 @@ const UserRank = ({ user }) => {
 export default UserRank;
 
 const UserRankedStyled = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 10px 10px;
-  border: 1px solid black;
   text-align: center;
-  /* .userinfo {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  } */
+  border-top: 1px solid black;
+  .classementIconNumber {
+    background-color: ${theme.colors.lightgreen};
+    padding: 5px;
+    border-radius: 50%;
+  }
 `;

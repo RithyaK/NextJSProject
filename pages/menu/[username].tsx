@@ -87,7 +87,6 @@ export const getServerSideProps = async () => {
 };
 
 const MenuPageStyled = styled.div`
-  display: flex;
   height: calc(100vh - 50px);
   display: grid;
   grid-template-columns: 230px 1fr;

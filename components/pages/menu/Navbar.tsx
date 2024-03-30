@@ -14,20 +14,12 @@ const Navbar = () => {
   //
   return (
     <NavbarStyled>
-      {username ? (
-        <Link href="/login">Se déconnecter</Link>
-      ) : (
-        <span>Bienvenue !</span>
-      )}
+      <Link href="/login">Se déconnecter</Link>
 
-      {username ? (
-        <div className="NavbarRightSide">
-          <span>Mon compte</span>
-          <BsPersonCircle />
-        </div>
-      ) : (
-        <span>Connectez-vous</span>
-      )}
+      <div className="NavbarRightSide">
+        <span>Mon compte</span>
+        <BsPersonCircle />
+      </div>
     </NavbarStyled>
   );
 };

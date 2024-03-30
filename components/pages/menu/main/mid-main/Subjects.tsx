@@ -39,7 +39,8 @@ const SubjectsStyled = styled.div`
   margin: 50px 0;
   padding: 20px 50px;
   text-align: center;
-  border: 1px solid black;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
   .title {
     display: flex;
     justify-content: center;
@@ -65,5 +66,24 @@ const SubjectsStyled = styled.div`
     align-items: center;
     background-color: ${theme.colors.lightgreen};
     height: 80px;
+    font-size: 20px;
+  }
+  .subject:hover {
+    cursor: pointer;
+    border: 1px solid black;
+  }
+
+  button {
+    background: none;
+    color: inherit;
+    border: none;
+    cursor: pointer;
+    outline: inherit;
+    padding: 5px 20px;
+    font-size: 15px;
+    background-color: grey;
+  }
+  button:hover {
+    background-color: ${theme.colors.lightgreen};
   }
 `;

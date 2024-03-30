@@ -18,7 +18,7 @@ type QuizzMenuProps = {
 };
 // const DATA = [
 //   {
-//     name: "histoire",
+//     name: "Histoire",
 //     id: 1,
 //     chapters: [
 //       {
@@ -113,7 +113,7 @@ type QuizzMenuProps = {
 //     ],
 //   },
 //   {
-//     name: "maths",
+//     name: "Maths",
 //     id: 2,
 //     chapters: [
 //       {
@@ -146,7 +146,7 @@ type QuizzMenuProps = {
 //         ],
 //       },
 //       {
-//         name: "theorème de pythagore",
+//         name: "Theorème de pythagore",
 //         played: 25,
 //         date: "2024-01-15",
 //         difficulty: "Easy",
@@ -176,7 +176,7 @@ type QuizzMenuProps = {
 //         ],
 //       },
 //       {
-//         name: "theorème de thales",
+//         name: "Theorème de thales",
 //         played: 35,
 //         date: "2024-01-05",
 //         difficulty: "Hard",
@@ -304,7 +304,7 @@ type QuizzMenuProps = {
 //     ],
 //   },
 //   {
-//     name: "sport",
+//     name: "Sport",
 //     id: 4,
 
 //     chapters: [
@@ -343,7 +343,7 @@ type QuizzMenuProps = {
 //         difficulty: "Easy",
 //         image:
 //           "https://img.freepik.com/vecteurs-premium/logo-quiz-icone-bulle-dialogue_149152-811.jpg?w=740",
-//         name: "football",
+//         name: "Football",
 //         questions: [
 //           {
 //             answer: "France",
@@ -368,7 +368,7 @@ type QuizzMenuProps = {
 //         ],
 //       },
 //       {
-//         name: "basket",
+//         name: "Basket",
 //         played: 5,
 //         date: "2024-01-07",
 //         difficulty: "Medium",
@@ -799,7 +799,7 @@ type QuizzMenuProps = {
 //     ],
 //   },
 //   {
-//     name: "La langue française",
+//     name: "Langue française",
 //     id: 9,
 //     chapters: [
 //       {
@@ -1264,7 +1264,7 @@ const QuizzMenu = ({ listQuizz }: QuizzMenuProps) => {
 export default QuizzMenu;
 
 const QuizzMenuStyled = styled.div`
-  background-color: ${theme.colors.grey};
+  background-color: ${theme.colors.green};
   .quizzName {
     text-align: center;
     margin-top: 20px;

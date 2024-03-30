@@ -113,6 +113,7 @@ const OptionsSearchStyled = styled.div`
   }
   select {
     margin: 0 5px;
+    background-color: ${theme.colors.lightgreen};
   }
   ul {
     display: flex;
