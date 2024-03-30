@@ -15,12 +15,10 @@ const OptionsSearchCard = ({ chapter }: OptionsSearchCardProps) => {
       onClick={() => router.push(`/quizz/${chapter.name}`)}
     >
       <div className="image"></div>
-      <div>
-        <p>{chapter.name}</p>
-        <div className="details">
-          <span>Difficulté : {chapter.difficulty}</span>
-          <span>{chapter.theme}</span>
-        </div>
+      <span className="quizzName">{chapter.name}</span>
+      <div className="details">
+        <span>Difficulté : {chapter.difficulty}</span>
+        <span>Thème : {chapter.theme}</span>
       </div>
     </OptionsSearchCardStyled>
   );
@@ -29,9 +27,11 @@ const OptionsSearchCard = ({ chapter }: OptionsSearchCardProps) => {
 export default OptionsSearchCard;
 
 const OptionsSearchCardStyled = styled.li`
-  border: 1px solid black;
+  border-top: 1px solid black;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 10px 50px;
   .image {
     height: 60px;
     width: 60px;
@@ -40,8 +40,12 @@ const OptionsSearchCardStyled = styled.li`
     border: 2px solid white;
     margin-right: 12px;
   }
-  .details span {
-    margin-right: 10px;
-    border: 1px solid black;
+  .quizzName {
+    font-size: 21px;
+  }
+  .details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 `;

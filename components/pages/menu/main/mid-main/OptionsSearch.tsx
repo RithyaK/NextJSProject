@@ -11,15 +11,15 @@ type OptionsSearchProps = { listQuizz: Theme[] };
 const IMAGE_QUIZZ = "./../../../../../public/quizz-img.jpg";
 
 const OptionsSearch = ({ listQuizz }: OptionsSearchProps) => {
-  const difficulties = ["easy", "medium", "hard"];
+  const difficulties = ["Easy", "Medium", "Hard"];
   const optionsThird = ["Récent", "Popularité"];
   const themes = listQuizz.map((theme) => theme.name);
   // const [listQuizzUpdated, setListQuizzUpdated] = useState(listQuizz);
   const [themeSelected, setThemeSelected] = useState<string>("Thématique");
   const [difficultySelected, setDifficultySelected] =
-    useState<string>("Difficulty");
+    useState<string>("Difficulté");
   const [optionThirdSelected, setOptionThirdSelected] =
-    useState<string>("Trier par");
+    useState<string>("Popularité");
 
   function handleSelect(event: React.ChangeEvent<HTMLSelectElement>) {
     const optionClicked = event.target.value;
@@ -29,7 +29,7 @@ const OptionsSearch = ({ listQuizz }: OptionsSearchProps) => {
       console.log("Vous avez choisi un thème");
       setThemeSelected(optionClicked);
     }
-    if (SelectPart === "Difficulty") {
+    if (SelectPart === "Difficulté") {
       console.log("Difficulté :", optionClicked);
       setDifficultySelected(optionClicked);
     }
@@ -52,7 +52,7 @@ const OptionsSearch = ({ listQuizz }: OptionsSearchProps) => {
         />
         <Select
           options={difficulties}
-          label="Difficulty"
+          label="Difficulté"
           handleSelect={handleSelect}
         />
         <Select
@@ -75,8 +75,13 @@ const OptionsSearch = ({ listQuizz }: OptionsSearchProps) => {
             });
           })
           .flat()
+
           .sort((chapterA, chapterB) =>
-            isBefore(new Date(chapterB.date), new Date(chapterA.date)) ? -1 : 1
+            optionThirdSelected === "Récent"
+              ? isBefore(new Date(chapterB.date), new Date(chapterA.date))
+                ? -1
+                : 1
+              : chapterB.played - chapterA.played
           )
 
           .map(
@@ -84,7 +89,7 @@ const OptionsSearch = ({ listQuizz }: OptionsSearchProps) => {
               (difficultySelected === chapter.difficulty && (
                 <OptionsSearchCard chapter={chapter} />
               )) ||
-              (difficultySelected === "Difficulty" && (
+              (difficultySelected === "Difficulté" && (
                 <OptionsSearchCard chapter={chapter} />
               ))
           )}
