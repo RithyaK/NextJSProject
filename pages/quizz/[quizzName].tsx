@@ -146,7 +146,7 @@ type QuizzMenuProps = {
 //         ],
 //       },
 //       {
-//         name: "Theorème de pythagore",
+//         name: "Theorème de Pythagore",
 //         played: 25,
 //         date: "2024-01-15",
 //         difficulty: "Easy",
@@ -176,7 +176,7 @@ type QuizzMenuProps = {
 //         ],
 //       },
 //       {
-//         name: "Theorème de thales",
+//         name: "Theorème de Thales",
 //         played: 35,
 //         date: "2024-01-05",
 //         difficulty: "Hard",
@@ -1216,46 +1216,48 @@ const QuizzMenu = ({ listQuizz }: QuizzMenuProps) => {
   console.log("currentIndexQuestion :", currentIndexQuestion);
   return (
     <QuizzMenuStyled>
-      {/* <button onClick={() => addQuestionsToData(DATA)}>X</button> */}
+      <button onClick={() => addQuestionsToData(DATA)}>X</button>
       <PopularSubjects listQuizz={listQuizz} />
       <RandomQuizzs listQuizz={listQuizz} />
       <div className="quizzInfos">
-        <Link href={`/menu/${username}`}>Menu</Link>
+        <Link href={`/menu/${username}`}>Retourner à l'accueil</Link>
         <h1 className="quizzName">Quizz : {quizzChosen.name}</h1>
         <div className="quizzparameters">
-          <span>Thème :{quizzChosen?.theme}</span>
-          <span>Difficulté : {quizzChosen?.difficulty}</span>
+          <span>{quizzChosen?.theme}</span>
+          <span> {quizzChosen?.difficulty}</span>
         </div>
       </div>
-      <div className="imagecontainer">
-        <div className="image"></div>
-      </div>
-      {isQuizzStarted && (
-        <div className="gameContainer">
-          <h1>Question n*{currentIndexQuestion + 1}</h1>
-          <h2 className="question">{question?.question}</h2>
-          <div className="choices">
-            {question?.choices.map((choice) => (
-              <span key={choice} onClick={() => handleAnswerClicked(choice)}>
-                {choice}
-              </span>
-            ))}
+      <div className="quizzContainer">
+        <div className="imagecontainer">
+          <div className="image"></div>
+        </div>
+        {isQuizzStarted && (
+          <div className="gameContainer">
+            <h1>Question n*{currentIndexQuestion + 1}</h1>
+            <h2 className="question">{question?.question}</h2>
+            <div className="choices">
+              {question?.choices.map((choice) => (
+                <span key={choice} onClick={() => handleAnswerClicked(choice)}>
+                  {choice}
+                </span>
+              ))}
+            </div>
+            <span>
+              Score actuel : {correctAnswer}/{currentIndexQuestion}
+            </span>
           </div>
-          <span>
-            Score actuel : {correctAnswer}/{currentIndexQuestion}
-          </span>
-        </div>
-      )}
-      {isQuizzFinished && (
-        <h2>
-          Score : {correctAnswer}/{currentIndexQuestion}
-        </h2>
-      )}
-      {!isQuizzStarted && !isQuizzFinished && (
-        <button onClick={() => setIsQuizzStarted(true)}>
-          COMMENCER LE QUIZZ
-        </button>
-      )}
+        )}
+        {isQuizzFinished && (
+          <h2>
+            Score : {correctAnswer}/{currentIndexQuestion}
+          </h2>
+        )}
+        {!isQuizzStarted && !isQuizzFinished && (
+          <button onClick={() => setIsQuizzStarted(true)}>
+            COMMENCER LE QUIZZ
+          </button>
+        )}
+      </div>
       <QuizzRecommanded themeData={themeData} quizzChosen={quizzChosen} />
     </QuizzMenuStyled>
   );
@@ -1272,21 +1274,24 @@ const QuizzMenuStyled = styled.div`
   .quizzInfos {
     display: flex;
     justify-content: space-between;
+    padding: 0px 20px;
   }
   .quizzparameters {
     display: flex;
     flex-direction: column;
+    text-align: center;
   }
-  .imagecontainer {
-    margin: 30px 0;
+
+  .image {
+    width: 500px;
+    height: 500px;
+    background-color: green;
+  }
+  .quizzContainer {
+    background-color: red;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    .image {
-      width: 500px;
-      height: 500px;
-      background-color: green;
-    }
+    flex-direction: column;
     button {
       width: 500px;
     }

@@ -4,6 +4,7 @@ import { useUsernameContext } from "../../context/usernameContext";
 import Link from "next/link";
 import { BsPersonCircle } from "react-icons/bs";
 import { theme } from "@/theme";
+import SearchBar from "./main/top-main/SearchBar";
 
 const Navbar = () => {
   //
@@ -15,7 +16,6 @@ const Navbar = () => {
   return (
     <NavbarStyled>
       <Link href="/login">Se déconnecter</Link>
-
       <div className="NavbarRightSide">
         <span>Mon compte</span>
         <BsPersonCircle />
