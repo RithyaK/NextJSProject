@@ -16,6 +16,7 @@ const Navbar = () => {
   return (
     <NavbarStyled>
       <Link href="/login">Se déconnecter</Link>
+      <SearchBar />
       <div className="NavbarRightSide">
         <span>Mon compte</span>
         <BsPersonCircle />

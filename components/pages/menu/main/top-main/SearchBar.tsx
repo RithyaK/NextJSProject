@@ -1,11 +1,25 @@
 import { theme } from "@/theme";
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const SearchBar = () => {
+  const [inputValue, setInputValue] = useState();
+  const router = useRouter();
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log(inputValue);
+    router.push(`/search/${inputValue}`);
+  }
   return (
     <SearchBarStyled>
-      <input placeholder="Cliquez pour chercher un quizz" />
+      <form onSubmit={(e) => handleSubmit(e)}>
+        <input
+          placeholder="Rechercher un quizz"
+          onChange={(e) => setInputValue(e.target.value)}
+        />
+      </form>
     </SearchBarStyled>
   );
 };
@@ -13,17 +27,12 @@ const SearchBar = () => {
 export default SearchBar;
 
 const SearchBarStyled = styled.div`
-  justify-content: center;
-  height: 50px;
-  display: flex;
-  align-items: center;
   input {
-    height: 70%;
-    width: 450px;
-    text-align: center;
     background-color: ${theme.colors.green};
-    border: 1px solid black;
+    width: 450px;
+    height: 25px;
     border-radius: 10px;
+    text-align: center;
   }
   input::placeholder {
     color: black;
