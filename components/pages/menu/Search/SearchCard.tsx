@@ -1,10 +1,12 @@
 import { theme } from "@/theme";
+import { useRouter } from "next/router";
 import React from "react";
 import styled from "styled-components";
 
 const SearchCard = ({ chapter }) => {
+  const router = useRouter();
   return (
-    <SearchCardStyled onClick={() => console.log(chapter)}>
+    <SearchCardStyled onClick={() => router.push(`/quizz/${chapter.name}`)}>
       {chapter.name}
     </SearchCardStyled>
   );

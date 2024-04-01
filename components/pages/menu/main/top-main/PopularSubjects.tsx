@@ -1,5 +1,6 @@
 import { Subject } from "@/pages/menu/[username]";
 import { theme } from "@/theme";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 import styled from "styled-components";
 type PopularSubjectsProps = { listQuizz: Subject[] };
@@ -9,6 +10,7 @@ type PopularSubjectsProps = { listQuizz: Subject[] };
 // }
 
 const PopularSubjects = ({ listQuizz }: PopularSubjectsProps) => {
+  const router = useRouter();
   const [PopularSubjects, setPopularSubjects] = useState();
 
   const listQuizzUpdated = listQuizz.map((subject) => {
@@ -31,7 +33,14 @@ const PopularSubjects = ({ listQuizz }: PopularSubjectsProps) => {
           .sort((a, b) => b.played - a.played)
           .slice(0, 4)
           .map((subject) => {
-            return <li key={subject.id}>{subject.name}</li>;
+            return (
+              <li
+                key={subject.id}
+                onClick={() => router.push(`/search/${subject.name}`)}
+              >
+                {subject.name}
+              </li>
+            );
           })}
       </ul>
     </PopularSubjectsStyled>

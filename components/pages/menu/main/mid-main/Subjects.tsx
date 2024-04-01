@@ -1,10 +1,12 @@
 import { Theme } from "@/pages/menu/[username]";
 import { theme } from "@/theme";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 import styled from "styled-components";
 type SubjectsProps = { listQuizz: Theme[] };
 
 const Subjects = ({ listQuizz }: SubjectsProps) => {
+  const router = useRouter();
   const [subjectsDisplayed, setSubjectsDisplayed] = useState<number>(6);
 
   function handleButton() {
@@ -20,9 +22,13 @@ const Subjects = ({ listQuizz }: SubjectsProps) => {
         <h2>Thématiques</h2>
       </div>
       <div className="container-subjects">
-        {listQuizz.slice(0, subjectsDisplayed).map((chapter) => (
-          <div key={chapter.name} className="subject">
-            {chapter.name}
+        {listQuizz.slice(0, subjectsDisplayed).map((subject) => (
+          <div
+            key={subject.name}
+            className="subject"
+            onClick={() => router.push(`/search/${subject.name}`)}
+          >
+            {subject.name}
           </div>
         ))}
       </div>

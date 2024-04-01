@@ -1,12 +1,14 @@
 import { addQuestionsToData } from "@/firestore/userData";
 import { Subject } from "@/pages/menu/[username]";
 import { theme } from "@/theme";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 import styled from "styled-components";
 
 type RandomQuizzsProps = { listQuizz: Subject[] };
 
 const RandomQuizzs = ({ listQuizz }: RandomQuizzsProps) => {
+  const router = useRouter();
   const chapters = listQuizz
     .map((subject) => subject.chapters.map((chapitre) => chapitre.name))
     .flat()
@@ -19,7 +21,9 @@ const RandomQuizzs = ({ listQuizz }: RandomQuizzsProps) => {
       </div>
       <ul>
         {chapters.map((chapter) => (
-          <li key={chapter}>{chapter}</li>
+          <li key={chapter} onClick={() => router.push(`/quizz/${chapter}`)}>
+            {chapter}
+          </li>
         ))}
       </ul>
     </RandomQuizzsStyled>

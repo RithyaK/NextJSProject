@@ -11,7 +11,12 @@ const MainSearch = ({ listQuizz }) => {
   const router = useRouter();
   const { searched } = router.query;
   const chaptersQuizz = listQuizz
-    .map((subject) => subject.chapters.map((chaptersQuizz) => chaptersQuizz))
+    .map((subject) => {
+      const themeOfTheChapter = subject.name;
+      return subject.chapters.map((chaptersQuizz) => {
+        return { ...chaptersQuizz, theme: themeOfTheChapter };
+      });
+    })
     .flat();
 
   return (
@@ -19,8 +24,10 @@ const MainSearch = ({ listQuizz }) => {
       <Link href={`/menu/${username}`}>Retourner à l'accueil</Link>
       <div className="cards">
         {chaptersQuizz
-          .filter((chapter) =>
-            chapter.name.toLowerCase().includes(searched.toLowerCase())
+          .filter(
+            (chapter) =>
+              chapter.name.toLowerCase().includes(searched.toLowerCase()) ||
+              chapter.theme.toLowerCase().includes(searched.toLowerCase())
           )
           .map((chapter) => {
             return <SearchCard key={chapter.name} chapter={chapter} />;
