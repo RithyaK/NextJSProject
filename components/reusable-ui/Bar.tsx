@@ -1,38 +1,40 @@
-import { addQuestionsToData } from "@/firestore/userData";
-import { Subject } from "@/pages/menu/[username]";
 import { theme } from "@/theme";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
-type RandomQuizzsProps = { listQuizz: Subject[] };
+type BarProps = {
+  list: string[];
+  title: string;
+};
 
-const RandomQuizzs = ({ listQuizz }: RandomQuizzsProps) => {
+const Bar = ({ list, title }: BarProps) => {
   const router = useRouter();
-  const chapters = listQuizz
-    .map((subject) => subject.chapters.map((chapitre) => chapitre.name))
-    .flat()
-    .sort(() => Math.random() - 0.5);
 
+  function handleClickItem(item: string) {
+    title === "Quizz que vous pourriez aimer"
+      ? router.push(`/quizz/${item}`)
+      : router.push(`/search/${item}`);
+  }
   return (
-    <RandomQuizzsStyled>
+    <BarStyled>
       <div className="title">
-        <h2>Quizz que vous pourriez aimer</h2>
+        <h2>{title}</h2>
       </div>
       <ul>
-        {chapters.map((chapter) => (
-          <li key={chapter} onClick={() => router.push(`/quizz/${chapter}`)}>
-            {chapter}
+        {list.map((item) => (
+          <li key={item} onClick={() => handleClickItem(item)}>
+            {item}
           </li>
         ))}
       </ul>
-    </RandomQuizzsStyled>
+    </BarStyled>
   );
 };
 
-export default RandomQuizzs;
+export default Bar;
 
-const RandomQuizzsStyled = styled.div`
+const BarStyled = styled.div`
   margin: 20px 0;
   .title {
     display: flex;

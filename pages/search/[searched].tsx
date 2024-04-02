@@ -4,7 +4,13 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/firestore/firebase-config";
 import MainSearch from "@/components/pages/menu/Search/MainSearch";
 import styled from "styled-components";
-const SearchedPage = ({ allTimeRanking, listQuizz }) => {
+import { Theme, UserData } from "../menu/[username]";
+
+type SearchPageProps = {
+  allTimeRanking: UserData[];
+  listQuizz: Theme[];
+};
+const SearchedPage = ({ allTimeRanking, listQuizz }: SearchPageProps) => {
   return (
     <SearchedPageStyled>
       <Sidebar allTimeRanking={allTimeRanking} />

@@ -14,7 +14,6 @@ const OptionsSearch = ({ listQuizz }: OptionsSearchProps) => {
   const difficulties = ["Easy", "Medium", "Hard"];
   const optionsThird = ["Récent", "Popularité"];
   const themes = listQuizz.map((theme) => theme.name);
-  // const [listQuizzUpdated, setListQuizzUpdated] = useState(listQuizz);
   const [themeSelected, setThemeSelected] = useState<string>("Thématique");
   const [difficultySelected, setDifficultySelected] =
     useState<string>("Difficulté");
@@ -24,17 +23,13 @@ const OptionsSearch = ({ listQuizz }: OptionsSearchProps) => {
   function handleSelect(event: React.ChangeEvent<HTMLSelectElement>) {
     const optionClicked = event.target.value;
     const SelectPart = event.target.id;
-    console.log(optionClicked);
     if (SelectPart === "Thématique") {
-      console.log("Vous avez choisi un thème");
       setThemeSelected(optionClicked);
     }
     if (SelectPart === "Difficulté") {
-      console.log("Difficulté :", optionClicked);
       setDifficultySelected(optionClicked);
     }
     if (SelectPart === "Trier par") {
-      console.log("Vous avez choisi une optionsThird");
       setOptionThirdSelected(optionClicked);
     }
   }

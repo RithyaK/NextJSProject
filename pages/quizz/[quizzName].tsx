@@ -5,13 +5,12 @@ import { useRouter } from "next/router";
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { Chapter, Theme } from "../menu/[username]";
-import PopularSubjects from "@/components/pages/menu/main/top-main/PopularSubjects";
-import RandomQuizzs from "@/components/pages/menu/main/top-main/RandomQuizzs";
 import Link from "next/link";
 import { useUsernameContext } from "@/components/context/usernameContext";
 import Image from "next/image";
 import { addQuestionsToData } from "@/firestore/userData";
 import QuizzRecommanded from "@/components/pages/menu/quizz/quizzRecommanded";
+import Bar from "@/components/reusable-ui/Bar";
 
 type QuizzMenuProps = {
   listQuizz: Theme[];
@@ -1198,11 +1197,31 @@ const QuizzMenu = ({ listQuizz }: QuizzMenuProps) => {
   const themeData = listQuizz.find(
     (theme) => theme.name === quizzChosen?.theme
   );
+
+  const chapters = listQuizz
+    .map((subject) => subject.chapters.map((chapitre) => chapitre.name))
+    .flat()
+    .sort(() => Math.random() - 0.5);
+
+  const TopPopularTheme = listQuizz
+    .map((subject) => {
+      const played = subject.chapters.reduce(
+        (accumulator, chapter) => accumulator + chapter.played,
+        0
+      );
+
+      return { ...subject, played };
+    })
+    .sort((a, b) => b.played - a.played)
+    .slice(0, 5)
+    .map((subject) => subject.name);
+
   const [isQuizzStarted, setIsQuizzStarted] = useState(false);
   const [isQuizzFinished, setIsQuizzFinished] = useState(false);
   const [correctAnswer, setCorrectAnswer] = useState(0);
   const [currentIndexQuestion, setCurrentIndexQuestion] = useState(0);
   const question = quizzChosen?.questions[currentIndexQuestion];
+
   function handleAnswerClicked(choice: string) {
     setCurrentIndexQuestion(currentIndexQuestion + 1);
     choice === question?.answer && setCorrectAnswer(correctAnswer + 1);
@@ -1213,14 +1232,13 @@ const QuizzMenu = ({ listQuizz }: QuizzMenuProps) => {
       setIsQuizzFinished(true);
     }
   }
-  console.log("currentIndexQuestion :", currentIndexQuestion);
+
   return (
     <QuizzMenuStyled>
-      <button onClick={() => addQuestionsToData(DATA)}>X</button>
-      <PopularSubjects listQuizz={listQuizz} />
-      <RandomQuizzs listQuizz={listQuizz} />
+      <Bar list={TopPopularTheme} title="LES THÈMES PRÉFÉRÉS" />
+      <Bar list={chapters} title="Quizz que vous pourriez aimer" />
       <div className="quizzInfos">
-        <Link href={`/menu/${username}`}>Retourner à l'accueil</Link>
+        <Link href={`/menu/${username}`}>Retourner à l{"'"}accueil</Link>
         <h1 className="quizzName">Quizz : {quizzChosen.name}</h1>
         <div className="quizzparameters">
           <span>{quizzChosen?.theme}</span>

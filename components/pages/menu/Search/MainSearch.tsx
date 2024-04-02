@@ -5,8 +5,13 @@ import { useRouter } from "next/router";
 import React from "react";
 import styled from "styled-components";
 import SearchCard from "./SearchCard";
+import { Theme } from "@/pages/menu/[username]";
 
-const MainSearch = ({ listQuizz }) => {
+type MainSearchProps = {
+  listQuizz: Theme[];
+};
+
+const MainSearch = ({ listQuizz }: MainSearchProps) => {
   const { username } = useUsernameContext();
   const router = useRouter();
   const { searched } = router.query;
@@ -21,7 +26,7 @@ const MainSearch = ({ listQuizz }) => {
 
   return (
     <MainSearchStyled>
-      <Link href={`/menu/${username}`}>Retourner à l'accueil</Link>
+      <Link href={`/menu/${username}`}>Retourner à l{"'"}accueil</Link>
       <div className="cards">
         {chaptersQuizz
           .filter(
