@@ -1,24 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import { useUsernameContext } from "../../context/usernameContext";
 import Link from "next/link";
 import { BsPersonCircle } from "react-icons/bs";
 import { theme } from "@/theme";
-import SearchBar from "./main/top-main/SearchBar";
+import SearchBar from "./pages/menu/main/top-main/SearchBar";
+import { useUsernameContext } from "./context/usernameContext";
 
 const Navbar = () => {
-  //
-
-  const { username } = useUsernameContext();
-  //
-
+  const [menuProfil, setMenuProfil] = useState(false);
+  const menuProfilRef = useRef<HTMLDivElement>(null);
   //
   return (
-    <NavbarStyled>
+    <NavbarStyled ref={menuProfilRef}>
       <Link href="/login">Se déconnecter</Link>
       <SearchBar />
       <div className="NavbarRightSide">
-        <span>Mon compte</span>
+        <Link href="/myaccount">
+          <span>Mon compte</span>
+        </Link>
         <BsPersonCircle />
       </div>
     </NavbarStyled>
@@ -40,5 +39,8 @@ const NavbarStyled = styled.div`
     span {
       margin: 0 10px;
     }
+  }
+  .NavbarRightSide:hover {
+    cursor: pointer;
   }
 `;

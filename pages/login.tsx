@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { authenticateUser } from "@/firestore/user";
 import { useUsernameContext } from "@/components/context/usernameContext";
 import { theme } from "@/theme";
-
+import cookie from "js-cookie";
 const Login = () => {
   //
   const { setUsername } = useUsernameContext();
@@ -16,6 +16,8 @@ const Login = () => {
     authenticateUser(inputValue);
     setUsername(inputValue);
     router.push(`menu/${inputValue}`);
+    // document.cookie = `username=${inputValue}`;
+    cookie.set("username", inputValue, { expires: 1 / 24 });
   }
 
   useEffect(() => {

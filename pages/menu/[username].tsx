@@ -1,6 +1,5 @@
 // import { getUserData } from "@/firebase/userData";
 import { useUsernameContext } from "@/components/context/usernameContext";
-import Sidebar from "@/components/pages/menu/Sidebar";
 import Main from "@/components/pages/menu/main/Main";
 import { db } from "@/firestore/firebase-config";
 import { doc, getDoc } from "firebase/firestore";
@@ -9,6 +8,7 @@ import { useRouter } from "next/router";
 import React, { use, useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Timestamp } from "@firebase/firestore-types";
+import Sidebar from "@/components/Sidebar";
 
 export type Theme = {
   id: number;

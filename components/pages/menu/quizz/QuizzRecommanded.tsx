@@ -1,4 +1,25 @@
-const QuizzRecommanded = ({ themeData, quizzChosen }) => {
+import { Chapter } from "@/pages/menu/[username]";
+
+type QuizzRecommandedProps = {
+  quizzChosen: {
+    theme: string;
+    played: number;
+    name: string;
+    difficulty: string;
+    date: string;
+    image: string;
+  };
+  themeData: {
+    id: number;
+    name: string;
+    chapters: Chapter[];
+  };
+};
+
+const QuizzRecommanded = ({
+  themeData,
+  quizzChosen,
+}: QuizzRecommandedProps) => {
   return (
     <div className="quizzRecommanded">
       <h2>Quizz sur le meme thème : {quizzChosen?.theme}</h2>

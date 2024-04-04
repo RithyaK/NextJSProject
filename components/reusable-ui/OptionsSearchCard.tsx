@@ -3,9 +3,14 @@ import { useRouter } from "next/router";
 import React from "react";
 import styled from "styled-components";
 
-interface OptionsSearchCardProps extends Chapter {
+type OptionsSearchCardProps = {
   theme: string;
-}
+  played: number;
+  name: string;
+  difficulty: string;
+  date: string;
+  image: string;
+};
 
 const OptionsSearchCard = ({ chapter }: OptionsSearchCardProps) => {
   const router = useRouter();

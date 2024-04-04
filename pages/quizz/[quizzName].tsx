@@ -9,11 +9,15 @@ import Link from "next/link";
 import { useUsernameContext } from "@/components/context/usernameContext";
 import Image from "next/image";
 import { addQuestionsToData } from "@/firestore/userData";
-import QuizzRecommanded from "@/components/pages/menu/quizz/quizzRecommanded";
 import Bar from "@/components/reusable-ui/Bar";
+import { syncDatabase } from "@/firestore/user";
+import useHistory from "@/hooks/useHistory";
+import QuizzRecommanded from "@/components/pages/menu/quizz/QuizzRecommanded";
+import { HistoryQuizzAnswered } from "../myaccount";
 
 type QuizzMenuProps = {
   listQuizz: Theme[];
+  historyData: HistoryQuizzAnswered[];
 };
 // const DATA = [
 //   {
@@ -1180,8 +1184,9 @@ type QuizzMenuProps = {
 //   },
 // ];
 
-const QuizzMenu = ({ listQuizz }: QuizzMenuProps) => {
+const QuizzMenu = ({ listQuizz, historyData }: QuizzMenuProps) => {
   const { username } = useUsernameContext();
+  const { handleHistoryQuizz } = useHistory();
   const router = useRouter();
   const { quizzName } = router.query;
   const quizzChosen = listQuizz
@@ -1222,12 +1227,29 @@ const QuizzMenu = ({ listQuizz }: QuizzMenuProps) => {
   const [currentIndexQuestion, setCurrentIndexQuestion] = useState(0);
   const question = quizzChosen?.questions[currentIndexQuestion];
 
+  // function handleHistoryQuizz(newQuizzAnswered, username) {
+  //   let historyUpdated = [...history, newQuizzAnswered];
+
+  //   setHistory(historyUpdated);
+  //   syncDatabase(historyUpdated, username);
+  // }
   function handleAnswerClicked(choice: string) {
     setCurrentIndexQuestion(currentIndexQuestion + 1);
-    choice === question?.answer && setCorrectAnswer(correctAnswer + 1);
+    let correctAnswerUpdated = correctAnswer + 1;
 
+    if (choice === question?.answer) {
+      setCorrectAnswer(correctAnswerUpdated);
+    }
     if (currentIndexQuestion === quizzChosen?.questions.length - 1) {
-      console.log("Fin du Quizz");
+      const newQuizzAnsweredToAdd = {
+        name: quizzChosen?.name,
+        score: correctAnswerUpdated,
+        image: quizzChosen?.image,
+        createdAt: new Date().toLocaleDateString("fr"),
+        id: crypto.randomUUID(),
+      };
+      handleHistoryQuizz(newQuizzAnsweredToAdd, username, historyData);
+
       setIsQuizzStarted(false);
       setIsQuizzFinished(true);
     }
@@ -1235,6 +1257,7 @@ const QuizzMenu = ({ listQuizz }: QuizzMenuProps) => {
 
   return (
     <QuizzMenuStyled>
+      <button>Test</button>
       <Bar list={TopPopularTheme} title="LES THÈMES PRÉFÉRÉS" />
       <Bar list={chapters} title="Quizz que vous pourriez aimer" />
       <div className="quizzInfos">
@@ -1370,17 +1393,20 @@ const QuizzMenuStyled = styled.div`
   } */
 `;
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async ({ req }) => {
+  const userDocRef = doc(db, "users", req.cookies.username);
   const quizzDocRef = doc(db, "infos", "quizz");
+  const docSnapShotUser = await getDoc(userDocRef);
   const docSnapShotQuizzs = await getDoc(quizzDocRef);
 
-  if (docSnapShotQuizzs.exists()) {
+  if (docSnapShotQuizzs.exists() && docSnapShotUser.exists()) {
     const { quizz } = docSnapShotQuizzs.data();
-    console.log("[quizzName] :", quizz);
+    const { history: historyData } = docSnapShotUser.data();
 
     return {
       props: {
         listQuizz: quizz,
+        historyData,
       },
     };
   } else {

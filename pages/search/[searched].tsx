@@ -1,10 +1,10 @@
 import React from "react";
-import Sidebar from "@/components/pages/menu/Sidebar";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/firestore/firebase-config";
 import MainSearch from "@/components/pages/menu/Search/MainSearch";
 import styled from "styled-components";
 import { Theme, UserData } from "../menu/[username]";
+import Sidebar from "@/components/Sidebar";
 
 type SearchPageProps = {
   allTimeRanking: UserData[];

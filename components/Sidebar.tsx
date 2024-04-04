@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { db } from "@/firestore/firebase-config";
 import { doc, getDoc } from "firebase/firestore";
-import Ranking from "../../reusable-ui/Ranking";
 import { addQuestionsToData } from "@/firestore/userData";
 import { dateOf30DaysAgo, dateOf7DaysAgo } from "@/utils/date";
 import { add } from "date-fns";
 import { UserData } from "@/pages/menu/[username]";
 import { theme } from "@/theme";
+import Ranking from "./reusable-ui/Ranking";
 type SidebarProps = {
   allTimeRanking: UserData[];
 };

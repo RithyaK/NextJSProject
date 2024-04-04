@@ -1,4 +1,4 @@
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { db } from "./firebase-config";
 
 export const getUser = async (idUser: string) => {
@@ -17,6 +17,7 @@ export const createUser = (idUser: string) => {
   const docRef = doc(db, "users", idUser);
   const data = {
     username: idUser,
+    history: [],
   };
   setDoc(docRef, data);
 };
@@ -27,4 +28,13 @@ export const authenticateUser = async (idUser: string) => {
   if (!existingUser) {
     createUser(idUser);
   }
+};
+
+export const syncDatabase = async (history, userId: string) => {
+  const docRef = doc(db, "users", userId);
+
+  await updateDoc(docRef, {
+    username: userId,
+    history: history,
+  });
 };
