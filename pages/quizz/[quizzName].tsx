@@ -52,6 +52,11 @@ type QuizzMenuProps = {
 //             answer: "Test2",
 //             question: "Quelle est le bon test ? (Test2)",
 //           },
+//           {
+//             choices: ["Test", "Test2", "Test3", "Test4"],
+//             answer: "Test2",
+//             question: "Quelle est le bon test ? (Test1)",
+//           },
 //         ],
 //       },
 //       {

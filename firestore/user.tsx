@@ -1,4 +1,4 @@
-import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { average, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import { db } from "./firebase-config";
 
 export const getUser = async (idUser: string) => {
@@ -18,6 +18,8 @@ export const createUser = (idUser: string) => {
   const data = {
     username: idUser,
     history: [],
+    average: null,
+    // average : number ? 0 ??
   };
   setDoc(docRef, data);
 };
@@ -30,11 +32,16 @@ export const authenticateUser = async (idUser: string) => {
   }
 };
 
-export const syncDatabase = async (history, userId: string) => {
+export const syncDatabase = async (
+  history,
+  userId: string,
+  average: number
+) => {
   const docRef = doc(db, "users", userId);
 
   await updateDoc(docRef, {
     username: userId,
     history: history,
+    average: average,
   });
 };

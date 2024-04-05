@@ -18,6 +18,7 @@ export type HistoryQuizzAnswered = {
   name: string;
   score: number;
   id: string;
+  numberOfQuestions: number;
 };
 const MyAccountPage = ({ allTimeRanking, historyData }: MyAccountPageProps) => {
   console.log("historyData :", historyData);

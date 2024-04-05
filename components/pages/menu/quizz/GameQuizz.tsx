@@ -28,16 +28,17 @@ const GameQuizz = ({ quizzChosen, historyData }: GameQuizzProps) => {
   const question = quizzChosen?.questions[currentIndexQuestion];
 
   function handleAnswerClicked(choice: string) {
-    setCurrentIndexQuestion(currentIndexQuestion + 1);
-    let correctAnswerUpdated = correctAnswer + 1;
+    const newIndexQuestion = currentIndexQuestion + 1;
+    setCurrentIndexQuestion(newIndexQuestion);
 
     if (choice === question?.answer) {
-      setCorrectAnswer(correctAnswerUpdated);
+      setCorrectAnswer(correctAnswer + 1);
     }
     if (currentIndexQuestion === quizzChosen?.questions.length - 1) {
       const newQuizzAnsweredToAdd = {
+        numberOfQuestions: newIndexQuestion,
         name: quizzChosen?.name,
-        score: correctAnswerUpdated,
+        score: choice === question.answer ? correctAnswer + 1 : correctAnswer,
         image: quizzChosen?.image,
         createdAt: new Date().toLocaleDateString("fr"),
         id: crypto.randomUUID(),

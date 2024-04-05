@@ -48,7 +48,7 @@ const PaginationStyled = styled.div`
   align-items: center;
   span {
     padding: 10px;
-    margin: 5px 10px;
+    margin: 5px 2px;
     border: 1px solid black;
     border-radius: 50%;
   }

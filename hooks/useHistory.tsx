@@ -9,15 +9,25 @@ const useHistory = () => {
   const [history, setHistory] = useState();
 
   function handleHistoryQuizz(newQuizzAnswered, username, historyData) {
-    console.log("test");
     const historyCopy = JSON.parse(JSON.stringify(historyData));
-    console.log("historyCopy :", historyCopy);
-    console.log("newQuizzAnswered :", newQuizzAnswered);
     const historyUpdated = [newQuizzAnswered, ...historyCopy];
     console.log("historyUpdated :", historyUpdated);
 
     setHistory(historyUpdated);
-    syncDatabase(historyUpdated, username);
+    // Pourquoi undefined ducoup je suis obligé d'utiliser dans "Mon compte" la database History aulieu de la State History
+    const totalCorrectAnswer = historyUpdated.reduce(
+      (accumulator, quizz) => accumulator + quizz.score,
+      0
+    );
+    const totalQuestion = historyUpdated.reduce(
+      (accumulator, quizz) => accumulator + quizz.numberOfQuestions,
+      0
+    );
+    const average = Number(
+      ((totalCorrectAnswer / totalQuestion) * 100).toFixed(2)
+    );
+
+    syncDatabase(historyUpdated, username, average);
   }
 
   return { handleHistoryQuizz, history, setHistory };

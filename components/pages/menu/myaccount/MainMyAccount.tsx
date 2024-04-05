@@ -34,7 +34,10 @@ const MainMyAccount = ({ historyData }: MainMyAccountProps) => {
             {historyData?.map((quizz) => (
               <li key={quizz.id}>
                 <span>{quizz.createdAt}</span>
-                <span> score : {quizz.score}/4</span>
+                <span>
+                  {" "}
+                  score : {quizz.score}/{quizz.numberOfQuestions}
+                </span>
                 <span>{quizz.name.toUpperCase()}</span>
               </li>
             ))}
