@@ -1,4 +1,5 @@
 import { Chapter } from "@/pages/menu/[username]";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
 import styled from "styled-components";
@@ -19,7 +20,8 @@ const OptionsSearchCard = ({ chapter }: OptionsSearchCardProps) => {
       key={chapter.name}
       onClick={() => router.push(`/quizz/${chapter.name}`)}
     >
-      <div className="image"></div>
+      {/* <div className="image"></div> */}
+      <img src={chapter.image} alt="" height="60" width="60" />
       <span className="quizzName">{chapter.name}</span>
       <div className="details">
         <span>Difficulté : {chapter.difficulty}</span>

@@ -31,7 +31,7 @@ const MainMyAccount = ({ historyData }: MainMyAccountProps) => {
         </div>
         {isVisible && (
           <ul>
-            {historyData.map((quizz) => (
+            {historyData?.map((quizz) => (
               <li key={quizz.id}>
                 <span>{quizz.createdAt}</span>
                 <span> score : {quizz.score}/4</span>

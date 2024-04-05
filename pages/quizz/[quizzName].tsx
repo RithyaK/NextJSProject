@@ -14,6 +14,7 @@ import { syncDatabase } from "@/firestore/user";
 import useHistory from "@/hooks/useHistory";
 import QuizzRecommanded from "@/components/pages/menu/quizz/QuizzRecommanded";
 import { HistoryQuizzAnswered } from "../myaccount";
+import GameQuizz from "@/components/pages/menu/quizz/GameQuizz";
 
 type QuizzMenuProps = {
   listQuizz: Theme[];
@@ -1185,8 +1186,6 @@ type QuizzMenuProps = {
 // ];
 
 const QuizzMenu = ({ listQuizz, historyData }: QuizzMenuProps) => {
-  const { username } = useUsernameContext();
-  const { handleHistoryQuizz } = useHistory();
   const router = useRouter();
   const { quizzName } = router.query;
   const quizzChosen = listQuizz
@@ -1221,84 +1220,12 @@ const QuizzMenu = ({ listQuizz, historyData }: QuizzMenuProps) => {
     .slice(0, 5)
     .map((subject) => subject.name);
 
-  const [isQuizzStarted, setIsQuizzStarted] = useState(false);
-  const [isQuizzFinished, setIsQuizzFinished] = useState(false);
-  const [correctAnswer, setCorrectAnswer] = useState(0);
-  const [currentIndexQuestion, setCurrentIndexQuestion] = useState(0);
-  const question = quizzChosen?.questions[currentIndexQuestion];
-
-  // function handleHistoryQuizz(newQuizzAnswered, username) {
-  //   let historyUpdated = [...history, newQuizzAnswered];
-
-  //   setHistory(historyUpdated);
-  //   syncDatabase(historyUpdated, username);
-  // }
-  function handleAnswerClicked(choice: string) {
-    setCurrentIndexQuestion(currentIndexQuestion + 1);
-    let correctAnswerUpdated = correctAnswer + 1;
-
-    if (choice === question?.answer) {
-      setCorrectAnswer(correctAnswerUpdated);
-    }
-    if (currentIndexQuestion === quizzChosen?.questions.length - 1) {
-      const newQuizzAnsweredToAdd = {
-        name: quizzChosen?.name,
-        score: correctAnswerUpdated,
-        image: quizzChosen?.image,
-        createdAt: new Date().toLocaleDateString("fr"),
-        id: crypto.randomUUID(),
-      };
-      handleHistoryQuizz(newQuizzAnsweredToAdd, username, historyData);
-
-      setIsQuizzStarted(false);
-      setIsQuizzFinished(true);
-    }
-  }
-
   return (
     <QuizzMenuStyled>
       <button>Test</button>
       <Bar list={TopPopularTheme} title="LES THÈMES PRÉFÉRÉS" />
       <Bar list={chapters} title="Quizz que vous pourriez aimer" />
-      <div className="quizzInfos">
-        <Link href={`/menu/${username}`}>Retourner à l{"'"}accueil</Link>
-        <h1 className="quizzName">Quizz : {quizzChosen.name}</h1>
-        <div className="quizzparameters">
-          <span>{quizzChosen?.theme}</span>
-          <span> {quizzChosen?.difficulty}</span>
-        </div>
-      </div>
-      <div className="quizzContainer">
-        <div className="imagecontainer">
-          <div className="image"></div>
-        </div>
-        {isQuizzStarted && (
-          <div className="gameContainer">
-            <h1>Question n*{currentIndexQuestion + 1}</h1>
-            <h2 className="question">{question?.question}</h2>
-            <div className="choices">
-              {question?.choices.map((choice) => (
-                <span key={choice} onClick={() => handleAnswerClicked(choice)}>
-                  {choice}
-                </span>
-              ))}
-            </div>
-            <span>
-              Score actuel : {correctAnswer}/{currentIndexQuestion}
-            </span>
-          </div>
-        )}
-        {isQuizzFinished && (
-          <h2>
-            Score : {correctAnswer}/{currentIndexQuestion}
-          </h2>
-        )}
-        {!isQuizzStarted && !isQuizzFinished && (
-          <button onClick={() => setIsQuizzStarted(true)}>
-            COMMENCER LE QUIZZ
-          </button>
-        )}
-      </div>
+      <GameQuizz quizzChosen={quizzChosen} historyData={historyData} />
       <QuizzRecommanded themeData={themeData} quizzChosen={quizzChosen} />
     </QuizzMenuStyled>
   );
@@ -1308,14 +1235,14 @@ export default QuizzMenu;
 
 const QuizzMenuStyled = styled.div`
   background-color: ${theme.colors.green};
-  .quizzName {
-    text-align: center;
-    margin-top: 20px;
-  }
-  .quizzInfos {
+  .quizz-top {
     display: flex;
     justify-content: space-between;
     padding: 0px 20px;
+  }
+  .quizz-name {
+    text-align: center;
+    margin-top: 20px;
   }
   .quizzparameters {
     display: flex;
@@ -1328,29 +1255,22 @@ const QuizzMenuStyled = styled.div`
     height: 500px;
     background-color: green;
   }
-  .quizzContainer {
+  .quizz-maincontainer {
     background-color: red;
     display: flex;
     justify-content: center;
     flex-direction: column;
+    margin-bottom: 20px;
     button {
       width: 500px;
     }
   }
-  .gameContainer {
+  .game {
     width: 500px;
     height: 350px;
     border: 2px solid black;
     background-color: #c79191;
     text-align: center;
-  }
-  .scoreContainer {
-    display: flex;
-    width: 300px;
-    height: 300px;
-    border: 1px solid black;
-    align-items: center;
-    justify-content: center;
   }
   .question {
     margin: 25px 0;
@@ -1371,26 +1291,6 @@ const QuizzMenuStyled = styled.div`
     background-color: red;
     cursor: pointer;
   }
-  .quizzRecommanded {
-    padding: 30px 0px;
-    border: 1px solid black;
-  }
-  .cards {
-    display: flex;
-    list-style-type: none;
-    gap: 30px;
-  }
-  .card {
-    border: 1px solid black;
-    width: 180px;
-    height: 250px;
-    text-align: center;
-  }
-
-  /* .newsQuizz {
-    margin-top: 30px 0px;
-    border: 1px solid black;
-  } */
 `;
 
 export const getServerSideProps = async ({ req }) => {
