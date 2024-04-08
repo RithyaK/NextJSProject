@@ -126,7 +126,7 @@ const MainMyAccount = ({
                   <button
                     onClick={() => {
                       setIsModifyingEmail(true);
-                      inputEmailRef.current.focus();
+                      // inputEmailRef.current.focus();
                     }}
                   >
                     Modifier

@@ -9,16 +9,40 @@ import { useUsernameContext } from "./context/usernameContext";
 const Navbar = () => {
   const [menuProfil, setMenuProfil] = useState(false);
   const menuProfilRef = useRef<HTMLDivElement>(null);
+  const { username } = useUsernameContext();
   //
+
+  useEffect(() => {
+    let handler = (e) => {
+      if (!menuProfilRef.current.contains(e.target)) {
+        setMenuProfil(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => {
+      document.removeEventListener("mousedown", handler);
+    };
+  });
+
   return (
-    <NavbarStyled ref={menuProfilRef}>
+    <NavbarStyled>
       <Link href="/login">Se déconnecter</Link>
       <SearchBar />
-      <div className="NavbarRightSide">
-        <Link href="/myaccount">
-          <span>Mon compte</span>
-        </Link>
+      <div
+        className="NavbarRightSide"
+        ref={menuProfilRef}
+        onClick={() => setMenuProfil(!menuProfil)}
+      >
+        <span className="welcomemessage">Bonjour , {username} !</span>
         <BsPersonCircle />
+        {menuProfil && (
+          <div className="menuProfileDropDown">
+            <Link href="/myaccount">Mon compte</Link>
+            <span>Confidentialité</span>
+            <span>Information</span>
+            <span>Langue</span>
+          </div>
+        )}
       </div>
     </NavbarStyled>
   );
@@ -36,11 +60,29 @@ const NavbarStyled = styled.div`
   .NavbarRightSide {
     display: flex;
     align-items: center;
-    span {
-      margin: 0 10px;
-    }
+  }
+  .welcomemessage {
+    margin: 0 10px;
   }
   .NavbarRightSide:hover {
     cursor: pointer;
+  }
+
+  .menuProfileDropDown {
+    position: absolute;
+    z-index: 1;
+    transform: translate(50%, 70%);
+    border-radius: 10px;
+    background-color: #a19a9a;
+    padding: 5px;
+    max-height: 50vh;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+    gap: 3px;
+  }
+  a {
+    text-decoration: none;
   }
 `;
