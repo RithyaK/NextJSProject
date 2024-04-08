@@ -1,4 +1,4 @@
-import { syncDatabase } from "@/firestore/user";
+import { syncDatabase } from "@/firestore/Data";
 import { useState } from "react";
 // type QuizzAnswered = {
 //   quiz: string;
@@ -7,30 +7,45 @@ import { useState } from "react";
 // };
 const useHistory = () => {
   const [history, setHistory] = useState();
+  const [totalCorrectAnswer, setTotalCorrectAnswer] = useState();
+  const [totalQuestion, setTotalQuestion] = useState();
 
   function handleHistoryQuizz(newQuizzAnswered, username, historyData) {
     const historyCopy = JSON.parse(JSON.stringify(historyData));
     const historyUpdated = [newQuizzAnswered, ...historyCopy];
-    console.log("historyUpdated :", historyUpdated);
 
     setHistory(historyUpdated);
     // Pourquoi undefined ducoup je suis obligé d'utiliser dans "Mon compte" la database History aulieu de la State History
-    const totalCorrectAnswer = historyUpdated.reduce(
+    const totalCorrectAnswerUpdated = historyUpdated.reduce(
       (accumulator, quizz) => accumulator + quizz.score,
       0
     );
-    const totalQuestion = historyUpdated.reduce(
+    setTotalCorrectAnswer(totalCorrectAnswerUpdated);
+    const totalQuestionUpdated = historyUpdated.reduce(
       (accumulator, quizz) => accumulator + quizz.numberOfQuestions,
       0
     );
+    setTotalQuestion(totalQuestionUpdated);
     const average = Number(
-      ((totalCorrectAnswer / totalQuestion) * 100).toFixed(2)
+      ((totalCorrectAnswerUpdated / totalQuestionUpdated) * 100).toFixed(2)
     );
 
-    syncDatabase(historyUpdated, username, average);
+    syncDatabase(
+      historyUpdated,
+      username,
+      average,
+      totalCorrectAnswerUpdated,
+      totalQuestionUpdated
+    );
   }
 
-  return { handleHistoryQuizz, history, setHistory };
+  return {
+    handleHistoryQuizz,
+    // history,
+    setHistory,
+    // totalCorrectAnswer,
+    // totalQuestion,
+  };
 };
 
 export default useHistory;

@@ -17,8 +17,13 @@ export const createUser = (idUser: string) => {
   const docRef = doc(db, "users", idUser);
   const data = {
     username: idUser,
+    accountCreatedAt: new Date(),
+    email: `${idUser}@hotmail.fr`,
     history: [],
-    average: null,
+    average: 0,
+    totalCorrectAnswered: 0,
+    totalQuestionAnswered: 0,
+
     // average : number ? 0 ??
   };
   setDoc(docRef, data);
@@ -32,16 +37,13 @@ export const authenticateUser = async (idUser: string) => {
   }
 };
 
-export const syncDatabase = async (
-  history,
-  userId: string,
-  average: number
-) => {
-  const docRef = doc(db, "users", userId);
+export const getUserData = async (idUser: string) => {
+  const docRef = doc(db, "users", idUser);
 
-  await updateDoc(docRef, {
-    username: userId,
-    history: history,
-    average: average,
-  });
+  const docSnapShot = await getDoc(docRef);
+  if (docSnapShot.exists()) {
+    const { username } = docSnapShot.data();
+
+    return username;
+  }
 };

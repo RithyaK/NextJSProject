@@ -9,7 +9,6 @@ import React, { use, useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Timestamp } from "@firebase/firestore-types";
 import Sidebar from "@/components/Sidebar";
-
 export type Theme = {
   id: number;
   name: string;

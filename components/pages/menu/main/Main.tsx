@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { Theme } from "@/pages/menu/[username]";
 import SearchBar from "./top-main/SearchBar";
 import Subjects from "./mid-main/Subjects";
-import { addQuestionsToData } from "@/firestore/userData";
 import OptionsSearch from "./mid-main/OptionsSearch";
 import { theme } from "@/theme";
 import Bar from "@/components/reusable-ui/Bar";
@@ -28,12 +27,8 @@ const Main = ({ listQuizz }: MainProps) => {
     .slice(0, 5)
     .map((subject) => subject.name);
 
-  console.log("TopPopularTheme :", TopPopularTheme);
-  console.log("chapters :", chapters);
-
   return (
     <MainStyled>
-      {/* <button onClick={() => addQuestionsToData(DATA)}>X</button> */}
       <Bar list={TopPopularTheme} title="LES THÈMES PRÉFÉRÉS" />
       <Bar list={chapters} title="Quizz que vous pourriez aimer" />
       <Subjects listQuizz={listQuizz} />

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { db } from "@/firestore/firebase-config";
 import { doc, getDoc } from "firebase/firestore";
-import { addQuestionsToData } from "@/firestore/userData";
 import { dateOf30DaysAgo, dateOf7DaysAgo } from "@/utils/date";
 import { add } from "date-fns";
 import { UserData } from "@/pages/menu/[username]";
@@ -58,7 +57,6 @@ const Sidebar = ({ allTimeRanking }: SidebarProps) => {
   const weekRanking = allTimeRanking.filter(
     (userRanked) => Date.parse(userRanked.createdAt) > dateOf7DaysAgo
   );
-  console.log("allTimeRanking", allTimeRanking);
   return (
     <SidebarStyled>
       <Ranking title="All Time Ranking" ranking={allTimeRanking} />

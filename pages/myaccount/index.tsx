@@ -11,6 +11,11 @@ import { theme } from "@/theme";
 type MyAccountPageProps = {
   allTimeRanking: UserData[];
   historyData: HistoryQuizzAnswered[];
+  average: number;
+  totalCorrectAnswered: number;
+  totalQuestionAnswered: number;
+  email: string;
+  accountCreatedAt: string;
 };
 export type HistoryQuizzAnswered = {
   createdAt: string;
@@ -20,13 +25,26 @@ export type HistoryQuizzAnswered = {
   id: string;
   numberOfQuestions: number;
 };
-const MyAccountPage = ({ allTimeRanking, historyData }: MyAccountPageProps) => {
-  console.log("historyData :", historyData);
-
+const MyAccountPage = ({
+  allTimeRanking,
+  historyData,
+  average,
+  totalCorrectAnswered,
+  totalQuestionAnswered,
+  email,
+  accountCreatedAt,
+}: MyAccountPageProps) => {
   return (
     <MyAccountPageStyled>
       <Sidebar allTimeRanking={allTimeRanking} />
-      <MainMyAccount historyData={historyData} />
+      <MainMyAccount
+        historyData={historyData}
+        average={average}
+        totalCorrectAnswered={totalCorrectAnswered}
+        totalQuestionAnswered={totalQuestionAnswered}
+        email={email}
+        accountCreatedAt={accountCreatedAt}
+      />
     </MyAccountPageStyled>
   );
 };
@@ -41,7 +59,19 @@ export const getServerSideProps = async ({ req }) => {
 
   if (docSnapShotRanking.exists() && docSnapShotUser.exists()) {
     const { allTime: allTimeRanking } = docSnapShotRanking.data();
-    const { history: historyData } = docSnapShotUser.data();
+    const {
+      history: historyData,
+      average,
+      totalCorrectAnswered,
+      totalQuestionAnswered,
+      email,
+      accountCreatedAt,
+    } = docSnapShotUser.data();
+
+    const accountCreatedAtUpdated = accountCreatedAt
+      .toDate()
+      .toISOString()
+      .split("T")[0];
     const allTimeRankingUpdated = allTimeRanking.map((object) => {
       return {
         ...object,
@@ -53,6 +83,11 @@ export const getServerSideProps = async ({ req }) => {
       props: {
         allTimeRanking: allTimeRankingUpdated,
         historyData,
+        average,
+        totalCorrectAnswered,
+        totalQuestionAnswered,
+        email,
+        accountCreatedAt: accountCreatedAtUpdated,
       },
     };
   } else {
