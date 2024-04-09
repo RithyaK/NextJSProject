@@ -5,8 +5,13 @@ import { useState } from "react";
 //   score: number;
 //   image: string;
 // };
+export type UserPoints = {
+  username: string;
+  points: number;
+};
 const useHistory = () => {
   const [history, setHistory] = useState();
+  const [points, setPoints] = useState<UserPoints[]>();
   const [totalCorrectAnswer, setTotalCorrectAnswer] = useState();
   const [totalQuestion, setTotalQuestion] = useState();
 
@@ -39,10 +44,27 @@ const useHistory = () => {
     );
   }
 
+  function handlePointsData(pointsToAdd: Number, username: string) {
+    console.log(points);
+
+    // const newUserPointsToAdd = {
+    //   points: pointsToAdd,
+    //   username: username,
+    // };
+    // let pointsUpdated = [newUserPointsToAdd, ...points];
+    // console.log(pointsUpdated);
+
+    // setPoints(pointsUpdated);
+  }
+
   return {
     handleHistoryQuizz,
     // history,
+
     setHistory,
+    handlePointsData,
+    points,
+    setPoints,
     // totalCorrectAnswer,
     // totalQuestion,
   };

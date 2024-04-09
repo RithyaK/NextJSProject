@@ -9,6 +9,7 @@ import React, { use, useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Timestamp } from "@firebase/firestore-types";
 import Sidebar from "@/components/Sidebar";
+import useHistory, { UserPoints } from "@/hooks/useHistory";
 export type Theme = {
   id: number;
   name: string;
@@ -40,9 +41,20 @@ type MenuPageProps = {
   month: UserData[];
   week: UserData[];
   listQuizz: Theme[];
+  usersPoints: UserPoints[];
 };
 
-const MenuPage = ({ allTimeRanking, listQuizz }: MenuPageProps) => {
+const MenuPage = ({
+  allTimeRanking,
+  listQuizz,
+  usersPoints,
+}: MenuPageProps) => {
+  const { setPoints } = useHistory();
+
+  //
+  useEffect(() => {
+    setPoints(usersPoints);
+  }, []);
   //
   return (
     <MenuPageStyled>
@@ -55,11 +67,18 @@ const MenuPage = ({ allTimeRanking, listQuizz }: MenuPageProps) => {
 export default MenuPage;
 
 export const getServerSideProps = async () => {
+  const UsersPointsDocRef = doc(db, "infos", "points");
   const rankingsDocRef = doc(db, "infos", "rankings");
   const quizzDocRef = doc(db, "infos", "quizz");
+  const docSnapShotUsersPoints = await getDoc(UsersPointsDocRef);
   const docSnapShotRankings = await getDoc(rankingsDocRef);
   const docSnapShotQuizzs = await getDoc(quizzDocRef);
-  if (docSnapShotRankings.exists() && docSnapShotQuizzs.exists()) {
+  if (
+    docSnapShotUsersPoints.exists() &&
+    docSnapShotRankings.exists() &&
+    docSnapShotQuizzs.exists()
+  ) {
+    const { usersPoints } = docSnapShotUsersPoints.data();
     const { allTime: allTimeRanking } = docSnapShotRankings.data();
     const { quizz } = docSnapShotQuizzs.data();
     // const createdAt = allTimeRanking[0].createdAt.toDate() as Timestamp;
@@ -74,6 +93,7 @@ export const getServerSideProps = async () => {
       props: {
         allTimeRanking: allTimeRankingUpdated,
         listQuizz: quizz,
+        usersPoints,
       },
     };
   } else {

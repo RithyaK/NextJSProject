@@ -2,6 +2,7 @@ import { useUsernameContext } from "@/components/context/usernameContext";
 import useHistory from "@/hooks/useHistory";
 import { Question } from "@/pages/menu/[username]";
 import { HistoryQuizzAnswered } from "@/pages/myaccount";
+import { Scores } from "@/pages/quizz/[quizzName]";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -16,10 +17,12 @@ type GameQuizzProps = {
     questions: Question[];
   };
   historyData: HistoryQuizzAnswered[];
+  // scores: Scores[];
 };
 const GameQuizz = ({ quizzChosen, historyData }: GameQuizzProps) => {
+  // console.log(scores);
   const { username } = useUsernameContext();
-  const { handleHistoryQuizz } = useHistory();
+  const { handleHistoryQuizz, handlePointsData } = useHistory();
 
   const [isQuizzStarted, setIsQuizzStarted] = useState(false);
   const [isQuizzFinished, setIsQuizzFinished] = useState(false);
@@ -35,15 +38,18 @@ const GameQuizz = ({ quizzChosen, historyData }: GameQuizzProps) => {
       setCorrectAnswer(correctAnswer + 1);
     }
     if (currentIndexQuestion === quizzChosen?.questions.length - 1) {
+      const updatedScore =
+        choice === question.answer ? correctAnswer + 1 : correctAnswer;
       const newQuizzAnsweredToAdd = {
         numberOfQuestions: newIndexQuestion,
         name: quizzChosen?.name,
-        score: choice === question.answer ? correctAnswer + 1 : correctAnswer,
+        score: updatedScore,
         image: quizzChosen?.image,
         createdAt: new Date().toLocaleDateString("fr"),
         id: crypto.randomUUID(),
       };
       handleHistoryQuizz(newQuizzAnsweredToAdd, username, historyData);
+      handlePointsData(updatedScore, username);
       setIsQuizzStarted(false);
       setIsQuizzFinished(true);
     }

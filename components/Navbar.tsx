@@ -5,6 +5,10 @@ import { BsPersonCircle } from "react-icons/bs";
 import { theme } from "@/theme";
 import SearchBar from "./pages/menu/main/top-main/SearchBar";
 import { useUsernameContext } from "./context/usernameContext";
+import { AiOutlineProfile } from "react-icons/ai";
+import { MdOutlineAccountBox } from "react-icons/md";
+import { IoInformationCircleSharp } from "react-icons/io5";
+import { MdLanguage } from "react-icons/md";
 
 const Navbar = () => {
   const [menuProfil, setMenuProfil] = useState(false);
@@ -37,10 +41,25 @@ const Navbar = () => {
         <BsPersonCircle />
         {menuProfil && (
           <div className="menuProfileDropDown">
-            <Link href="/myaccount">Mon compte</Link>
-            <span>Confidentialité</span>
-            <span>Information</span>
-            <span>Langue</span>
+            <ul>
+              <li>
+                <MdOutlineAccountBox />
+                <Link href="/myaccount">Mon compte</Link>
+              </li>
+              <li>
+                <AiOutlineProfile />
+                <span>Confidentialité</span>
+              </li>
+              <li>
+                <IoInformationCircleSharp />
+                <span>Information</span>
+              </li>
+              <li>
+                <MdLanguage />
+
+                <span>Langue</span>
+              </li>
+            </ul>
           </div>
         )}
       </div>
@@ -71,7 +90,7 @@ const NavbarStyled = styled.div`
   .menuProfileDropDown {
     position: absolute;
     z-index: 1;
-    transform: translate(50%, 70%);
+    transform: translate(30%, 70%);
     border-radius: 10px;
     background-color: #a19a9a;
     padding: 5px;
@@ -79,10 +98,14 @@ const NavbarStyled = styled.div`
     overflow: auto;
     display: flex;
     flex-direction: column;
-    width: 100px;
+    width: 130px;
     gap: 3px;
   }
   a {
     text-decoration: none;
+  }
+  li {
+    display: flex;
+    align-items: center;
   }
 `;

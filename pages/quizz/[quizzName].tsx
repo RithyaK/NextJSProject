@@ -14,9 +14,14 @@ import QuizzRecommanded from "@/components/pages/menu/quizz/QuizzRecommanded";
 import { HistoryQuizzAnswered } from "../myaccount";
 import GameQuizz from "@/components/pages/menu/quizz/GameQuizz";
 
+// export type Scores = {
+//   username: string;
+//   score: number;
+// };
 type QuizzMenuProps = {
   listQuizz: Theme[];
   historyData: HistoryQuizzAnswered[];
+  // scores: Scores[];
 };
 // const DATA = [
 //   {
