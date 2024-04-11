@@ -7,8 +7,6 @@ import { FaArrowDown } from "react-icons/fa";
 import { HistoryQuizzAnswered } from "./../../../../pages/myaccount/index";
 import { FaArrowUp } from "react-icons/fa";
 import { theme } from "@/theme";
-import cookie from "js-cookie";
-import Cookies from "js-cookie";
 import { syncEmailDatabase } from "@/firestore/Data";
 type MainMyAccountProps = {
   historyData: HistoryQuizzAnswered[];

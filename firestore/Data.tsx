@@ -1,5 +1,6 @@
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "./firebase-config";
+import { Theme } from "@/pages/menu/[username]";
 
 export const addQuestionsToData = async (data) => {
   const cachette = doc(db, "infos", "quizz");
@@ -8,7 +9,7 @@ export const addQuestionsToData = async (data) => {
   });
 };
 
-export const syncDatabase = async (
+export const syncUserScore = async (
   history,
   userId: string,
   average: number,
@@ -31,5 +32,13 @@ export const syncEmailDatabase = async (newEmail: string, userId: string) => {
 
   await updateDoc(docRef, {
     email: newEmail,
+  });
+};
+
+export const syncQuizz = async (newQuizz: Theme[]) => {
+  const docRef = doc(db, "infos", "quizz");
+
+  await updateDoc(docRef, {
+    quizz: newQuizz,
   });
 };

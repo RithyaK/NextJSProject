@@ -1,4 +1,4 @@
-import { syncDatabase } from "@/firestore/Data";
+import { syncUserScore } from "@/firestore/Data";
 import { useState } from "react";
 // type QuizzAnswered = {
 //   quiz: string;
@@ -35,7 +35,7 @@ const useHistory = () => {
       ((totalCorrectAnswerUpdated / totalQuestionUpdated) * 100).toFixed(2)
     );
 
-    syncDatabase(
+    syncUserScore(
       historyUpdated,
       username,
       average,

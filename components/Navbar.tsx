@@ -9,6 +9,7 @@ import { AiOutlineProfile } from "react-icons/ai";
 import { MdOutlineAccountBox } from "react-icons/md";
 import { IoInformationCircleSharp } from "react-icons/io5";
 import { MdLanguage } from "react-icons/md";
+import { RiAdminFill } from "react-icons/ri";
 
 const Navbar = () => {
   const [menuProfil, setMenuProfil] = useState(false);
@@ -58,6 +59,11 @@ const Navbar = () => {
                 <MdLanguage />
 
                 <span>Langue</span>
+              </li>
+              <li>
+                <RiAdminFill />
+
+                <Link href="/admin">Admin Page</Link>
               </li>
             </ul>
           </div>
