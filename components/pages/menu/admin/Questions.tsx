@@ -58,12 +58,11 @@ const Questions = ({
 
   function handleDeleteQuestion(indexOfTheQuestion: number) {
     const questionBeingModified = quizChose?.questions[indexOfTheQuestion];
-    console.log("questionBeingModified : ", questionBeingModified);
-    questionBeingModified.question = quizChose.questions.filter(
+    console.log(questionBeingModified);
+    quizChose.questions = quizChose.questions.filter(
       (question: Question) => question !== questionBeingModified
     );
-
-    setQuestions(questionBeingModified.question);
+    setQuestions(quizChose.questions);
     syncQuizz(listQuizz);
   }
 
@@ -82,7 +81,7 @@ const Questions = ({
 
       <ul className="quizz">
         {questions.map((question, index) => (
-          <li className="questioncontainer" key={question.question}>
+          <li className="questioncontainer" key={question.id}>
             <input
               placeholder="Question"
               value={question.question}
