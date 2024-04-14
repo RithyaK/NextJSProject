@@ -16,10 +16,9 @@ type MainAdminProps = {
 
 const MainAdmin = ({ listQuizz }: MainAdminProps) => {
   const { username } = useUsernameContext();
-  const [isQuizzMenuVisible, setIsQuizzMenuVisible] = useState(false);
   const [themeChose, setThemeChose] = useState<Theme | undefined>();
   const [quizChose, setQuizChose] = useState<Chapter | undefined>();
-
+  const [questions, setQuestions] = useState<Question[] | undefined>();
   function handleClickTheme(nameOfTheTheme: string) {
     const themeChoseUpdated = listQuizz.find(
       (theme) => theme.name === nameOfTheTheme
@@ -33,6 +32,7 @@ const MainAdmin = ({ listQuizz }: MainAdminProps) => {
       (chapter) => chapter.name === e.target.value
     );
     setQuizChose(quizChoseUpdated);
+    setQuestions(quizChoseUpdated.questions);
   }
 
   ///////////////
@@ -41,12 +41,7 @@ const MainAdmin = ({ listQuizz }: MainAdminProps) => {
       <Link href={`/menu/${username}`}>Retourner à l{"'"}accueil</Link>
       <h1>ADMIN PAGE</h1>
 
-      <h3
-        className="titledropdown menu"
-        onClick={() => setIsQuizzMenuVisible(!isQuizzMenuVisible)}
-      >
-        Modifier un quizz
-      </h3>
+      <h3 className="titledropdown menu">Modifier un quizz</h3>
       <div className="quizzMenu">
         <ul className="themescontainer">
           {listQuizz.map((theme) => (
@@ -76,14 +71,15 @@ const MainAdmin = ({ listQuizz }: MainAdminProps) => {
         ) : (
           <p>Cliquez sur un thème !</p>
         )}
-        <div>
-          <h2>Vous modifiez le quizz : {quizChose?.name} </h2>
+        {questions && (
           <Questions
+            questions={questions}
+            setQuestions={setQuestions}
             quizChose={quizChose}
             setQuizChose={setQuizChose}
             listQuizz={listQuizz}
           />
-        </div>
+        )}
       </div>
     </MainAdminStyled>
   );
@@ -92,6 +88,7 @@ const MainAdmin = ({ listQuizz }: MainAdminProps) => {
 export default MainAdmin;
 
 const MainAdminStyled = styled.div`
+  padding: 0 20px;
   background-color: ${theme.colors.green};
   h1,
   h2 {
@@ -123,25 +120,5 @@ const MainAdminStyled = styled.div`
   }
   .activetheme {
     background-color: white;
-  }
-  .questioncontainer {
-    margin-bottom: 30px;
-  }
-  #question {
-    width: 100%;
-    text-align: center;
-    height: 30px;
-  }
-  .choices {
-    display: flex;
-    gap: 2px;
-  }
-  .choice {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid black;
-    width: 150px;
-    height: 30px;
   }
 `;
