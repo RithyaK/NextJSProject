@@ -107,10 +107,9 @@ const Questions = ({
       <h2> QUIZZ : {quizChose?.name} </h2>
       <div className="container-newquestion">
         <h5
-          className="titledropdown"
           onClick={() => setIsMenuNewQuestionVisible(!isMenuNewQuestionVisible)}
         >
-          Ajouter une nouvelle question{" "}
+          Ajouter une nouvelle question
           {isMenuNewQuestionVisible ? <FaArrowDown /> : <FaArrowUp />}
         </h5>
         {isMenuNewQuestionVisible && (
@@ -231,7 +230,14 @@ const QuestionsStyled = styled.div`
   }
   .container-newquestion {
     margin-bottom: 30px;
+    h5 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid black;
+    }
   }
+
   .questioncontainer {
     margin-bottom: 30px;
     list-style-type: none;
@@ -261,6 +267,7 @@ const QuestionsStyled = styled.div`
     color: black;
     padding: 5px;
   }
+
   .containerbuttondeletequizz {
     text-align: center;
   }

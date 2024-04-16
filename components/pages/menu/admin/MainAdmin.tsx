@@ -19,14 +19,14 @@ const MainAdmin = ({ listQuizzsData }: MainAdminProps) => {
   const { username } = useUsernameContext();
   const [isCreateThemeVisible, setIsCreateThemeVisible] = useState(false);
   const [isMenuEditVisible, setIsMenuEditVisible] = useState(false);
-  const [isMenuNewQuizz, setIsMenuNewQuizz] = useState(false);
+  const [isMenuNewQuizzVisible, setIsMenuNewQuizzVisible] = useState(false);
   const [newThemeName, setNewThemeName] = useState("");
   const [listQuizzs, setListQuizzs] = useState(listQuizzsData);
   const [themeChose, setThemeChose] = useState<Theme | undefined>();
   const [newQuizzName, setNewQuizzName] = useState("");
   const [quizChose, setQuizChose] = useState<Chapter | undefined>();
   const [questions, setQuestions] = useState<Question[] | undefined>();
-
+  const [themeChoseNewQuizz, setThemeChoseNewQuizz] = useState("");
   function handleSubmitNewTheme(e) {
     e.preventDefault();
     const listQuizzsCopy = JSON.parse(JSON.stringify(listQuizzs));
@@ -69,6 +69,7 @@ const MainAdmin = ({ listQuizzsData }: MainAdminProps) => {
       );
       setListQuizzs(listQuizzsUpdated);
       syncQuizz(listQuizzsUpdated);
+      setThemeChose(undefined);
     }
   }
 
@@ -85,7 +86,7 @@ const MainAdmin = ({ listQuizzsData }: MainAdminProps) => {
       questions: [],
     };
     const listQuizzsUpdated = listQuizzs.map((theme: Theme) =>
-      theme === themeChose
+      theme.name === themeChoseNewQuizz
         ? {
             ...theme,
             chapters: theme.chapters.concat(newQuizz),
@@ -98,40 +99,21 @@ const MainAdmin = ({ listQuizzsData }: MainAdminProps) => {
 
     setThemeChose(themeChoseFound);
     setListQuizzs(listQuizzsUpdated);
-    syncQuizz(listQuizzsUpdated);
+    // syncQuizz(listQuizzsUpdated);
     setNewQuizzName("");
   }
-  ///////////////
+  /////////////
+
   return (
     <MainAdminStyled>
       <Link href={`/menu/${username}`}>Retourner à l{"'"}accueil</Link>
       <h1>ADMIN PAGE</h1>
-      <div className="newtheme-container">
-        <h3
-          className="titledropdown"
-          onClick={() => setIsCreateThemeVisible(!isCreateThemeVisible)}
-        >
-          CREATE A NEW THEME
-          {isCreateThemeVisible ? <FaArrowDown /> : <FaArrowUp />}
-        </h3>
-        {isCreateThemeVisible && (
-          <form onSubmit={(e) => handleSubmitNewTheme(e)}>
-            <input
-              placeholder="Ecrivez votre thème"
-              onChange={(e) => setNewThemeName(e.target.value)}
-              value={newThemeName}
-            />
-            <button>Valider</button>
-          </form>
-        )}
-        {/* //////////////// */}
-      </div>
       <div className="editquizz-container">
         <h3
           className="titledropdown"
           onClick={() => setIsMenuEditVisible(!isMenuEditVisible)}
         >
-          EDIT A QUIZZ
+          EDIT QUIZZ
           {isMenuEditVisible ? <FaArrowDown /> : <FaArrowUp />}
         </h3>
 
@@ -172,23 +154,9 @@ const MainAdmin = ({ listQuizzsData }: MainAdminProps) => {
                     {`Supprimer le thème : "${themeChose?.name}"`}
                   </button>
                 </div>
-                <form
-                  className="title-newquizz"
-                  onSubmit={(e) => handleSubmitNewQuizz(e)}
-                >
-                  <label htmlFor="newquizz">
-                    Créer un quizz sur le thème : {themeChose.name}
-                  </label>
-                  <input
-                    placeholder="Nom du quizz"
-                    id="newquizz"
-                    value={newQuizzName}
-                    onChange={(e) => setNewQuizzName(e.target.value)}
-                  />
-                </form>
               </div>
             ) : (
-              <p>Cliquez sur un thème !</p>
+              <p className="message-clicktheme">Cliquez sur un thème !</p>
             )}
             {quizChose && (
               <Questions
@@ -204,6 +172,54 @@ const MainAdmin = ({ listQuizzsData }: MainAdminProps) => {
               />
             )}
           </div>
+        )}
+      </div>
+      <div className="newtheme-container">
+        <h3
+          className="titledropdown"
+          onClick={() => setIsCreateThemeVisible(!isCreateThemeVisible)}
+        >
+          CREATE A NEW THEME
+          {isCreateThemeVisible ? <FaArrowDown /> : <FaArrowUp />}
+        </h3>
+        {isCreateThemeVisible && (
+          <form onSubmit={(e) => handleSubmitNewTheme(e)}>
+            <input
+              placeholder="Ecrivez votre thème"
+              onChange={(e) => setNewThemeName(e.target.value)}
+              value={newThemeName}
+            />
+            <button>Valider</button>
+          </form>
+        )}
+        {/* //////////////// */}
+      </div>
+      <div className="newquizz-container">
+        <h3
+          className="titledropdown"
+          onClick={() => setIsMenuNewQuizzVisible(!isMenuNewQuizzVisible)}
+        >
+          CREATE QUIZZ
+          {isMenuNewQuizzVisible ? <FaArrowDown /> : <FaArrowUp />}
+        </h3>
+        {isMenuNewQuizzVisible && (
+          <form
+            className="title-newquizz"
+            onSubmit={(e) => handleSubmitNewQuizz(e)}
+          >
+            <label htmlFor="newquizz">Créer un quizz sur le thème :</label>
+            <select onChange={(e) => setThemeChoseNewQuizz(e.target.value)}>
+              {listQuizzs.map((theme) => (
+                <option key={theme.id}>{theme.name}</option>
+              ))}
+            </select>
+            <input
+              placeholder="Nom du quizz"
+              id="newquizz"
+              value={newQuizzName}
+              onChange={(e) => setNewQuizzName(e.target.value)}
+            />
+          </form>
         )}
       </div>
     </MainAdminStyled>
@@ -253,5 +269,8 @@ const MainAdminStyled = styled.div`
   .title-newquizz {
     text-align: center;
     padding: 20px;
+  }
+  .message-clicktheme {
+    text-align: center;
   }
 `;
