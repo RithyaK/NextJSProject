@@ -197,6 +197,9 @@ const MainAdmin = ({ listQuizzsData }: MainAdminProps) => {
                 quizChose={quizChose}
                 setQuizChose={setQuizChose}
                 listQuizzs={listQuizzs}
+                setListQuizzs={setListQuizzs}
+                themeChose={themeChose}
+                setThemeChose={setThemeChose}
                 // listQuizzsData={listQuizzsData}
               />
             )}

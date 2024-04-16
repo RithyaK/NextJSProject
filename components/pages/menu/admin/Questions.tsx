@@ -4,12 +4,16 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { FaArrowUp } from "react-icons/fa";
 import { FaArrowDown } from "react-icons/fa";
+import { Chapter, Theme } from "@/pages/menu/[username]";
 const Questions = ({
   questions,
   setQuestions,
   quizChose,
   setQuizChose,
   listQuizzs,
+  setListQuizzs,
+  themeChose,
+  setThemeChose,
   // listQuizzsData,
 }) => {
   // State
@@ -76,6 +80,27 @@ const Questions = ({
     setNewQuestion(EMPTY_QUESTION);
   }
 
+  function handleDeleteQuizz() {
+    const ChaptersUpdated = themeChose.chapters.filter(
+      (quizz: Chapter) => quizz.name !== quizChose.name
+    );
+    const listQuizzsUpdated = listQuizzs.map((theme: Theme) =>
+      theme === themeChose
+        ? {
+            ...theme,
+            chapters: ChaptersUpdated,
+          }
+        : theme
+    );
+    const themeChoseUpdated = listQuizzsUpdated.find(
+      (theme: Theme) => theme.id === themeChose.id
+    );
+    console.log("themeChoseUpdated : ", themeChoseUpdated);
+    setListQuizzs(listQuizzsUpdated);
+    setThemeChose(themeChoseUpdated);
+    setQuizChose(undefined);
+    syncQuizz(listQuizzsUpdated);
+  }
   // render
   return (
     <QuestionsStyled>
@@ -163,7 +188,7 @@ const Questions = ({
             </div>
             <div className="container-bottomquestion">
               <button
-                className="delete"
+                className="deletebutton"
                 onClick={() => handleDeleteQuestion(index)}
               >
                 Delete this question
@@ -189,6 +214,11 @@ const Questions = ({
           </li>
         ))}
       </ul>
+      <div className="containerbuttondeletequizz">
+        <button className="deletebutton" onClick={handleDeleteQuizz}>
+          Supprimer le quizz {quizChose?.name}
+        </button>
+      </div>
     </QuestionsStyled>
   );
 };
@@ -225,11 +255,13 @@ const QuestionsStyled = styled.div`
     display: flex;
     justify-content: space-between;
   }
-  .delete {
+  .deletebutton {
     background-color: red;
     border: 1px solid black;
     color: black;
     padding: 5px;
-    margin-right: 100px;
+  }
+  .containerbuttondeletequizz {
+    text-align: center;
   }
 `;
