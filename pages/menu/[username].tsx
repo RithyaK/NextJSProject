@@ -11,7 +11,7 @@ import { Timestamp } from "@firebase/firestore-types";
 import Sidebar from "@/components/Sidebar";
 import useHistory, { UserPoints } from "@/hooks/useHistory";
 export type Theme = {
-  id: number;
+  id: string;
   name: string;
   chapters: Chapter[];
 };
@@ -29,6 +29,7 @@ export type Question = {
   question: string;
   choices: string[];
   answer: string;
+  id: string;
 };
 
 export type UserData = {

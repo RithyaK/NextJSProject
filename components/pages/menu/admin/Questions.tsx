@@ -1,17 +1,21 @@
-import { EMPTY_QUESTION, Question } from "@/enums/quizz";
+import { EMPTY_QUESTION, Question } from "@/enums/quizzs";
 import { syncQuizz } from "@/firestore/Data";
 import React, { useState } from "react";
 import styled from "styled-components";
-
+import { FaArrowUp } from "react-icons/fa";
+import { FaArrowDown } from "react-icons/fa";
 const Questions = ({
   questions,
   setQuestions,
   quizChose,
   setQuizChose,
-  listQuizz,
+  listQuizzs,
+  // listQuizzsData,
 }) => {
   // State
   const [newQuestion, setNewQuestion] = useState(EMPTY_QUESTION);
+  const [isMenuNewQuestionVisible, setIsMenuNewQuestionVisible] =
+    useState(false);
   // event
   function handleChangeQuizz(
     e: React.ChangeEvent<HTMLInputElement>,
@@ -29,14 +33,12 @@ const Questions = ({
     if (e.target.id === "answer") {
       questionBeingModified.answer = e.target.value;
     }
-    console.log("listQuizz after modifying a question: ", listQuizz);
     const quizChoseUpdated = {
       ...quizChose,
       questions: questions,
     };
-
     setQuizChose(quizChoseUpdated);
-    syncQuizz(listQuizz);
+    syncQuizz(listQuizzs);
   }
   function handleChangeNewQuestion(
     e: React.ChangeEvent<HTMLInputElement>,
@@ -58,12 +60,11 @@ const Questions = ({
 
   function handleDeleteQuestion(indexOfTheQuestion: number) {
     const questionBeingModified = quizChose?.questions[indexOfTheQuestion];
-    console.log(questionBeingModified);
     quizChose.questions = quizChose.questions.filter(
       (question: Question) => question !== questionBeingModified
     );
     setQuestions(quizChose.questions);
-    syncQuizz(listQuizz);
+    syncQuizz(listQuizzs);
   }
 
   function handleSubmitNewQuestion(e: React.FormEvent<HTMLFormElement>) {
@@ -71,13 +72,68 @@ const Questions = ({
 
     quizChose.questions = [...quizChose.questions, newQuestion];
     setQuestions(quizChose.questions);
-    syncQuizz(listQuizz);
+    syncQuizz(listQuizzs);
+    setNewQuestion(EMPTY_QUESTION);
   }
 
   // render
   return (
     <QuestionsStyled>
       <h2> QUIZZ : {quizChose?.name} </h2>
+      <div className="container-newquestion">
+        <h5
+          className="titledropdown"
+          onClick={() => setIsMenuNewQuestionVisible(!isMenuNewQuestionVisible)}
+        >
+          Ajouter une nouvelle question{" "}
+          {isMenuNewQuestionVisible ? <FaArrowDown /> : <FaArrowUp />}
+        </h5>
+        {isMenuNewQuestionVisible && (
+          <div>
+            <form onSubmit={(e) => handleSubmitNewQuestion(e)}>
+              <div className="container-inputquestion">
+                <input
+                  id="question-asked"
+                  placeholder="Question"
+                  value={newQuestion.question}
+                  onChange={(e) => handleChangeNewQuestion(e)}
+                ></input>
+              </div>
+              <div className="choices">
+                {newQuestion.choices.map((choice, indexChoice) => {
+                  const choiceIndex = "choice" + indexChoice;
+                  const placeholder = `Réponse ${indexChoice + 1}`;
+                  return (
+                    <input
+                      onChange={(e) => handleChangeNewQuestion(e, indexChoice)}
+                      placeholder={placeholder}
+                      className="choice"
+                      type="text"
+                      key={choiceIndex}
+                      id={choiceIndex}
+                      value={choice}
+                    />
+                  );
+                })}
+              </div>
+              <div className="container-bottomquestion">
+                <div>
+                  <label htmlFor="answer">Bonne réponse</label>
+                  <select
+                    id="answer"
+                    onChange={(e) => handleChangeNewQuestion(e)}
+                  >
+                    {newQuestion.choices.map((choice) => {
+                      return <option value={choice}>{choice}</option>;
+                    })}
+                  </select>
+                </div>
+                <button>Click to add this question</button>
+              </div>
+            </form>
+          </div>
+        )}
+      </div>
 
       <ul className="quizz">
         {questions.map((question, index) => (
@@ -118,10 +174,11 @@ const Questions = ({
                   id="answer"
                   onChange={(e) => handleChangeQuizz(e, index)}
                 >
-                  {question.choices.map((choice) => (
+                  {question.choices.map((choice: string, index: number) => (
                     <option
                       value={choice}
                       selected={question.answer === choice}
+                      key={index}
                     >
                       {choice}
                     </option>
@@ -132,47 +189,6 @@ const Questions = ({
           </li>
         ))}
       </ul>
-      {quizChose && (
-        <div className="container-newquestion">
-          <h3>Ajouter une question</h3>
-          <form onSubmit={(e) => handleSubmitNewQuestion(e)}>
-            <div className="container-inputquestion">
-              <input
-                id="question-asked"
-                placeholder="Question"
-                value={newQuestion.question}
-                onChange={(e) => handleChangeNewQuestion(e)}
-              ></input>
-            </div>
-            <div className="choices">
-              {newQuestion.choices.map((choice, indexChoice) => {
-                const choiceIndex = "choice" + indexChoice;
-                const placeholder = `Réponse ${indexChoice + 1}`;
-                return (
-                  <input
-                    onChange={(e) => handleChangeNewQuestion(e, indexChoice)}
-                    placeholder={placeholder}
-                    className="choice"
-                    type="text"
-                    key={choiceIndex}
-                    id={choiceIndex}
-                    value={choice}
-                  />
-                );
-              })}
-            </div>
-            <div className="container-selectanswer">
-              <label htmlFor="answer">Bonne réponse</label>
-              <select id="answer" onChange={(e) => handleChangeNewQuestion(e)}>
-                {newQuestion.choices.map((choice) => {
-                  return <option value={choice}>{choice}</option>;
-                })}
-              </select>
-            </div>
-            <button>Click to add this question</button>
-          </form>
-        </div>
-      )}
     </QuestionsStyled>
   );
 };
@@ -184,14 +200,7 @@ const QuestionsStyled = styled.div`
     padding: 20px;
   }
   .container-newquestion {
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    padding: 10px 0px;
-    margin: 30px 0;
-    h3 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
+    margin-bottom: 30px;
   }
   .questioncontainer {
     margin-bottom: 30px;
@@ -214,6 +223,7 @@ const QuestionsStyled = styled.div`
   }
   .container-bottomquestion {
     display: flex;
+    justify-content: space-between;
   }
   .delete {
     background-color: red;

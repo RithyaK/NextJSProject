@@ -8,13 +8,13 @@ import MainAdmin from "@/components/pages/menu/admin/MainAdmin";
 
 type AdminPageProps = {
   allTimeRanking: UserData[];
-  listQuizz: Theme[];
+  listQuizzsData: Theme[];
 };
-const AdminPage = ({ allTimeRanking, listQuizz }: AdminPageProps) => {
+const AdminPage = ({ allTimeRanking, listQuizzsData }: AdminPageProps) => {
   return (
     <AdminPageStyled>
       <Sidebar allTimeRanking={allTimeRanking} />
-      <MainAdmin listQuizz={listQuizz} />
+      <MainAdmin listQuizzsData={listQuizzsData} />
     </AdminPageStyled>
   );
 };
@@ -46,7 +46,7 @@ export const getServerSideProps = async () => {
     return {
       props: {
         allTimeRanking: allTimeRankingUpdated,
-        listQuizz: quizz,
+        listQuizzsData: quizz,
       },
     };
   } else {
