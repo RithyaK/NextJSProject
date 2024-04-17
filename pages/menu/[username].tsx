@@ -10,6 +10,7 @@ import styled from "styled-components";
 import { Timestamp } from "@firebase/firestore-types";
 import Sidebar from "@/components/Sidebar";
 import useHistory, { UserPoints } from "@/hooks/useHistory";
+import { userDataAccount } from "../quizz/[quizzName]";
 export type Theme = {
   id: string;
   name: string;
@@ -39,21 +40,15 @@ export type UserData = {
 };
 type MenuPageProps = {
   allTimeRanking: UserData[];
-  month: UserData[];
-  week: UserData[];
   listQuizz: Theme[];
-  usersPoints: UserPoints[];
+  usersData: userDataAccount[];
 };
 
-const MenuPage = ({
-  allTimeRanking,
-  listQuizz,
-  usersPoints,
-}: MenuPageProps) => {
+const MenuPage = ({ allTimeRanking, listQuizz, usersData }: MenuPageProps) => {
   //
   return (
     <MenuPageStyled>
-      <Sidebar allTimeRanking={allTimeRanking} />
+      <Sidebar allTimeRanking={allTimeRanking} usersData={usersData} />
       <Main listQuizz={listQuizz} />
     </MenuPageStyled>
   );
@@ -64,11 +59,21 @@ export default MenuPage;
 export const getServerSideProps = async () => {
   const rankingsDocRef = doc(db, "infos", "rankings");
   const quizzDocRef = doc(db, "infos", "quizz");
+
   const docSnapShotRankings = await getDoc(rankingsDocRef);
   const docSnapShotQuizzs = await getDoc(quizzDocRef);
-  if (docSnapShotRankings.exists() && docSnapShotQuizzs.exists()) {
+
+  const usersDocRef = doc(db, "infos", "users");
+  const docSnapShotUsers = await getDoc(usersDocRef);
+
+  if (
+    docSnapShotRankings.exists() &&
+    docSnapShotQuizzs.exists() &&
+    docSnapShotUsers.exists()
+  ) {
     const { allTime: allTimeRanking } = docSnapShotRankings.data();
     const { quizz } = docSnapShotQuizzs.data();
+    const { users } = docSnapShotUsers.data();
     // const createdAt = allTimeRanking[0].createdAt.toDate() as Timestamp;
     // console.log(createdAt);
     const allTimeRankingUpdated = allTimeRanking.map((object) => {
@@ -81,6 +86,7 @@ export const getServerSideProps = async () => {
       props: {
         allTimeRanking: allTimeRankingUpdated,
         listQuizz: quizz,
+        usersData: users,
       },
     };
   } else {

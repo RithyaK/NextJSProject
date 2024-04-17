@@ -7,61 +7,36 @@ import { add } from "date-fns";
 import { UserData } from "@/pages/menu/[username]";
 import { theme } from "@/theme";
 import Ranking from "./reusable-ui/Ranking";
+import { userDataAccount } from "@/pages/quizz/[quizzName]";
 type SidebarProps = {
-  allTimeRanking: UserData[];
+  usersData: userDataAccount[];
 };
-// const allTimeDATA = [
-//   {
-//     score: 100,
-//     username: "Totover",
-//     createdAt: new Date(2024, 2, 15, 11, 45, 5, 123),
-//   },
-//   {
-//     username: "JusToad",
-//     score: 110,
-//     createdAt: new Date(2020, 2, 5, 11, 45, 5, 123),
-//   },
-//   {
-//     score: 79,
-//     username: "Ortenz",
-//     createdAt: new Date(2018, 1, 25, 11, 45, 5, 123),
-//   },
-//   {
-//     username: "Tachi-Paypay",
-//     score: 80,
-//     createdAt: new Date(2024, 2, 12, 11, 45, 5, 123),
-//   },
-//   {
-//     username: "ARthur78",
-//     score: 71,
-//     createdAt: new Date(2024, 2, 15, 11, 45, 5, 123),
-//   },
-//   {
-//     score: 70,
-//     username: "TheLeamsiii",
-//     createdAt: new Date(2024, 2, 25, 11, 45, 5, 123),
-//   },
-//   {
-//     username: "Solivann_",
-//     score: 115,
-//     createdAt: new Date(2022, 2, 26, 11, 45, 5, 123),
-//   },
-// ];
 
-const Sidebar = ({ allTimeRanking }: SidebarProps) => {
-  const dateOf30DaysAgo = Date.now() - 2592000000;
-  const dateOf7DaysAgo = Date.now() - 864000000;
-  const monthRanking = allTimeRanking.filter(
-    (userRanked) => Date.parse(userRanked.createdAt) > dateOf30DaysAgo
-  );
-  const weekRanking = allTimeRanking.filter(
-    (userRanked) => Date.parse(userRanked.createdAt) > dateOf7DaysAgo
-  );
+const Sidebar = ({ usersData }: SidebarProps) => {
+  // const dateOf30DaysAgo = Date.now() - 2592000000;
+  // const dateOf7DaysAgo = Date.now() - 864000000;
+  const topUsersActive = usersData
+    .toSorted(
+      (userA, userB) => userB.totalCorrectAnswered - userA.totalCorrectAnswered
+    )
+    .splice(0, 7);
+
+  const topUsersAverage = usersData
+    .toSorted((userA, userB) => userB.average - userA.average)
+    .splice(0, 7);
   return (
     <SidebarStyled>
-      <Ranking title="All Time Ranking" ranking={allTimeRanking} />
-      <Ranking title="Ranking of the month" ranking={monthRanking} />
-      <Ranking title="Ranking of the week" ranking={weekRanking} />
+      <Ranking title="TOP ACTIVE USER" ranking={topUsersActive} />
+      <Ranking title="TOP AVERAGE ANSWER" ranking={topUsersAverage} />
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. At vero
+        nesciunt, repudiandae inventore ullam non obcaecati esse pariatur,
+        reprehenderit harum corrupti fugiat praesentium voluptate hic eos enim
+        possimus quibusdam a ipsa consectetur ad. Dolorem animi ad, corporis
+        quis hic recusandae molestiae saepe alias voluptatibus pariatur quas
+        consequatur excepturi aliquam natus repellendus incidunt quae, et aut
+        qui soluta eligendi! Corrupti, inventore.
+      </p>
     </SidebarStyled>
   );
 };
