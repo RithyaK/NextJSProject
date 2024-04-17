@@ -50,12 +50,6 @@ const MenuPage = ({
   listQuizz,
   usersPoints,
 }: MenuPageProps) => {
-  const { setPoints } = useHistory();
-
-  //
-  useEffect(() => {
-    setPoints(usersPoints);
-  }, []);
   //
   return (
     <MenuPageStyled>
@@ -68,18 +62,11 @@ const MenuPage = ({
 export default MenuPage;
 
 export const getServerSideProps = async () => {
-  const UsersPointsDocRef = doc(db, "infos", "points");
   const rankingsDocRef = doc(db, "infos", "rankings");
   const quizzDocRef = doc(db, "infos", "quizz");
-  const docSnapShotUsersPoints = await getDoc(UsersPointsDocRef);
   const docSnapShotRankings = await getDoc(rankingsDocRef);
   const docSnapShotQuizzs = await getDoc(quizzDocRef);
-  if (
-    docSnapShotUsersPoints.exists() &&
-    docSnapShotRankings.exists() &&
-    docSnapShotQuizzs.exists()
-  ) {
-    const { usersPoints } = docSnapShotUsersPoints.data();
+  if (docSnapShotRankings.exists() && docSnapShotQuizzs.exists()) {
     const { allTime: allTimeRanking } = docSnapShotRankings.data();
     const { quizz } = docSnapShotQuizzs.data();
     // const createdAt = allTimeRanking[0].createdAt.toDate() as Timestamp;
@@ -94,7 +81,6 @@ export const getServerSideProps = async () => {
       props: {
         allTimeRanking: allTimeRankingUpdated,
         listQuizz: quizz,
-        usersPoints,
       },
     };
   } else {

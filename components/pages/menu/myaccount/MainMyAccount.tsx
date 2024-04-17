@@ -8,37 +8,25 @@ import { HistoryQuizzAnswered } from "./../../../../pages/myaccount/index";
 import { FaArrowUp } from "react-icons/fa";
 import { theme } from "@/theme";
 import { syncEmailDatabase } from "@/firestore/Data";
+import { userDataAccount } from "@/pages/quizz/[quizzName]";
 type MainMyAccountProps = {
-  historyData: HistoryQuizzAnswered[];
-  average: number;
-  totalCorrectAnswered: number;
-  totalQuestionAnswered: number;
-  email: string;
-  accountCreatedAt: string;
+  userDataAccount: userDataAccount;
 };
-const MainMyAccount = ({
-  historyData,
-  average,
-  totalCorrectAnswered,
-  totalQuestionAnswered,
-  email,
-  accountCreatedAt,
-}: MainMyAccountProps) => {
+const MainMyAccount = ({ userDataAccount }: MainMyAccountProps) => {
   // const { totalCorrectAnswer , history} = useHistory();
   // console.log(totalCorrectAnswer);
   // PQ HISTORY UNDEFINED (car probleme de render )
 
   const { username } = useUsernameContext();
   const inputEmailRef = useRef<HTMLInputElement>(null);
-  const [mail, setMail] = useState(email);
   const [isVisibleHistory, setIsVisibleHistory] = useState(false);
   const [isVisibleStats, setIsVisibleStats] = useState(false);
   const [isVisibleAccountInfo, setIsVisibleAccountInfo] = useState(false);
   const [isModifyingEmail, setIsModifyingEmail] = useState(false);
-  const [mailUpdated, setMailUpdated] = useState(email);
+  const [mail, setMail] = useState(userDataAccount.email);
   function handleChangeEmail() {
-    setMail(mailUpdated);
-    syncEmailDatabase(mailUpdated, username);
+    setMail(mail);
+    syncEmailDatabase(mail, username);
   }
   function handleClickValidateButton() {
     setIsModifyingEmail(false);
@@ -61,7 +49,7 @@ const MainMyAccount = ({
         </div>
         {isVisibleHistory && (
           <ul>
-            {historyData?.map((quizz) => (
+            {userDataAccount.history?.map((quizz) => (
               <li key={quizz.id}>
                 <span>{quizz.createdAt}</span>
                 <h3>{quizz.name.toUpperCase()}</h3>
@@ -87,15 +75,15 @@ const MainMyAccount = ({
           <ul>
             <li>
               <h4>Average Good Answer :</h4>
-              <span>{average}%</span>
+              <span>{userDataAccount.average}%</span>
             </li>
             <li>
               <h4>Question(s) répondu :</h4>
-              <span>{totalQuestionAnswered}</span>
+              <span>{userDataAccount.totalQuestionAnswered}</span>
             </li>
             <li>
               <h4>Bonne réponse(s) :</h4>
-              <span>{totalCorrectAnswered}</span>
+              <span>{userDataAccount.totalCorrectAnswered}</span>
             </li>
           </ul>
         )}
@@ -114,7 +102,7 @@ const MainMyAccount = ({
           <ul>
             <li>
               <h4>Date de création du compte :</h4>
-              <span>{accountCreatedAt}</span>
+              <span>{userDataAccount.accountCreatedAt}</span>
             </li>
             <li>
               <h4>Mon e-mail :</h4>
@@ -134,8 +122,8 @@ const MainMyAccount = ({
                 <div>
                   <input
                     type="email"
-                    onChange={(e) => setMailUpdated(e.target.value)}
-                    value={mailUpdated}
+                    onChange={(e) => setMail(e.target.value)}
+                    value={mail}
                     ref={inputEmailRef}
                   />
                   <button onClick={handleClickValidateButton}>Valider</button>

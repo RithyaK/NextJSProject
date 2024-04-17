@@ -1,23 +1,23 @@
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "./firebase-config";
-import { Theme } from "@/pages/menu/[username]";
+import { Theme, UserData } from "@/pages/menu/[username]";
+import { userDataAccount } from "@/pages/quizz/[quizzName]";
 
-export const syncUserScore = async (
-  history,
-  userId: string,
-  average: number,
-  totalCorrectAnswered: number,
-  totalQuestionAnswered: number
-) => {
-  const docRef = doc(db, "users", userId);
+export const syncUserScore = async (userNewData: userDataAccount) => {
+  console.log("userNewData : ", userNewData);
+  const docRef = doc(db, "infos", "users");
+  const docSnapShot = await getDoc(docRef);
 
-  await updateDoc(docRef, {
-    username: userId,
-    history: history,
-    average: average,
-    totalQuestionAnswered,
-    totalCorrectAnswered,
-  });
+  if (docSnapShot.exists()) {
+    const { users } = docSnapShot.data();
+    const usersUpdated = users.map((user) =>
+      user.username === userNewData.username ? userNewData : user
+    );
+    console.log("usersUpdated : ", usersUpdated);
+    await updateDoc(docRef, {
+      users: usersUpdated,
+    });
+  }
 };
 
 export const syncEmailDatabase = async (newEmail: string, userId: string) => {

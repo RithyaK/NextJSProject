@@ -7,15 +7,11 @@ import styled from "styled-components";
 import { useUsernameContext } from "@/components/context/usernameContext";
 import Sidebar from "@/components/Sidebar";
 import { theme } from "@/theme";
+import { userDataAccount } from "../quizz/[quizzName]";
 
 type MyAccountPageProps = {
   allTimeRanking: UserData[];
-  historyData: HistoryQuizzAnswered[];
-  average: number;
-  totalCorrectAnswered: number;
-  totalQuestionAnswered: number;
-  email: string;
-  accountCreatedAt: string;
+  userDataAccount: userDataAccount;
 };
 export type HistoryQuizzAnswered = {
   createdAt: string;
@@ -27,24 +23,13 @@ export type HistoryQuizzAnswered = {
 };
 const MyAccountPage = ({
   allTimeRanking,
-  historyData,
-  average,
-  totalCorrectAnswered,
-  totalQuestionAnswered,
-  email,
-  accountCreatedAt,
+  userDataAccount,
 }: MyAccountPageProps) => {
+  console.log(userDataAccount);
   return (
     <MyAccountPageStyled>
       <Sidebar allTimeRanking={allTimeRanking} />
-      <MainMyAccount
-        historyData={historyData}
-        average={average}
-        totalCorrectAnswered={totalCorrectAnswered}
-        totalQuestionAnswered={totalQuestionAnswered}
-        email={email}
-        accountCreatedAt={accountCreatedAt}
-      />
+      <MainMyAccount userDataAccount={userDataAccount} />
     </MyAccountPageStyled>
   );
 };
@@ -53,25 +38,18 @@ export default MyAccountPage;
 
 export const getServerSideProps = async ({ req }) => {
   const rankingsDocRef = doc(db, "infos", "rankings");
-  const userDocRef = doc(db, "users", req.cookies.username);
   const docSnapShotRanking = await getDoc(rankingsDocRef);
-  const docSnapShotUser = await getDoc(userDocRef);
 
-  if (docSnapShotRanking.exists() && docSnapShotUser.exists()) {
+  const usersDocRef = doc(db, "infos", "users");
+  const docSnapShotUsers = await getDoc(usersDocRef);
+
+  if (docSnapShotRanking.exists() && docSnapShotUsers.exists()) {
     const { allTime: allTimeRanking } = docSnapShotRanking.data();
-    const {
-      history: historyData,
-      average,
-      totalCorrectAnswered,
-      totalQuestionAnswered,
-      email,
-      accountCreatedAt,
-    } = docSnapShotUser.data();
+    const { users } = docSnapShotUsers.data();
 
-    const accountCreatedAtUpdated = accountCreatedAt
-      .toDate()
-      .toISOString()
-      .split("T")[0];
+    const userDataFound = users.find(
+      (user) => user.username === req.cookies.username
+    );
     const allTimeRankingUpdated = allTimeRanking.map((object) => {
       return {
         ...object,
@@ -82,12 +60,7 @@ export const getServerSideProps = async ({ req }) => {
     return {
       props: {
         allTimeRanking: allTimeRankingUpdated,
-        historyData,
-        average,
-        totalCorrectAnswered,
-        totalQuestionAnswered,
-        email,
-        accountCreatedAt: accountCreatedAtUpdated,
+        userDataAccount: userDataFound,
       },
     };
   } else {

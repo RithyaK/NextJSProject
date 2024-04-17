@@ -1,8 +1,8 @@
 import { useUsernameContext } from "@/components/context/usernameContext";
 import useHistory from "@/hooks/useHistory";
-import { Question } from "@/pages/menu/[username]";
+import { Question, UserData } from "@/pages/menu/[username]";
 import { HistoryQuizzAnswered } from "@/pages/myaccount";
-import { Scores } from "@/pages/quizz/[quizzName]";
+import { Scores, userDataAccount } from "@/pages/quizz/[quizzName]";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -16,10 +16,10 @@ type GameQuizzProps = {
     image: string;
     questions: Question[];
   };
-  historyData: HistoryQuizzAnswered[];
+  userData: userDataAccount;
   // scores: Scores[];
 };
-const GameQuizz = ({ quizzChosen, historyData }: GameQuizzProps) => {
+const GameQuizz = ({ quizzChosen, userData }: GameQuizzProps) => {
   // console.log(scores);
   const { username } = useUsernameContext();
   const { handleHistoryQuizz, handlePointsData } = useHistory();
@@ -48,7 +48,7 @@ const GameQuizz = ({ quizzChosen, historyData }: GameQuizzProps) => {
         createdAt: new Date().toLocaleDateString("fr"),
         id: crypto.randomUUID(),
       };
-      handleHistoryQuizz(newQuizzAnsweredToAdd, username, historyData);
+      handleHistoryQuizz(newQuizzAnsweredToAdd, username, userData);
       handlePointsData(updatedScore, username);
       setIsQuizzStarted(false);
       setIsQuizzFinished(true);

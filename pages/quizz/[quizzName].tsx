@@ -19,9 +19,19 @@ import { syncQuizz } from "@/firestore/Data";
 //   username: string;
 //   score: number;
 // };
+
+export type userDataAccount = {
+  accountCreatedAt: any;
+  average: number;
+  email: string;
+  history: HistoryQuizzAnswered[];
+  totalCorrectAnswered: number;
+  totalQuestionAnswered: number;
+  username: string;
+};
 type QuizzMenuProps = {
   listQuizz: Theme[];
-  historyData: HistoryQuizzAnswered[];
+  userData: userDataAccount;
   // scores: Scores[];
 };
 // const DATA = [
@@ -1342,7 +1352,7 @@ type QuizzMenuProps = {
 //   },
 // ];
 
-const QuizzMenu = ({ listQuizz, historyData }: QuizzMenuProps) => {
+const QuizzMenu = ({ listQuizz, userData }: QuizzMenuProps) => {
   const router = useRouter();
   const { quizzName } = router.query;
   const quizzChosen = listQuizz
@@ -1379,10 +1389,10 @@ const QuizzMenu = ({ listQuizz, historyData }: QuizzMenuProps) => {
 
   return (
     <QuizzMenuStyled>
-      <button onClick={() => syncQuizz(DATA)}>Test</button>
+      <button onClick={() => console.log(userData)}>Test</button>
       <Bar list={TopPopularTheme} title="LES THÈMES PRÉFÉRÉS" />
       <Bar list={chapters} title="Quizz que vous pourriez aimer" />
-      <GameQuizz quizzChosen={quizzChosen} historyData={historyData} />
+      <GameQuizz quizzChosen={quizzChosen} userData={userData} />
       <QuizzRecommanded themeData={themeData} quizzChosen={quizzChosen} />
     </QuizzMenuStyled>
   );
@@ -1451,19 +1461,23 @@ const QuizzMenuStyled = styled.div`
 `;
 
 export const getServerSideProps = async ({ req }) => {
-  const userDocRef = doc(db, "users", req.cookies.username);
   const quizzDocRef = doc(db, "infos", "quizz");
-  const docSnapShotUser = await getDoc(userDocRef);
   const docSnapShotQuizzs = await getDoc(quizzDocRef);
 
-  if (docSnapShotQuizzs.exists() && docSnapShotUser.exists()) {
-    const { quizz } = docSnapShotQuizzs.data();
-    const { history: historyData } = docSnapShotUser.data();
+  const usersDocRef = doc(db, "infos", "users");
+  const docSnapShotUsers = await getDoc(usersDocRef);
 
+  if (docSnapShotQuizzs.exists() && docSnapShotUsers.exists()) {
+    const { quizz } = docSnapShotQuizzs.data();
+    const { users } = docSnapShotUsers.data();
+
+    const userDataFound = users.find(
+      (user) => user.username === req.cookies.username
+    );
     return {
       props: {
         listQuizz: quizz,
-        historyData,
+        userData: userDataFound,
       },
     };
   } else {
