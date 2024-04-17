@@ -5,15 +5,16 @@ import React from "react";
 import styled from "styled-components";
 import { Theme, UserData } from "../menu/[username]";
 import MainAdmin from "@/components/pages/menu/admin/MainAdmin";
+import { userDataAccount } from "../myaccount";
 
 type AdminPageProps = {
-  allTimeRanking: UserData[];
+  usersData: userDataAccount[];
   listQuizzsData: Theme[];
 };
-const AdminPage = ({ allTimeRanking, listQuizzsData }: AdminPageProps) => {
+const AdminPage = ({ usersData, listQuizzsData }: AdminPageProps) => {
   return (
     <AdminPageStyled>
-      <Sidebar allTimeRanking={allTimeRanking} />
+      <Sidebar usersData={usersData} />
       <MainAdmin listQuizzsData={listQuizzsData} />
     </AdminPageStyled>
   );
@@ -28,25 +29,19 @@ const AdminPageStyled = styled.div`
 `;
 
 export const getServerSideProps = async () => {
-  const rankingsDocRef = doc(db, "infos", "rankings");
   const quizzDocRef = doc(db, "infos", "quizz");
-  const docSnapShotRankings = await getDoc(rankingsDocRef);
   const docSnapShotQuizz = await getDoc(quizzDocRef);
-  if (docSnapShotRankings.exists() && docSnapShotQuizz.exists()) {
-    const { allTime: allTimeRanking } = docSnapShotRankings.data();
+
+  const usersDocRef = doc(db, "infos", "users");
+  const docSnapShotUsers = await getDoc(usersDocRef);
+
+  if (docSnapShotQuizz.exists() && docSnapShotUsers.exists()) {
     const { quizz } = docSnapShotQuizz.data();
-    // const createdAt = allTimeRanking[0].createdAt.toDate() as Timestamp;
-    // console.log(createdAt);
-    const allTimeRankingUpdated = allTimeRanking.map((object) => {
-      return {
-        ...object,
-        createdAt: object.createdAt.toDate().toISOString(),
-      };
-    });
+    const { users } = docSnapShotUsers.data();
     return {
       props: {
-        allTimeRanking: allTimeRankingUpdated,
         listQuizzsData: quizz,
+        usersData: users,
       },
     };
   } else {

@@ -11,7 +11,7 @@ import Image from "next/image";
 import Bar from "@/components/reusable-ui/Bar";
 import useHistory from "@/hooks/useHistory";
 import QuizzRecommanded from "@/components/pages/menu/quizz/QuizzRecommanded";
-import { HistoryQuizzAnswered } from "../myaccount";
+import { HistoryQuizzAnswered, userDataAccount } from "../myaccount";
 import GameQuizz from "@/components/pages/menu/quizz/GameQuizz";
 import { syncQuizz } from "@/firestore/Data";
 
@@ -20,15 +20,6 @@ import { syncQuizz } from "@/firestore/Data";
 //   score: number;
 // };
 
-export type userDataAccount = {
-  accountCreatedAt: any;
-  average: number;
-  email: string;
-  history: HistoryQuizzAnswered[];
-  totalCorrectAnswered: number;
-  totalQuestionAnswered: number;
-  username: string;
-};
 type QuizzMenuProps = {
   listQuizz: Theme[];
   userData: userDataAccount;

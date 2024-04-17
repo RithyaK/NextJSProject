@@ -4,10 +4,9 @@ import { db } from "@/firestore/firebase-config";
 import { doc, getDoc } from "firebase/firestore";
 import { dateOf30DaysAgo, dateOf7DaysAgo } from "@/utils/date";
 import { add } from "date-fns";
-import { UserData } from "@/pages/menu/[username]";
 import { theme } from "@/theme";
 import Ranking from "./reusable-ui/Ranking";
-import { userDataAccount } from "@/pages/quizz/[quizzName]";
+import { userDataAccount } from "@/pages/myaccount";
 type SidebarProps = {
   usersData: userDataAccount[];
 };
