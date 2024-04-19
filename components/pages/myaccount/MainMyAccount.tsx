@@ -4,11 +4,13 @@ import Link from "next/link";
 import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import { FaArrowDown } from "react-icons/fa";
-import { HistoryQuizzAnswered } from "./../../../../pages/myaccount/index";
+import {
+  HistoryQuizzAnswered,
+  userDataAccount,
+} from "../../../pages/myaccount/index";
 import { FaArrowUp } from "react-icons/fa";
 import { theme } from "@/theme";
 import { syncEmailDatabase } from "@/firestore/Data";
-import { userDataAccount } from "@/pages/quizz/[quizzName]";
 type MainMyAccountProps = {
   userDataAccount: userDataAccount;
 };

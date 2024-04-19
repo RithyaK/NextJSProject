@@ -1,5 +1,5 @@
 import { UsernameContextProvider } from "@/components/context/usernameContext";
-import Layout from "@/components/reusable-ui/Layout";
+import Layout from "@/components/pages/reusable-ui/Layout";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 

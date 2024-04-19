@@ -4,9 +4,9 @@ import Select from "./Select";
 import styled from "styled-components";
 import Image from "next/image";
 import { theme } from "@/theme";
-import OptionsSearchCard from "@/components/reusable-ui/OptionsSearchCard";
 import { isBefore } from "date-fns";
 import Pagination from "./Pagination";
+import OptionsSearchCard from "../reusable-ui/OptionsSearchCard";
 type OptionsSearchProps = { listQuizz: Theme[] };
 
 const IMAGE_QUIZZ = "./../../../../../public/quizz-img.jpg";

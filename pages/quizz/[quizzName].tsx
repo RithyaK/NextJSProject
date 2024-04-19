@@ -8,11 +8,11 @@ import { Chapter, Theme } from "../menu/[username]";
 import Link from "next/link";
 import { useUsernameContext } from "@/components/context/usernameContext";
 import Image from "next/image";
-import Bar from "@/components/reusable-ui/Bar";
+import Bar from "@/components/pages/reusable-ui/Bar";
 import useHistory from "@/hooks/useHistory";
-import QuizzRecommanded from "@/components/pages/menu/quizz/QuizzRecommanded";
+import QuizzRecommanded from "@/components/pages/quizz/QuizzRecommanded";
 import { HistoryQuizzAnswered, userDataAccount } from "../myaccount";
-import GameQuizz from "@/components/pages/menu/quizz/GameQuizz";
+import GameQuizz from "@/components/pages/quizz/GameQuizz";
 import { syncQuizz } from "@/firestore/Data";
 
 // export type Scores = {

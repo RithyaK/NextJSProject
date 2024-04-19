@@ -1,11 +1,11 @@
 import { db } from "@/firestore/firebase-config";
 import { doc, getDoc } from "firebase/firestore";
 import React from "react";
-import MainMyAccount from "@/components/pages/menu/myaccount/MainMyAccount";
 import styled from "styled-components";
 import { useUsernameContext } from "@/components/context/usernameContext";
-import Sidebar from "@/components/Sidebar";
 import { theme } from "@/theme";
+import Sidebar from "@/components/pages/reusable-ui/Sidebar";
+import MainMyAccount from "@/components/pages/myaccount/MainMyAccount";
 
 export type HistoryQuizzAnswered = {
   createdAt: string;

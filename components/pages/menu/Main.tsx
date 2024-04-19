@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Theme } from "@/pages/menu/[username]";
-import SearchBar from "./top-main/SearchBar";
-import Subjects from "./mid-main/Subjects";
-import OptionsSearch from "./mid-main/OptionsSearch";
 import { theme } from "@/theme";
-import Bar from "@/components/reusable-ui/Bar";
+import Subjects from "./Subjects";
+import OptionsSearch from "./OptionsSearch";
+import Bar from "../reusable-ui/Bar";
 type MainProps = { listQuizz: Theme[] };
 
 const Main = ({ listQuizz }: MainProps) => {

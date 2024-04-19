@@ -1,9 +1,8 @@
 import React from "react";
 import styles from "./../../styles/Ranking.module.css";
 import styled from "styled-components";
-import { UserData } from "@/pages/menu/[username]";
 import UserRank from "./UserRank";
-import { userDataAccount } from "@/pages/quizz/[quizzName]";
+import { userDataAccount } from "@/pages/myaccount";
 
 type RankingProps = {
   ranking: userDataAccount[];

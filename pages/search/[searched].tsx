@@ -1,11 +1,11 @@
 import React from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/firestore/firebase-config";
-import MainSearch from "@/components/pages/menu/Search/MainSearch";
 import styled from "styled-components";
 import { Theme } from "../menu/[username]";
-import Sidebar from "@/components/Sidebar";
 import { userDataAccount } from "../myaccount";
+import Sidebar from "@/components/pages/reusable-ui/Sidebar";
+import MainSearch from "@/components/pages/Search/MainSearch";
 
 type SearchPageProps = {
   usersData: userDataAccount[];

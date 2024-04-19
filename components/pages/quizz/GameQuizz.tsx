@@ -1,8 +1,7 @@
 import { useUsernameContext } from "@/components/context/usernameContext";
 import useHistory from "@/hooks/useHistory";
-import { Question, UserData } from "@/pages/menu/[username]";
-import { HistoryQuizzAnswered } from "@/pages/myaccount";
-import { Scores, userDataAccount } from "@/pages/quizz/[quizzName]";
+import { Question } from "@/pages/menu/[username]";
+import { HistoryQuizzAnswered, userDataAccount } from "@/pages/myaccount";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -17,7 +16,6 @@ type GameQuizzProps = {
     questions: Question[];
   };
   userData: userDataAccount;
-  // scores: Scores[];
 };
 const GameQuizz = ({ quizzChosen, userData }: GameQuizzProps) => {
   // console.log(scores);

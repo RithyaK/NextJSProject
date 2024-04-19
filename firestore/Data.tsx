@@ -1,7 +1,7 @@
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "./firebase-config";
-import { Theme, UserData } from "@/pages/menu/[username]";
-import { userDataAccount } from "@/pages/quizz/[quizzName]";
+import { Theme } from "@/pages/menu/[username]";
+import { userDataAccount } from "@/pages/myaccount";
 
 export const syncUserScore = async (userNewData: userDataAccount) => {
   console.log("userNewData : ", userNewData);

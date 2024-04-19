@@ -1,11 +1,11 @@
-import Sidebar from "@/components/Sidebar";
 import { db } from "@/firestore/firebase-config";
 import { doc, getDoc } from "firebase/firestore";
 import React from "react";
 import styled from "styled-components";
-import { Theme, UserData } from "../menu/[username]";
-import MainAdmin from "@/components/pages/menu/admin/MainAdmin";
+import { Theme } from "../menu/[username]";
+import MainAdmin from "@/components/pages/admin/MainAdmin";
 import { userDataAccount } from "../myaccount";
+import Sidebar from "@/components/pages/reusable-ui/Sidebar";
 
 type AdminPageProps = {
   usersData: userDataAccount[];

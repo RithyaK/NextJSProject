@@ -5,8 +5,8 @@ import { doc, getDoc } from "firebase/firestore";
 import { dateOf30DaysAgo, dateOf7DaysAgo } from "@/utils/date";
 import { add } from "date-fns";
 import { theme } from "@/theme";
-import Ranking from "./reusable-ui/Ranking";
 import { userDataAccount } from "@/pages/myaccount";
+import Ranking from "./Ranking";
 type SidebarProps = {
   usersData: userDataAccount[];
 };

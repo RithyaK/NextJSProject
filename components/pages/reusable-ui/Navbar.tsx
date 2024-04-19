@@ -3,13 +3,13 @@ import styled from "styled-components";
 import Link from "next/link";
 import { BsPersonCircle } from "react-icons/bs";
 import { theme } from "@/theme";
-import SearchBar from "./pages/menu/main/top-main/SearchBar";
-import { useUsernameContext } from "./context/usernameContext";
 import { AiOutlineProfile } from "react-icons/ai";
 import { MdOutlineAccountBox } from "react-icons/md";
 import { IoInformationCircleSharp } from "react-icons/io5";
 import { MdLanguage } from "react-icons/md";
 import { RiAdminFill } from "react-icons/ri";
+import SearchBar from "../menu/SearchBar";
+import { useUsernameContext } from "@/components/context/usernameContext";
 
 const Navbar = () => {
   const [menuProfil, setMenuProfil] = useState(false);
