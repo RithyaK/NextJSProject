@@ -1,13 +1,7 @@
 // import { getUserData } from "@/firebase/userData";
-import { useUsernameContext } from "@/components/context/usernameContext";
 import { db } from "@/firestore/firebase-config";
 import { doc, getDoc } from "firebase/firestore";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import React, { use, useContext, useEffect, useState } from "react";
 import styled from "styled-components";
-import { Timestamp } from "@firebase/firestore-types";
-import useHistory, { UserPoints } from "@/hooks/useHistory";
 import { userDataAccount } from "../myaccount";
 import Sidebar from "@/components/pages/reusable-ui/Sidebar";
 import Main from "@/components/pages/menu/Main";

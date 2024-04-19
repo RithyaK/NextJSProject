@@ -1,10 +1,5 @@
 import { syncUserScore } from "@/firestore/Data";
 import { useState } from "react";
-// type QuizzAnswered = {
-//   quiz: string;
-//   score: number;
-//   image: string;
-// };
 export type UserPoints = {
   username: string;
   points: number;
@@ -15,10 +10,9 @@ const useHistory = () => {
   const [totalCorrectAnswer, setTotalCorrectAnswer] = useState();
   const [totalQuestion, setTotalQuestion] = useState();
 
-  function handleHistoryQuizz(newQuizzAnswered, username, userData) {
-    console.log(userData);
+  function handleHistoryQuizz(newQuizzAnswered, userData) {
     // setHistory(historyUpdated);
-    // Pourquoi undefined ducoup je suis obligé d'utiliser dans "Mon compte" la database History aulieu de la State History
+    // Pourquoi quand je vais utiliser history => undefined ducoup je suis obligé d'utiliser dans "Mon compte" la database History aulieu de la state History que j'ai pourtant setHistory(historyUpdated)
     const historyUpdated = [newQuizzAnswered, ...userData.history];
     const totalCorrectAnswerUpdated = historyUpdated.reduce(
       (accumulator, quizz) => accumulator + quizz.score,
@@ -44,26 +38,11 @@ const useHistory = () => {
     syncUserScore(userDataUpdated);
   }
 
-  function handlePointsData(pointsToAdd: Number, username: string) {
-    // const newUserPointsToAdd = {
-    //   points: pointsToAdd,
-    //   username: username,
-    // };
-    // let pointsUpdated = [newUserPointsToAdd, ...points];
-    // console.log(pointsUpdated);
-    // setPoints(pointsUpdated);
-  }
-
   return {
     handleHistoryQuizz,
-    // history,
-
     setHistory,
-    handlePointsData,
     points,
     setPoints,
-    // totalCorrectAnswer,
-    // totalQuestion,
   };
 };
 

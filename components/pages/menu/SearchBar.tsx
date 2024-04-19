@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const SearchBar = () => {
-  const [inputValue, setInputValue] = useState();
+  const [inputValue, setInputValue] = useState("");
   const router = useRouter();
 
   function handleSubmit(e) {

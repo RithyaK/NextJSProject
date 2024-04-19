@@ -20,7 +20,7 @@ type GameQuizzProps = {
 const GameQuizz = ({ quizzChosen, userData }: GameQuizzProps) => {
   // console.log(scores);
   const { username } = useUsernameContext();
-  const { handleHistoryQuizz, handlePointsData } = useHistory();
+  const { handleHistoryQuizz } = useHistory();
 
   const [isQuizzStarted, setIsQuizzStarted] = useState(false);
   const [isQuizzFinished, setIsQuizzFinished] = useState(false);
@@ -46,8 +46,7 @@ const GameQuizz = ({ quizzChosen, userData }: GameQuizzProps) => {
         createdAt: new Date().toLocaleDateString("fr"),
         id: crypto.randomUUID(),
       };
-      handleHistoryQuizz(newQuizzAnsweredToAdd, username, userData);
-      handlePointsData(updatedScore, username);
+      handleHistoryQuizz(newQuizzAnsweredToAdd, userData);
       setIsQuizzStarted(false);
       setIsQuizzFinished(true);
     }

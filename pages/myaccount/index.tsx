@@ -2,7 +2,6 @@ import { db } from "@/firestore/firebase-config";
 import { doc, getDoc } from "firebase/firestore";
 import React from "react";
 import styled from "styled-components";
-import { useUsernameContext } from "@/components/context/usernameContext";
 import { theme } from "@/theme";
 import Sidebar from "@/components/pages/reusable-ui/Sidebar";
 import MainMyAccount from "@/components/pages/myaccount/MainMyAccount";
@@ -50,6 +49,7 @@ export const getServerSideProps = async ({ req }) => {
     const userDataFound = users.find(
       (user) => user.username === req.cookies.username
     );
+    console.log(" userDataFound :", userDataFound);
 
     return {
       props: {
