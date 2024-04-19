@@ -13,13 +13,11 @@ const MenuAccountInfo = ({ userDataAccount }: MenuAccountInfoProps) => {
   const [isVisibleAccountInfo, setIsVisibleAccountInfo] = useState(false);
   const [isModifyingEmail, setIsModifyingEmail] = useState(false);
   const [mail, setMail] = useState(userDataAccount.email);
-  function handleChangeEmail() {
-    setMail(mail);
-    syncEmailDatabase(mail, username);
-  }
   function handleClickValidateButton() {
+    console.log("test");
+    console.log(username);
+    syncEmailDatabase(mail, username);
     setIsModifyingEmail(false);
-    handleChangeEmail();
   }
   return (
     <div className="account-info-container">

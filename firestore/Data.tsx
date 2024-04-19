@@ -21,11 +21,17 @@ export const syncUserScore = async (userNewData: userDataAccount) => {
 };
 
 export const syncEmailDatabase = async (newEmail: string, userId: string) => {
-  const docRef = doc(db, "users", userId);
-
-  await updateDoc(docRef, {
-    email: newEmail,
-  });
+  const docRef = doc(db, "infos", "users");
+  const docSnapShot = await getDoc(docRef);
+  if (docSnapShot.exists()) {
+    const { users } = docSnapShot.data();
+    const usersUpdated = users.map((user) =>
+      user.username === userId ? { ...user, email: newEmail } : user
+    );
+    await updateDoc(docRef, {
+      users: usersUpdated,
+    });
+  }
 };
 
 export const syncQuizz = async (newQuizz: Theme[]) => {

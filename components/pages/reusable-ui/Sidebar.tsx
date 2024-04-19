@@ -12,8 +12,6 @@ type SidebarProps = {
 };
 
 const Sidebar = ({ usersData }: SidebarProps) => {
-  // const dateOf30DaysAgo = Date.now() - 2592000000;
-  // const dateOf7DaysAgo = Date.now() - 864000000;
   const topUsersActive = usersData
     .toSorted(
       (userA, userB) => userB.totalCorrectAnswered - userA.totalCorrectAnswered

@@ -1,3 +1,4 @@
+import { syncQuizz } from "@/firestore/Data";
 import { Theme } from "@/pages/menu/[username]";
 import React, { useState } from "react";
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
@@ -44,7 +45,7 @@ const MenuCreateNewQuizz = ({
 
     setThemeChose(themeChoseFound);
     setListQuizzs(listQuizzsUpdated);
-    // syncQuizz(listQuizzsUpdated);
+    syncQuizz(listQuizzsUpdated);
     setNewQuizzName("");
   }
 

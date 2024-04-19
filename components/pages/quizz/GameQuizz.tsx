@@ -1,4 +1,5 @@
 import { useUsernameContext } from "@/components/context/usernameContext";
+import { syncUserScore } from "@/firestore/Data";
 import useHistory from "@/hooks/useHistory";
 import { Question } from "@/pages/menu/[username]";
 import { HistoryQuizzAnswered, userDataAccount } from "@/pages/myaccount";
@@ -20,13 +21,39 @@ type GameQuizzProps = {
 const GameQuizz = ({ quizzChosen, userData }: GameQuizzProps) => {
   // console.log(scores);
   const { username } = useUsernameContext();
-  const { handleHistoryQuizz } = useHistory();
 
   const [isQuizzStarted, setIsQuizzStarted] = useState(false);
   const [isQuizzFinished, setIsQuizzFinished] = useState(false);
   const [correctAnswer, setCorrectAnswer] = useState(0);
   const [currentIndexQuestion, setCurrentIndexQuestion] = useState(0);
   const question = quizzChosen?.questions[currentIndexQuestion];
+
+  function handleHistoryQuizz(
+    newQuizzAnsweredToAdd,
+    userData: userDataAccount
+  ) {
+    const historyUpdated = [newQuizzAnsweredToAdd, ...userData.history];
+    const totalCorrectAnswerUpdated = historyUpdated.reduce(
+      (accumulator, quizz) => accumulator + quizz.score,
+      0
+    );
+
+    const totalQuestionUpdated = historyUpdated.reduce(
+      (accumulator, quizz) => accumulator + quizz.numberOfQuestions,
+      0
+    );
+    const average = Number(
+      ((totalCorrectAnswerUpdated / totalQuestionUpdated) * 100).toFixed(2)
+    );
+    const userDataUpdated = {
+      ...userData,
+      history: historyUpdated,
+      totalCorrectAnswered: totalCorrectAnswerUpdated,
+      totalQuestionAnswered: totalQuestionUpdated,
+      average,
+    };
+    syncUserScore(userDataUpdated);
+  }
 
   function handleAnswerClicked(choice: string) {
     const newIndexQuestion = currentIndexQuestion + 1;
