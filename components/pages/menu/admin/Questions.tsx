@@ -147,8 +147,12 @@ const Questions = ({
                     id="answer"
                     onChange={(e) => handleChangeNewQuestion(e)}
                   >
-                    {newQuestion.choices.map((choice) => {
-                      return <option value={choice}>{choice}</option>;
+                    {newQuestion.choices.map((choice, index) => {
+                      return (
+                        <option value={choice} key={index}>
+                          {choice}
+                        </option>
+                      );
                     })}
                   </select>
                 </div>

@@ -3,17 +3,18 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/firestore/firebase-config";
 import MainSearch from "@/components/pages/menu/Search/MainSearch";
 import styled from "styled-components";
-import { Theme, UserData } from "../menu/[username]";
+import { Theme } from "../menu/[username]";
 import Sidebar from "@/components/Sidebar";
+import { userDataAccount } from "../myaccount";
 
 type SearchPageProps = {
-  allTimeRanking: UserData[];
+  usersData: userDataAccount[];
   listQuizz: Theme[];
 };
-const SearchedPage = ({ allTimeRanking, listQuizz }: SearchPageProps) => {
+const SearchedPage = ({ usersData, listQuizz }: SearchPageProps) => {
   return (
     <SearchedPageStyled>
-      <Sidebar allTimeRanking={allTimeRanking} />
+      <Sidebar usersData={usersData} />
       <MainSearch listQuizz={listQuizz} />
     </SearchedPageStyled>
   );
@@ -22,24 +23,19 @@ const SearchedPage = ({ allTimeRanking, listQuizz }: SearchPageProps) => {
 export default SearchedPage;
 
 export const getServerSideProps = async () => {
-  const rankingsDocRef = doc(db, "infos", "rankings");
   const listQuizzDocRef = doc(db, "infos", "quizz");
-  const docSnapShotRanking = await getDoc(rankingsDocRef);
   const docSnapShotlistQuizz = await getDoc(listQuizzDocRef);
 
-  if (docSnapShotRanking.exists() && docSnapShotlistQuizz.exists()) {
-    const { allTime: allTimeRanking } = docSnapShotRanking.data();
+  const usersDocRef = doc(db, "infos", "users");
+  const docSnapShotUsers = await getDoc(usersDocRef);
+
+  if (docSnapShotlistQuizz.exists() && docSnapShotUsers.exists()) {
     const { quizz: listQuizz } = docSnapShotlistQuizz.data();
-    const allTimeRankingUpdated = allTimeRanking.map((object) => {
-      return {
-        ...object,
-        createdAt: object.createdAt.toDate().toISOString(),
-      };
-    });
+    const { users } = docSnapShotUsers.data();
     return {
       props: {
-        allTimeRanking: allTimeRankingUpdated,
         listQuizz,
+        usersData: users,
       },
     };
   } else {

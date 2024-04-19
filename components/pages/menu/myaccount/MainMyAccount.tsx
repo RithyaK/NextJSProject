@@ -18,7 +18,7 @@ const MainMyAccount = ({ userDataAccount }: MainMyAccountProps) => {
   // PQ HISTORY UNDEFINED (car probleme de render )
 
   const { username } = useUsernameContext();
-  const inputEmailRef = useRef<HTMLInputElement>(null);
+  // const inputEmailRef = useRef<HTMLInputElement>(null);
   const [isVisibleHistory, setIsVisibleHistory] = useState(false);
   const [isVisibleStats, setIsVisibleStats] = useState(false);
   const [isVisibleAccountInfo, setIsVisibleAccountInfo] = useState(false);
@@ -124,7 +124,7 @@ const MainMyAccount = ({ userDataAccount }: MainMyAccountProps) => {
                     type="email"
                     onChange={(e) => setMail(e.target.value)}
                     value={mail}
-                    ref={inputEmailRef}
+                    // ref={inputEmailRef}
                   />
                   <button onClick={handleClickValidateButton}>Valider</button>
                 </div>

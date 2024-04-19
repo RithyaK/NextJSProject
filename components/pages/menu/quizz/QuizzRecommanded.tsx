@@ -1,4 +1,5 @@
 import { Chapter } from "@/pages/menu/[username]";
+import { useRouter } from "next/router";
 import styled from "styled-components";
 
 type QuizzRecommandedProps = {
@@ -21,6 +22,7 @@ const QuizzRecommanded = ({
   themeData,
   quizzChosen,
 }: QuizzRecommandedProps) => {
+  const router = useRouter();
   return (
     <QuizzRecommandedStyled>
       <h2>Quizz sur le meme thème : {quizzChosen?.theme}</h2>
@@ -28,7 +30,11 @@ const QuizzRecommanded = ({
         {themeData?.chapters
           .filter((chapter) => chapter.name !== quizzChosen.name)
           .map((chapter) => (
-            <li key={chapter.name} className="card">
+            <li
+              key={chapter.name}
+              className="card"
+              onClick={() => router.push(`/quizz/${chapter.name}`)}
+            >
               <h3>{chapter.name}</h3>
               {/* <img src={chapter.image} height="300" width="300" /> */}
             </li>

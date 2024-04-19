@@ -1461,6 +1461,7 @@ export const getServerSideProps = async ({ req }) => {
   if (docSnapShotQuizzs.exists() && docSnapShotUsers.exists()) {
     const { quizz } = docSnapShotQuizzs.data();
     const { users } = docSnapShotUsers.data();
+    console.log(users);
 
     const userDataFound = users.find(
       (user) => user.username === req.cookies.username

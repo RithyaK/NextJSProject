@@ -26,7 +26,7 @@ const MainAdmin = ({ listQuizzsData }: MainAdminProps) => {
   const [newQuizzName, setNewQuizzName] = useState("");
   const [quizChose, setQuizChose] = useState<Chapter | undefined>();
   const [questions, setQuestions] = useState<Question[] | undefined>();
-  const [themeChoseNewQuizz, setThemeChoseNewQuizz] = useState("");
+  const [themeChoseNewQuizz, setThemeChoseNewQuizz] = useState("Histoire");
   function handleSubmitNewTheme(e) {
     e.preventDefault();
     const listQuizzsCopy = JSON.parse(JSON.stringify(listQuizzs));
