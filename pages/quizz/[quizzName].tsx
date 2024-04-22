@@ -86,7 +86,6 @@ const QuizzMenuStyled = styled.div`
     background-color: green;
   }
   .quizz-maincontainer {
-    background-color: red;
     display: flex;
     justify-content: center;
     flex-direction: column;

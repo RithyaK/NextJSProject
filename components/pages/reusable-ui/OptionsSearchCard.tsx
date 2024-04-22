@@ -5,12 +5,7 @@ import React from "react";
 import styled from "styled-components";
 
 type OptionsSearchCardProps = {
-  theme: string;
-  played: number;
-  name: string;
-  difficulty: string;
-  date: string;
-  image: string;
+  chapter: Chapter;
 };
 
 const OptionsSearchCard = ({ chapter }: OptionsSearchCardProps) => {
@@ -25,7 +20,7 @@ const OptionsSearchCard = ({ chapter }: OptionsSearchCardProps) => {
       <span className="quizzName">{chapter.name}</span>
       <div className="details">
         <span>Difficulté : {chapter.difficulty}</span>
-        <span>Thème : {chapter.theme}</span>
+        <span>Thème : {chapter.name}</span>
       </div>
     </OptionsSearchCardStyled>
   );

@@ -7,7 +7,7 @@ import { theme } from "@/theme";
 import cookie from "js-cookie";
 const Login = () => {
   //
-  const { setUsername } = useUsernameContext();
+  const { username, setUsername } = useUsernameContext();
   const router = useRouter();
   const [inputValue, setInputValue] = useState("");
   //

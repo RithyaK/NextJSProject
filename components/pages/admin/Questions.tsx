@@ -14,13 +14,11 @@ const Questions = ({
   setListQuizzs,
   themeChose,
   setThemeChose,
-  // listQuizzsData,
 }) => {
-  // State
   const [newQuestion, setNewQuestion] = useState(EMPTY_QUESTION);
   const [isMenuNewQuestionVisible, setIsMenuNewQuestionVisible] =
     useState(false);
-  // event
+
   function handleChangeQuizz(
     e: React.ChangeEvent<HTMLInputElement>,
     indexOfTheQuestion: number,
