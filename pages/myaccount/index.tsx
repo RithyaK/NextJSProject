@@ -22,6 +22,7 @@ export type userDataAccount = {
   totalCorrectAnswered: number;
   totalQuestionAnswered: number;
   username: string;
+  password: string;
 };
 
 type MyAccountPageProps = {
@@ -47,7 +48,7 @@ export const getServerSideProps = async ({ req }) => {
     const { users } = docSnapShotUsers.data();
 
     const userDataFound = users.find(
-      (user) => user.username === req.cookies.username
+      (user: userDataAccount) => user.username === req.cookies.username
     );
     console.log(" userDataFound :", userDataFound);
 

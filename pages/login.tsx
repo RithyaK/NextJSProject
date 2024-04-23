@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useRouter } from "next/router";
 import styled from "styled-components";
-import { authenticateUser, getUser } from "@/firestore/user";
-import { useUsernameContext } from "@/components/context/usernameContext";
 import { theme } from "@/theme";
-import { syncQuizz } from "@/firestore/Data";
 import SignInForm from "@/components/pages/login/SignInForm";
 import SignUpForm from "@/components/pages/login/SignUpForm";
 const Login = () => {

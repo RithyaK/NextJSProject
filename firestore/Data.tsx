@@ -10,7 +10,7 @@ export const syncUserScore = async (userNewData: userDataAccount) => {
 
   if (docSnapShot.exists()) {
     const { users } = docSnapShot.data();
-    const usersUpdated = users.map((user) =>
+    const usersUpdated = users.map((user: userDataAccount) =>
       user.username === userNewData.username ? userNewData : user
     );
     console.log("usersUpdated : ", usersUpdated);
@@ -25,7 +25,7 @@ export const syncEmailDatabase = async (newEmail: string, userId: string) => {
   const docSnapShot = await getDoc(docRef);
   if (docSnapShot.exists()) {
     const { users } = docSnapShot.data();
-    const usersUpdated = users.map((user) =>
+    const usersUpdated = users.map((user: userDataAccount) =>
       user.username === userId ? { ...user, email: newEmail } : user
     );
     await updateDoc(docRef, {
