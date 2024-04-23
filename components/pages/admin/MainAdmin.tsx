@@ -19,7 +19,9 @@ type MainAdminProps = {
 
 const MainAdmin = ({ listQuizzsData }: MainAdminProps) => {
   const { username } = useUsernameContext();
-  const [listQuizzs, setListQuizzs] = useState(listQuizzsData);
+  const [listQuizzs, setListQuizzs] = useState(
+    JSON.parse(JSON.stringify(listQuizzsData))
+  );
   const [themeChose, setThemeChose] = useState<Theme | undefined>();
 
   return (

@@ -1,43 +1,21 @@
-import { average, doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "./firebase-config";
 
-// export const createUser = (idUser: string) => {
-//   const docRef = doc(db, "users", idUser);
-//   const data = {
-//     username: idUser,
-//     accountCreatedAt: new Date(),
-//     email: `${idUser}@hotmail.fr`,
-//     history: [],
-//     average: 0,
-//     totalCorrectAnswered: 0,
-//     totalQuestionAnswered: 0,
-
-//     // average : number ? 0 ??
-//   };
-//   setDoc(docRef, data);
-// };
-
-// export const getUser = async (idUser: string) => {
-//   const docRef = doc(db, "users", idUser);
-
-//   const docSnapshot = await getDoc(docRef);
-//   console.log("resultat", docSnapshot);
-
-//   if (docSnapshot.exists()) {
-//     const userReceived = docSnapshot.data();
-//     return userReceived;
-//   }
-// };
-
-export const createUser = async (idUser: string) => {
+export const createUser = async (
+  idUser: string,
+  passwordReceived: string,
+  emailReceived: string
+) => {
   const docRef = doc(db, "infos", "users");
   const docSnapshot = await getDoc(docRef);
   if (docSnapshot.exists()) {
     const { users } = docSnapshot.data();
+
     const user = {
       username: idUser,
+      password: passwordReceived,
       accountCreatedAt: new Date().toISOString().split("T")[0],
-      email: `${idUser}@hotmail.fr`,
+      email: emailReceived,
       history: [],
       average: 0,
       totalCorrectAnswered: 0,
@@ -51,25 +29,59 @@ export const createUser = async (idUser: string) => {
   }
 };
 
-export const getUser = async (idUser: string) => {
+export const getUser = async (
+  usernameChecked: string,
+  passwordReceived: string
+) => {
   const docRef = doc(db, "infos", "users");
 
   const docSnapshot = await getDoc(docRef);
   if (docSnapshot.exists()) {
     const { users } = docSnapshot.data();
 
-    const userFound = users.find((user) => user.username === idUser);
+    const userFound = users.find(
+      (user) =>
+        user.username === usernameChecked && user.password === passwordReceived
+    );
+
     return userFound;
   }
 };
 
-export const authenticateUser = async (idUser: string) => {
-  const existingUser = await getUser(idUser);
+export const isUserAlreadyExists = async (usernameChecked: string) => {
+  const docRef = doc(db, "infos", "users");
 
-  if (!existingUser) {
-    createUser(idUser);
+  const docSnapshot = await getDoc(docRef);
+  if (docSnapshot.exists()) {
+    const { users } = docSnapshot.data();
+    const existingUsername = users.some(
+      (user) => user.username === usernameChecked
+    );
+    return existingUsername;
   }
 };
+
+export const isEmailAlreadyExists = async (emailChecked: string) => {
+  const docRef = doc(db, "infos", "users");
+
+  const docSnapshot = await getDoc(docRef);
+  if (docSnapshot.exists()) {
+    const { users } = docSnapshot.data();
+    const existingEmail = users.some((user) => user.email === emailChecked);
+    return existingEmail;
+  }
+};
+
+// export const authenticateUser = async (
+//   idUser: string,
+//   passwordReceived: string
+// ) => {
+//   const existingUser = await getUser(idUser, passwordReceived);
+
+//   if (!existingUser) {
+//     createUser(idUser, passwordReceived);
+//   }
+// };
 
 export const getUserData = async (idUser: string) => {
   const docRef = doc(db, "users", idUser);

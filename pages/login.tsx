@@ -1,39 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import styled from "styled-components";
-import { authenticateUser } from "@/firestore/user";
+import { authenticateUser, getUser } from "@/firestore/user";
 import { useUsernameContext } from "@/components/context/usernameContext";
 import { theme } from "@/theme";
-import cookie from "js-cookie";
+import { syncQuizz } from "@/firestore/Data";
+import SignInForm from "@/components/pages/login/SignInForm";
+import SignUpForm from "@/components/pages/login/SignUpForm";
 const Login = () => {
   //
-  const { username, setUsername } = useUsernameContext();
-  const router = useRouter();
-  const [inputValue, setInputValue] = useState("");
-  //
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    authenticateUser(inputValue);
-    setUsername(inputValue);
-    router.push(`menu/${inputValue}`);
-    // document.cookie = `username=${inputValue}`;
-    cookie.set("username", inputValue, { expires: 1 / 24 });
-  }
+  const [isSigningUp, setIsSigningUp] = useState(false);
 
-  useEffect(() => {
-    setUsername(null);
-  }, []);
+  //
+
   //
   return (
     <LoginPageStyled>
-      <form className="login" onSubmit={(e) => handleSubmit(e)}>
-        <input
-          type="text"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-        />
-        <button>Se connecter</button>
-      </form>
+      <div className="container-connexion">
+        <div className="container-top">
+          {isSigningUp ? (
+            <span onClick={() => setIsSigningUp(false)}>
+              Click here to sign in
+            </span>
+          ) : (
+            <span onClick={() => setIsSigningUp(true)}>
+              Click here to sign up
+            </span>
+          )}
+        </div>
+        {isSigningUp ? <SignUpForm /> : <SignInForm />}
+      </div>
     </LoginPageStyled>
   );
 };
@@ -41,23 +37,28 @@ const Login = () => {
 export default Login;
 const LoginPageStyled = styled.div`
   background-color: ${theme.colors.grey};
-  height: calc(100vh - 50px);
-  width: auto;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-
+  .container-connexion {
+    height: 330px;
+    width: 350px;
+    background-color: red;
+  }
+  .container-top {
+    text-align: center;
+  }
+  .container-top:hover {
+    cursor: pointer;
+  }
   .login {
-    width: 300px;
-    background-color: rgb(107, 86, 159);
-    height: 200px;
     display: flex;
     flex-direction: column;
-    padding: 2.5rem;
-    justify-content: center;
+    padding: 30px;
   }
-  .login > input {
-    margin-bottom: 50px;
+  input {
+    margin-bottom: 10px;
     height: 30px;
   }
 `;

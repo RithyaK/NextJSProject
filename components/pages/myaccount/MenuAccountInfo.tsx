@@ -51,15 +51,16 @@ const MenuAccountInfo = ({ userDataAccount }: MenuAccountInfoProps) => {
                 </button>
               </div>
             ) : (
-              <div>
+              <form onSubmit={handleClickValidateButton}>
                 <input
                   type="email"
                   onChange={(e) => setMail(e.target.value)}
                   value={mail}
+                  required
                   // ref={inputEmailRef}
                 />
-                <button onClick={handleClickValidateButton}>Valider</button>
-              </div>
+                <button>Valider</button>
+              </form>
             )}
           </li>
           <li>

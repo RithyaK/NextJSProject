@@ -17,6 +17,7 @@ const MenuEditQuizz = ({
   setListQuizzs,
   themeChose,
   setThemeChose,
+  listQuizzsData,
 }: MenuEditQuizzProps) => {
   const [isMenuEditVisible, setIsMenuEditVisible] = useState(false);
   const [quizChose, setQuizChose] = useState<Chapter | undefined>();
@@ -26,6 +27,7 @@ const MenuEditQuizz = ({
     const themeChoseUpdated = listQuizzs.find(
       (theme) => theme.name === nameOfTheTheme
     );
+
     if (themeChose?.name !== themeChoseUpdated?.name) {
       setThemeChose(themeChoseUpdated);
       setQuizChose(undefined);
@@ -49,6 +51,7 @@ const MenuEditQuizz = ({
     const quizChoseUpdated = themeChose?.chapters.find(
       (chapter) => chapter.name === e.target.value
     );
+
     setQuizChose(quizChoseUpdated);
     setQuestions(quizChoseUpdated?.questions);
   }
